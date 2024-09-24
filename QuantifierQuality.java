@@ -1,15 +1,15 @@
 public class QuantifierQuality {
-    enum Class {
+    enum Type {
         A, E, I, O
     }
-    private Class classe ;
+    private Type type ;
     private String name ;
-    QuantifierQuality(Class classe, String name){
-        this.classe = classe;
+    QuantifierQuality(Type type, String name){
+        this.type = type;
         this.name = name;
     }
-    Class getClasse(){
-        return this.classe ;
+    Type getType(){
+        return this.type ;
     }
     String getName(){
         return this.name ;
