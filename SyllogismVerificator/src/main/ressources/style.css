@@ -1,0 +1,39 @@
+Button {
+    border-color: #b22635 ;
+    -fx-border-color : #b22635 ;
+    background-color: transparent ;
+    -fx-background-color : transparent ;
+    border-width: 2px;
+    -fx-border-width: 2px ;
+    border-radius: 15;
+    -fx-border-radius: 15 ;
+    -fx-text-fill : rgb(178, 38, 53) ;
+
+}
+
+menu-button, menu, menu-bar, Menu, MenuBar, MenuButton {
+    border-color: #b22635 ;
+    -fx-border-color : #b22635 ;
+    background-color: #b22635 ;
+    -fx-background-color : #b22635 ;
+    border-width: 2px;
+    -fx-border-width: 2px ;
+    border-radius: 15;
+    -fx-border-radius: 15 ;
+    -fx-text-fill : rgb(178, 38, 53) ;
+}
+
+MenuButton > .label {
+    -fx-text-fill : white ;
+}
+
+MenuButton .arrow-button .arrow {
+    background-color : white;
+    -fx-background-color: white;
+}
+
+TextField, Tab, TabPane {
+    -fx-focus-color: #b22635;
+    -fx-faint-focus-color: #b2263445;
+}
+

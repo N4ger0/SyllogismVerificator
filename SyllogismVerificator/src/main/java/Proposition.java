@@ -1,3 +1,5 @@
+package SyllogismVerificator.src.main.java;
+
 public class Proposition {
     private QuantifierQuality quantifQual ;
     private String sujet1 ;

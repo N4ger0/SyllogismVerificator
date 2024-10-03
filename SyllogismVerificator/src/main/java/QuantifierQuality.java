@@ -1,3 +1,5 @@
+package SyllogismVerificator.src.main.java;
+
 public class QuantifierQuality {
     enum Type {
         A, E, I, O
