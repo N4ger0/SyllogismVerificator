@@ -1,4 +1,4 @@
-package SyllogismVerificator.src.main.java;
+package models;
 
 public class Proposition {
     private QuantifierQuality quantifQual ;

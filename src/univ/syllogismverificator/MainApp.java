@@ -1,5 +1,4 @@
-package SyllogismVerificator.src.main.java;
-
+import controllers.MainMenuController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,18 +8,20 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainApp extends Application {
-
     @Override
     public void start(Stage primaryStage) {
         try {
             // Load FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/main_menu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/main_menu-view.fxml"));
             Parent root = loader.load();
+
+            MainMenuController controller = loader.getController() ;
+            controller.initialize(primaryStage);
 
             // Create the scene and set it on the stage
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
-            primaryStage.setTitle("SyllogismVerificator");
+            primaryStage.setTitle("Syllogism Verificator");
             primaryStage.show();
 
         } catch (IOException e) {

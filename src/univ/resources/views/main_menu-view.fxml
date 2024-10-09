@@ -10,7 +10,7 @@
             minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
             text="Syllogism solver"
-            fx:controller="univ.syllogismverificator.controllers.MainMenuController"
+            fx:controller="controllers.MainMenuController"
             xmlns="http://javafx.com/javafx/21">
     <content>
         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">

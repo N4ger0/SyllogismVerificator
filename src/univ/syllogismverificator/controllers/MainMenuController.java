@@ -1,4 +1,4 @@
-package univ.syllogismverificator.controllers;
+package controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +23,7 @@ public class MainMenuController {
     public void handleClickButtonSolver() {
         try {
             //Charger solve_syllogism_view.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/univ/syllogismverificator/views/solve_syllogism_view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/solve_syllogism_view.fxml"));
             Parent root = loader.load();
 
             Scene scene = new Scene(root);
