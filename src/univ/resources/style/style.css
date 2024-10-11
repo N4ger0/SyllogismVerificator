@@ -8,7 +8,10 @@ Button {
     border-radius: 15;
     -fx-border-radius: 15 ;
     -fx-text-fill : rgb(178, 38, 53) ;
+}
 
+Text {
+    -fx-font-family: 'Consolas'
 }
 
 menu-button, menu, menu-bar, Menu, MenuBar, MenuButton {

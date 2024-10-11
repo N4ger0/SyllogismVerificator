@@ -29,7 +29,7 @@
                                     <children>
                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prémisse 1"
                                               HBox.hgrow="ALWAYS"/>
-                                        <MenuButton mnemonicParsing="false" text="Classes" HBox.hgrow="ALWAYS">
+                                        <MenuButton mnemonicParsing="false" text="QQL" HBox.hgrow="ALWAYS" fx:id="QQLGM1">
                                             <items>
                                                 <MenuItem mnemonicParsing="false" text="A"/>
                                                 <MenuItem mnemonicParsing="false" text="E"/>
@@ -55,7 +55,7 @@
                                     <children>
                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prémisse 2"
                                               HBox.hgrow="ALWAYS"/>
-                                        <MenuButton mnemonicParsing="false" text="Classes" HBox.hgrow="ALWAYS">
+                                        <MenuButton mnemonicParsing="false" text="QQL" HBox.hgrow="ALWAYS" fx:id="QQLGM2">
                                             <items>
                                                 <MenuItem mnemonicParsing="false" text="A"/>
                                                 <MenuItem mnemonicParsing="false" text="E"/>
@@ -81,7 +81,7 @@
                                     <children>
                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Conclusion"
                                               HBox.hgrow="ALWAYS"/>
-                                        <MenuButton mnemonicParsing="false" text="Classes" HBox.hgrow="ALWAYS">
+                                        <MenuButton mnemonicParsing="false" text="QQL" HBox.hgrow="ALWAYS" fx:id="QQLGM3">
                                             <items>
                                                 <MenuItem mnemonicParsing="false" text="A"/>
                                                 <MenuItem mnemonicParsing="false" text="E"/>
@@ -176,8 +176,8 @@
                                     <children>
                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prémisse 1"
                                               HBox.hgrow="ALWAYS"/>
-                                        <MenuButton mnemonicParsing="false" text="Classes" textFill="WHITE"
-                                                    HBox.hgrow="ALWAYS">
+                                        <MenuButton mnemonicParsing="false" text="QQL" textFill="WHITE"
+                                                    HBox.hgrow="ALWAYS" fx:id="QQLFM1">
                                             <items>
                                                 <MenuItem mnemonicParsing="false" text="A"/>
                                                 <MenuItem mnemonicParsing="false" text="E"/>
@@ -186,14 +186,14 @@
                                             </items>
                                         </MenuButton>
                                         <MenuButton mnemonicParsing="false" text="Sujet 1" textFill="WHITE"
-                                                    HBox.hgrow="ALWAYS">
+                                                     HBox.hgrow="ALWAYS" fx:id="S11">
                                             <items>
                                                 <MenuItem mnemonicParsing="false" text="Sujet"/>
                                                 <MenuItem mnemonicParsing="false" text="Moyen terme"/>
                                                 <MenuItem mnemonicParsing="false" text="Prédicat"/>
                                             </items>
                                         </MenuButton>
-                                        <MenuButton mnemonicParsing="false" text="Sujet 2" HBox.hgrow="ALWAYS">
+                                        <MenuButton mnemonicParsing="false" text="Sujet 2" HBox.hgrow="ALWAYS" fx:id="S12">
                                             <items>
                                                 <MenuItem mnemonicParsing="false" text="Sujet"/>
                                                 <MenuItem mnemonicParsing="false" text="Moyen terme"/>
@@ -213,7 +213,7 @@
                                     <children>
                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prémisse 2"
                                               HBox.hgrow="ALWAYS"/>
-                                        <MenuButton mnemonicParsing="false" text="Classes" HBox.hgrow="ALWAYS">
+                                        <MenuButton mnemonicParsing="false" text="QQL" HBox.hgrow="ALWAYS" fx:id="QQLFM2">
                                             <items>
                                                 <MenuItem mnemonicParsing="false" text="A"/>
                                                 <MenuItem mnemonicParsing="false" text="E"/>
@@ -221,14 +221,14 @@
                                                 <MenuItem mnemonicParsing="false" text="O"/>
                                             </items>
                                         </MenuButton>
-                                        <MenuButton mnemonicParsing="false" text="Sujet 1" HBox.hgrow="ALWAYS">
+                                        <MenuButton mnemonicParsing="false" text="Sujet 1" HBox.hgrow="ALWAYS" fx:id="S21">
                                             <items>
                                                 <MenuItem mnemonicParsing="false" text="Sujet"/>
                                                 <MenuItem mnemonicParsing="false" text="Moyen terme"/>
                                                 <MenuItem mnemonicParsing="false" text="Prédicat"/>
                                             </items>
                                         </MenuButton>
-                                        <MenuButton mnemonicParsing="false" text="Sujet 2" HBox.hgrow="ALWAYS">
+                                        <MenuButton mnemonicParsing="false" text="Sujet 2" HBox.hgrow="ALWAYS" fx:id="S22">
                                             <items>
                                                 <MenuItem mnemonicParsing="false" text="Sujet"/>
                                                 <MenuItem mnemonicParsing="false" text="Moyen terme"/>
@@ -245,7 +245,7 @@
                                     <children>
                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Conclusion"
                                               HBox.hgrow="ALWAYS"/>
-                                        <MenuButton mnemonicParsing="false" text="Classes" HBox.hgrow="ALWAYS">
+                                        <MenuButton mnemonicParsing="false" text="QQL" HBox.hgrow="ALWAYS" fx:id="QQLFM3">
                                             <items>
                                                 <MenuItem mnemonicParsing="false" text="A"/>
                                                 <MenuItem mnemonicParsing="false" text="E"/>
@@ -253,14 +253,14 @@
                                                 <MenuItem mnemonicParsing="false" text="O"/>
                                             </items>
                                         </MenuButton>
-                                        <MenuButton mnemonicParsing="false" text="Sujet 1" HBox.hgrow="ALWAYS">
+                                        <MenuButton mnemonicParsing="false" text="Sujet 1" HBox.hgrow="ALWAYS" fx:id="S31">
                                             <items>
                                                 <MenuItem mnemonicParsing="false" text="Sujet"/>
                                                 <MenuItem mnemonicParsing="false" text="Moyen terme"/>
                                                 <MenuItem mnemonicParsing="false" text="Prédicat"/>
                                             </items>
                                         </MenuButton>
-                                        <MenuButton mnemonicParsing="false" text="Sujet 2" HBox.hgrow="ALWAYS">
+                                        <MenuButton mnemonicParsing="false" text="Sujet 2" HBox.hgrow="ALWAYS" fx:id="S32">
                                             <items>
                                                 <MenuItem mnemonicParsing="false" text="Sujet"/>
                                                 <MenuItem mnemonicParsing="false" text="Moyen terme"/>
