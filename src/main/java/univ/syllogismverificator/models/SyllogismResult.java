@@ -1,4 +1,4 @@
-package models;
+package univ.syllogismverificator.models;
 
 import java.util.List;
 

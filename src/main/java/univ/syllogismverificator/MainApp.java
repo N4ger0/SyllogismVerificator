@@ -1,9 +1,12 @@
-import controllers.MainMenuController;
+package univ.syllogismverificator;
+
+import univ.syllogismverificator.controllers.MainMenuController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import univ.syllogismverificator.controllers.MainMenuController;
 
 import java.io.IOException;
 
@@ -13,6 +16,7 @@ public class MainApp extends Application {
         try {
             // Load FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/main_menu-view.fxml"));
+            System.out.println(loader) ;
             Parent root = loader.load();
 
             MainMenuController controller = loader.getController() ;

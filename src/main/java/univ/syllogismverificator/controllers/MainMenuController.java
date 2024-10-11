@@ -1,4 +1,4 @@
-package controllers;
+package univ.syllogismverificator.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
