@@ -25,84 +25,9 @@
                     <content>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                             <children>
-                                <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="598.0" spacing="20.0">
-                                    <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prémisse 1"
-                                              HBox.hgrow="ALWAYS"/>
-                                        <MenuButton mnemonicParsing="false" text="QQL" HBox.hgrow="ALWAYS" fx:id="QQLGM1">
-                                            <items>
-                                                <MenuItem mnemonicParsing="false" text="A"/>
-                                                <MenuItem mnemonicParsing="false" text="E"/>
-                                                <MenuItem mnemonicParsing="false" text="I"/>
-                                                <MenuItem mnemonicParsing="false" text="O"/>
-                                            </items>
-                                        </MenuButton>
-                                        <TextField prefHeight="25.0" prefWidth="82.0"/>
-                                        <MenuButton mnemonicParsing="false" text="Verbe" HBox.hgrow="ALWAYS">
-                                            <items>
-                                                <MenuItem mnemonicParsing="false" text="Sujet"/>
-                                                <MenuItem mnemonicParsing="false" text="Moyen terme"/>
-                                                <MenuItem mnemonicParsing="false" text="Prédicat"/>
-                                            </items>
-                                        </MenuButton>
-                                        <TextField prefHeight="25.0" prefWidth="82.0"/>
-                                    </children>
-                                    <padding>
-                                        <Insets left="10.0" top="10.0"/>
-                                    </padding>
-                                </HBox>
-                                <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="598.0" spacing="20.0">
-                                    <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prémisse 2"
-                                              HBox.hgrow="ALWAYS"/>
-                                        <MenuButton mnemonicParsing="false" text="QQL" HBox.hgrow="ALWAYS" fx:id="QQLGM2">
-                                            <items>
-                                                <MenuItem mnemonicParsing="false" text="A"/>
-                                                <MenuItem mnemonicParsing="false" text="E"/>
-                                                <MenuItem mnemonicParsing="false" text="I"/>
-                                                <MenuItem mnemonicParsing="false" text="O"/>
-                                            </items>
-                                        </MenuButton>
-                                        <TextField prefHeight="25.0" prefWidth="82.0"/>
-                                        <MenuButton mnemonicParsing="false" text="Verbe">
-                                            <items>
-                                                <MenuItem mnemonicParsing="false" text="Sujet"/>
-                                                <MenuItem mnemonicParsing="false" text="Moyen terme"/>
-                                                <MenuItem mnemonicParsing="false" text="Prédicat"/>
-                                            </items>
-                                        </MenuButton>
-                                        <TextField prefHeight="25.0" prefWidth="82.0"/>
-                                    </children>
-                                    <padding>
-                                        <Insets left="10.0" top="10.0"/>
-                                    </padding>
-                                </HBox>
-                                <HBox alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="598.0" spacing="20.0">
-                                    <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Conclusion"
-                                              HBox.hgrow="ALWAYS"/>
-                                        <MenuButton mnemonicParsing="false" text="QQL" HBox.hgrow="ALWAYS" fx:id="QQLGM3">
-                                            <items>
-                                                <MenuItem mnemonicParsing="false" text="A"/>
-                                                <MenuItem mnemonicParsing="false" text="E"/>
-                                                <MenuItem mnemonicParsing="false" text="I"/>
-                                                <MenuItem mnemonicParsing="false" text="O"/>
-                                            </items>
-                                        </MenuButton>
-                                        <TextField prefHeight="25.0" prefWidth="82.0"/>
-                                        <MenuButton mnemonicParsing="false" text="Verbe">
-                                            <items>
-                                                <MenuItem mnemonicParsing="false" text="Sujet"/>
-                                                <MenuItem mnemonicParsing="false" text="Moyen terme"/>
-                                                <MenuItem mnemonicParsing="false" text="Prédicat"/>
-                                            </items>
-                                        </MenuButton>
-                                        <TextField prefHeight="25.0" prefWidth="82.0"/>
-                                    </children>
-                                    <padding>
-                                        <Insets left="10.0" top="10.0"/>
-                                    </padding>
-                                </HBox>
+                                <fx:include source="composant/guidedProp.fxml"/>
+                                <fx:include source="composant/guidedProp.fxml"/>
+                                <fx:include source="composant/guidedProp.fxml"/>
                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                     <children>
                                         <Button alignment="CENTER" mnemonicParsing="false" prefHeight="34.0"
