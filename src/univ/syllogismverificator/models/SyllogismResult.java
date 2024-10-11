@@ -3,9 +3,12 @@ package models;
 import java.util.List;
 
 public class SyllogismResult {
-    private boolean valid;
-    private List<RuleResult> rules;
+    private final boolean valid;
+    private final List<RuleResult> results;
 
     //TODO : Faire le Constructeur.
-    public SyllogismResult(List<RuleResult> rules, boolean valid) {}
+    public SyllogismResult(List<RuleResult> results, boolean valid) {
+        this.valid = valid;
+        this.results = results;
+    }
 }
