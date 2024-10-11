@@ -10,4 +10,8 @@ public class RuleResult {
         this.valid = valid;
         this.message = message;
     }
+
+    public boolean isValid() {
+        return valid;
+    }
 }
