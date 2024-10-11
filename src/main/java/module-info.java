@@ -7,5 +7,9 @@ module univ.syllogismverificator {
     opens univ.syllogismverificator to javafx.fxml;
     exports univ.syllogismverificator;
     exports univ.syllogismverificator.controllers;
+    exports univ.syllogismverificator.controllers.composant;
     exports univ.syllogismverificator.models;
+
+    opens univ.syllogismverificator.controllers;
+    opens univ.syllogismverificator.controllers.composant;
 }

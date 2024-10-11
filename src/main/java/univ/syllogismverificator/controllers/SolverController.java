@@ -41,15 +41,6 @@ public class SolverController {
     }
 
     private void initMenuItems() {
-        for (MenuItem mi : QQLGM1.getItems()){
-            mi.setOnAction(event -> QQLGM1.setText(mi.getText()));
-        }
-        for (MenuItem mi : QQLGM2.getItems()){
-            mi.setOnAction(event -> QQLGM2.setText(mi.getText()));
-        }
-        for (MenuItem mi : QQLGM3.getItems()){
-            mi.setOnAction(event -> QQLGM3.setText(mi.getText()));
-        }
         for (MenuItem mi : QQLFM1.getItems()){
             mi.setOnAction(event -> QQLFM1.setText(mi.getText()));
         }

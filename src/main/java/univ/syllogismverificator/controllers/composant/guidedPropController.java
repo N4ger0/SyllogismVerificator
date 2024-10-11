@@ -1,4 +1,4 @@
-package controllers.composantes;
+package univ.syllogismverificator.controllers.composant;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuButton;
