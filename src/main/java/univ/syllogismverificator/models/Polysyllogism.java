@@ -1,7 +1,5 @@
 package univ.syllogismverificator.models;
 
-import javafx.css.Rule;
-
 import java.util.ArrayList;
 import java.util.List;
 
