@@ -4,10 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Polysyllogism {
-    public final List<Proposition> propositions = new ArrayList<>();
+    private final List<Proposition> propositions;
 
-    //TODO : Faire la méthode accept et le retour de RuleResult.
+    public Polysyllogism(List<Proposition> propositions){
+        this.propositions = propositions;
+    }
+
+    /**
+     * Apply a rule to the polysyllogism
+     * @param rule the rule to apply
+     * @return the result of the rule
+     */
     public RuleResult accept(Rule rule) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return rule.evaluate(this);
     }
 }

@@ -14,4 +14,9 @@ public class RuleResult {
     public boolean isValid() {
         return valid;
     }
+
+    @Override
+    public String toString() {
+        return valid ? "" : message;
+    }
 }

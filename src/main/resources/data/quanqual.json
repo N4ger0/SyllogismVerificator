@@ -1,6 +1,19 @@
 [
-  { "A" :  "Tous les"},
-  {"E" : "Aucun"},
-  {"I" :  "Il existe/Il y a"},
-  {"O" :  "Il n'existe pas/Il n'y a pas"}
+  {
+    "value" : "A",
+    "key": "Tous les"
+  },
+  {
+    "value" : "E",
+    "key": "Aucun"
+  },
+  {
+    "value" : "I",
+    "key": "Il existe/Il y a"
+  },
+  {
+    "value" : "O",
+    "key": "Il n'existe pas/Il n'y a pas"
+  }
 ]
+

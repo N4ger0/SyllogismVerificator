@@ -17,7 +17,7 @@
             minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/style.css"
             text="Syllogism solver" xmlns="http://javafx.com/javafx/21"
-            fx:controller="univ.syllogismverificator.controllers.SolverController">
+            fx:controller="univ.syllogismverificator.controllers.MainMenuController">
     <content>
         <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>

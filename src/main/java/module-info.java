@@ -4,6 +4,8 @@ module univ.syllogismverificator {
 
     requires org.controlsfx.controls;
 
+    requires json.simple;
+
     opens univ.syllogismverificator to javafx.fxml;
     exports univ.syllogismverificator;
     exports univ.syllogismverificator.controllers;
