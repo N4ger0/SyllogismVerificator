@@ -10,10 +10,10 @@
 
 <HBox xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="univ.syllogismverificator.controllers.composant.guidedPropController"
+            fx:controller="univ.syllogismverificator.controllers.composant.GuidedPropController"
       alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="598.0" spacing="20.0">
     <children>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" HBox.hgrow="ALWAYS" fx:id="Text"/>
+        <Text strokeType="OUTSIDE" strokeWidth="0.0" HBox.hgrow="ALWAYS" fx:id="text"/>
         <MenuButton mnemonicParsing="false" text="QQL" HBox.hgrow="ALWAYS" fx:id="QQL">
             <items>
                 <MenuItem mnemonicParsing="false" text="A"/>

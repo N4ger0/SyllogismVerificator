@@ -1,17 +1,23 @@
 package univ.syllogismverificator.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import univ.syllogismverificator.controllers.composant.GuidedPropController;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
 
 public class SolverController {
 
     @FXML
-    private MenuButton QQLGM1;
-    @FXML
-    private MenuButton QQLGM2;
-    @FXML
-    private MenuButton QQLGM3;
+    private VBox propositions;
+
+    private ArrayList<GuidedPropController> guidedPropControllers = new ArrayList<>();
 
     @FXML
     private MenuButton QQLFM1;
@@ -20,24 +26,12 @@ public class SolverController {
     @FXML
     private MenuButton QQLFM3;
 
-    @FXML
-    private MenuButton S11;
-    @FXML
-    private MenuButton S12;
-    @FXML
-    private MenuButton S21;
-    @FXML
-    private MenuButton S22;
-    @FXML
-    private MenuButton S31;
-    @FXML
-    private MenuButton S32;
-
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
         initMenuItems();
         loadMenuItemsFromJson();
+        initPropositions();
     }
 
     private void initMenuItems() {
@@ -50,6 +44,44 @@ public class SolverController {
         for (MenuItem mi : QQLFM3.getItems()){
             mi.setOnAction(event -> QQLFM3.setText(mi.getText()));
         }
+    }
+
+    private void initPropositions() throws IOException {
+        for (int i = 0; i < 3; i++) {  // Ajout des 3 propositions par default
+            addGuidedProposition();
+        }
+    }
+
+
+    /**
+     * Ajoute une proposition au mode guide.
+     */
+    private void addGuidedProposition() throws IOException {
+        // Charger l'HBox depuis le fichier FXML
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/composant/GuidedProp.fxml"));
+        HBox hbox = loader.load();
+
+        // Récupérer le contrôleur de l'HBox
+        GuidedPropController hboxController = loader.getController();
+
+        // Ajouter le contrôleur à la liste pour accéder aux méthodes plus tard
+        guidedPropControllers.add(hboxController);
+
+        // Ajouter l'HBox à la VBox
+        propositions.getChildren().add(hbox);
+    }
+
+    /**
+     * Recupere la liste des proposition.
+     *
+     * @return Une ArraList de Map representant les propositions du mode guide.
+     */
+    private ArrayList<Map<String, String>> getPropositions(){
+        ArrayList<Map<String, String>> propositionsList = new ArrayList<Map<String, String>>();
+        for (GuidedPropController GPP: guidedPropControllers) {
+            propositionsList.add(GPP.getProposition());
+        }
+        return propositionsList;
     }
 
     private void loadMenuItemsFromJson() {

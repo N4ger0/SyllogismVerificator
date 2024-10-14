@@ -26,9 +26,9 @@
                         <VBox prefHeight="200.0" prefWidth="100.0">
                             <children>
                                 <VBox fx:id="propositions">
-                                    <fx:include source="composant/guidedProp.fxml"/>
-                                    <fx:include source="composant/guidedProp.fxml"/>
-                                    <fx:include source="composant/guidedProp.fxml"/>
+                                    <fx:include source="composant/GuidedProp.fxml"/>
+                                    <fx:include source="composant/GuidedProp.fxml"/>
+                                    <fx:include source="composant/GuidedProp.fxml"/>
                                 </VBox>
                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                     <children>
