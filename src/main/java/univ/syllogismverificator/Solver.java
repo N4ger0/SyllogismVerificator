@@ -1,9 +1,6 @@
 package univ.syllogismverificator;
 
-import univ.syllogismverificator.models.Polysyllogism;
-import univ.syllogismverificator.models.Rule;
-import univ.syllogismverificator.models.RuleResult;
-import univ.syllogismverificator.models.SyllogismResult;
+import univ.syllogismverificator.models.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +8,10 @@ import java.util.stream.Collectors;
 
 public class Solver {
     private final List<Rule> rules = new ArrayList<>();
+
+    public Solver(){
+        rules.add(new MediumTermRule());
+    }
 
     /**
      * Solve a polysyllogism

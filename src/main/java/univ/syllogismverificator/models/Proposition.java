@@ -1,10 +1,10 @@
 package univ.syllogismverificator.models;
 
 public class Proposition {
-    private final boolean quantity;
-    private final boolean quality;
-    private final String predicate ;
-    private final String subject ;
+    public final boolean quantity;
+    public final boolean quality;
+    public final String predicate ;
+    public final String subject ;
 
     public Proposition(String predicate, String subject, boolean quantity, boolean quality){
         this.predicate = predicate;

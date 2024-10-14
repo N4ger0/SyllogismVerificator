@@ -1,7 +1,7 @@
 package univ.syllogismverificator.models;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Polysyllogism {
     private final List<Proposition> propositions;
@@ -17,5 +17,9 @@ public class Polysyllogism {
      */
     public RuleResult accept(Rule rule) {
         return rule.evaluate(this);
+    }
+
+    public Stream<Proposition> stream(){
+        return propositions.stream();
     }
 }
