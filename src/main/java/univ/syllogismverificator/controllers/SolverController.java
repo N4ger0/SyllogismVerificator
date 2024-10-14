@@ -3,9 +3,19 @@ package univ.syllogismverificator.controllers;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.*;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Hashtable;
 
 public class SolverController {
-
+    private Hashtable<String, String> QQLList = new Hashtable<>() ;
     @FXML
     private MenuButton QQLGM1;
     @FXML
@@ -36,8 +46,8 @@ public class SolverController {
 
     @FXML
     public void initialize() {
-        initMenuItems();
         loadMenuItemsFromJson();
+        initMenuItems();
     }
 
     private void initMenuItems() {
@@ -53,32 +63,15 @@ public class SolverController {
     }
 
     private void loadMenuItemsFromJson() {
-        /*
-        try (FileReader reader = new FileReader("univ/syllogismverificator/data/quanqual.json")) {
-            // Parse the JSON file using Gson
-            char[] cbuf = new char[0];
-            int temp = 0 ;
-            while(temp != -1){
-                temp = reader.read(cbuf) ;
-                System.out.println(temp) ;
+        try {
+            Object o = new JSONParser().parse(new FileReader("src/main/resources/data/quanqual.json"));
+            JSONArray j = (JSONArray) o;
+            for (Object object : j) {
+                JSONObject myObj = (JSONObject) object;
+                QQLList.put((String) myObj.get("key"), (String) myObj.get("value"));
             }
-            System.out.println(cbuf);
-
-
-//            // Get the array of menu items from the JSON
-//            JsonArray menuItemsArray = json.getAsJsonArray("menuItems");
-//
-//            // Loop through each item in the JSON array and create a MenuItem
-//            for (int i = 0; i < menuItemsArray.size(); i++) {
-//                JsonObject menuItemObj = menuItemsArray.get(i).getAsJsonObject();
-//                String label = menuItemObj.get("label").getAsString();
-//
-//                // Create a new MenuItem and add it to the MenuButton
-//                MenuItem menuItem = new MenuItem(label);
-//                menuButton.getItems().add(menuItem);
-//            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+        } catch (ParseException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
