@@ -5,8 +5,17 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.util.Pair;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 
 /**
@@ -14,6 +23,13 @@ import java.util.Map;
  * Elle contient les informations necessaire a la resolution du syllogisme.
  */
 public class GuidedPropController {
+    private ArrayList<Pair<String, String>> QQLList = new ArrayList<>() ;
+    private String classe ;
+
+    public String getClasse() {
+        return classe ;
+    }
+    /** Le texte indiquant le numero de la premisse.*/
     @FXML
     private Text text;
 
@@ -43,6 +59,7 @@ public class GuidedPropController {
 
     @FXML
     public void initialize() {
+        loadMenuItemsFromJson();
         initText();
         initMenuItems();
         initTextFields();
@@ -53,9 +70,29 @@ public class GuidedPropController {
         TextCounter++;
     }
 
+    private void loadMenuItemsFromJson() {
+        try {
+            Object o = new JSONParser().parse(new FileReader("src/main/resources/data/quanqual.json"));
+            JSONArray j = (JSONArray) o;
+            for (Object object : j) {
+                JSONObject myObj = (JSONObject) object;
+                QQLList.add(new Pair<>((String) myObj.get("key"), (String) myObj.get("value")));
+            }
+        } catch (ParseException | IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void initMenuItems() {
-        for (MenuItem mi : guidedQQL.getItems()){
-            mi.setOnAction(event -> guidedQQL.setText(mi.getText()));
+        for(Pair<String, String> p : QQLList){
+            MenuItem myItem = new MenuItem(p.getValue()) ;
+            myItem.setGraphic(new Text(p.getKey()));
+            myItem.setOnAction(event -> {
+                guidedQQL.setText(((Text) myItem.getGraphic()).getText()) ;
+                classe = myItem.getText() ;
+            });
+
+            guidedQQL.getItems().add(myItem);
         }
         for (MenuItem mi : verbe.getItems()){
             mi.setOnAction(event -> verbe.setText(mi.getText()));

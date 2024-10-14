@@ -24,8 +24,6 @@ import java.util.Dictionary;
 import java.util.Hashtable;
 
 public class SolverController {
-    private Hashtable<String, String> QQLList = new Hashtable<>() ;
-
     @FXML
     private VBox guidedPropositions;
     private ArrayList<GuidedPropController> guidedPropControllers = new ArrayList<>();
@@ -37,7 +35,6 @@ public class SolverController {
 
     @FXML
     public void initialize() {
-        loadMenuItemsFromJson();
         initPropositions();
     }
 
@@ -121,17 +118,4 @@ public class SolverController {
         return propositionsList;
     }
 
-
-    private void loadMenuItemsFromJson() {
-        try {
-            Object o = new JSONParser().parse(new FileReader("src/main/resources/data/quanqual.json"));
-            JSONArray j = (JSONArray) o;
-            for (Object object : j) {
-                JSONObject myObj = (JSONObject) object;
-                QQLList.put((String) myObj.get("key"), (String) myObj.get("value"));
-            }
-        } catch (ParseException | IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }

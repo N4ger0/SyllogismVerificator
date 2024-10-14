@@ -13,18 +13,15 @@
         <Text strokeType="OUTSIDE" strokeWidth="0.0" HBox.hgrow="ALWAYS" fx:id="text"/>
         <MenuButton mnemonicParsing="false" text="QQL" HBox.hgrow="ALWAYS" fx:id="guidedQQL">
             <items>
-                <MenuItem mnemonicParsing="false" text="A"/>
-                <MenuItem mnemonicParsing="false" text="E"/>
-                <MenuItem mnemonicParsing="false" text="I"/>
-                <MenuItem mnemonicParsing="false" text="O"/>
             </items>
         </MenuButton>
         <TextField prefHeight="25.0" prefWidth="82.0" fx:id="guidedTerme1"/>
         <MenuButton mnemonicParsing="false" text="Verbe" HBox.hgrow="ALWAYS" fx:id="verbe">
             <items>
-                <MenuItem mnemonicParsing="false" text="Sujet"/>
-                <MenuItem mnemonicParsing="false" text="Moyen terme"/>
-                <MenuItem mnemonicParsing="false" text="Prédicat"/>
+                <MenuItem mnemonicParsing="false" text="sont"/>
+                <MenuItem mnemonicParsing="false" text="est"/>
+                <MenuItem mnemonicParsing="false" text="ont"/>
+                <MenuItem mnemonicParsing="false" text="a"/>
             </items>
         </MenuButton>
         <TextField prefHeight="25.0" prefWidth="82.0" fx:id="guidedTerme2"/>

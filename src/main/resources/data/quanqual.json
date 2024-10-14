@@ -9,11 +9,19 @@
   },
   {
     "value" : "I",
-    "key": "Il existe/Il y a"
+    "key": "Il existe"
+  },
+  {
+    "value" : "I",
+    "key" : "Il y a"
   },
   {
     "value" : "O",
-    "key": "Il n'existe pas/Il n'y a pas"
+    "key": "Il n'existe pas"
+  },
+  {
+    "value" : "O",
+    "key" : "Il n'y a pas"
   }
 ]
 
