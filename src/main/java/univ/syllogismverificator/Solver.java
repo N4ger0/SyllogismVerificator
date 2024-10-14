@@ -12,6 +12,11 @@ import java.util.stream.Collectors;
 public class Solver {
     private final List<Rule> rules = new ArrayList<>();
 
+    /**
+     * Solve a polysyllogism
+     * @param polysyllogism the polysyllogism to solve
+     * @return the results of the syllogism
+     */
     public SyllogismResult solve(Polysyllogism polysyllogism){
         List<RuleResult> results = rules.stream()
                 .map(polysyllogism::accept)
