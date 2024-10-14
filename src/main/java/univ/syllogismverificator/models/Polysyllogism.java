@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Polysyllogism {
-    public final List<Proposition> propositions = new ArrayList<>();
+    private final List<Proposition> propositions;
+
+    public Polysyllogism(List<Proposition> propositions){
+        this.propositions = propositions;
+    }
 
     /**
      * Apply a rule to the polysyllogism
