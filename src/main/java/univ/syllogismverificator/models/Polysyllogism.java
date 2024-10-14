@@ -8,6 +8,6 @@ public class Polysyllogism {
 
     //TODO : Faire la méthode accept et le retour de RuleResult.
     public RuleResult accept(Rule rule) {
-        throw new UnsupportedOperationException("Not implemented yet");
+        return rule.evaluate(this);
     }
 }
