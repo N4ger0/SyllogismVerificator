@@ -14,17 +14,16 @@ import java.util.Map;
  * Elle contient les informations necessaire a la resolution du syllogisme.
  */
 public class GuidedPropController {
-    /** Le texte indiquant le numero de la premisse.*/
     @FXML
     private Text text;
 
     /** Le Menu deroulant permettant de choisir la quantite et qualite de la proposition.*/
     @FXML
-    private MenuButton QQL;
+    private MenuButton guidedQQL;
 
     /** Le champ textuel representant le 1er terme de la proposition.*/
     @FXML
-    private TextField terme1;
+    private TextField guidedTerme1;
 
     /** Le Menu deroulant permettant de choisir le verbe de la proposition.*/
     @FXML
@@ -32,7 +31,7 @@ public class GuidedPropController {
 
     /** Le champ textuel representant le 1er terme de la proposition.*/
     @FXML
-    private TextField terme2;
+    private TextField guidedTerme2;
 
 
     /** Entier servant de compteur de proposition.*/
@@ -55,8 +54,8 @@ public class GuidedPropController {
     }
 
     private void initMenuItems() {
-        for (MenuItem mi : QQL.getItems()){
-            mi.setOnAction(event -> QQL.setText(mi.getText()));
+        for (MenuItem mi : guidedQQL.getItems()){
+            mi.setOnAction(event -> guidedQQL.setText(mi.getText()));
         }
         for (MenuItem mi : verbe.getItems()){
             mi.setOnAction(event -> verbe.setText(mi.getText()));
@@ -69,15 +68,15 @@ public class GuidedPropController {
     /**
      * Recupere les differentes parties de la proposition.
      * <br>
-     * Les cles sont respectivement "QQL", "terme1", "verbe", terme2
+     * Les cles sont respectivement "QQL", "terme1", "verbe", "terme2"
      * @return une Map contenant la QQL, le 1er terme, le verbe et le 2eme terme dans cet ordre.
      */
     public Map<String, String> getProposition() {
         Map<String, String> proposition = new HashMap<>();
-        proposition.put("QQL", QQL.getText());
-        proposition.put("terme1", terme1.getText());
+        proposition.put("QQL", guidedQQL.getText());
+        proposition.put("terme1", guidedTerme1.getText());
         proposition.put("verbe", verbe.getText());
-        proposition.put("terme2", terme2.getText());
+        proposition.put("terme2", guidedTerme2.getText());
         return proposition;
     }
 }

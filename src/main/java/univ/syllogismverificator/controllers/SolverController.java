@@ -2,11 +2,12 @@ package univ.syllogismverificator.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import univ.syllogismverificator.controllers.composant.GuidedPropController;
+import univ.syllogismverificator.controllers.composant.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,41 +25,26 @@ import java.util.Hashtable;
 
 public class SolverController {
     private Hashtable<String, String> QQLList = new Hashtable<>() ;
-    @FXML
-    private VBox propositions;
 
+    @FXML
+    private VBox guidedPropositions;
     private ArrayList<GuidedPropController> guidedPropControllers = new ArrayList<>();
 
     @FXML
-    private MenuButton QQLFM1;
-    @FXML
-    private MenuButton QQLFM2;
-    @FXML
-    private MenuButton QQLFM3;
+    private VBox freePropositions;
+    private ArrayList<FreePropController> freePropControllers = new ArrayList<>();
 
 
     @FXML
-    public void initialize() throws IOException {
-        initMenuItems();
+    public void initialize() {
         loadMenuItemsFromJson();
         initPropositions();
     }
 
-    private void initMenuItems() {
-        for (MenuItem mi : QQLFM1.getItems()){
-            mi.setOnAction(event -> QQLFM1.setText(mi.getText()));
-        }
-        for (MenuItem mi : QQLFM2.getItems()){
-            mi.setOnAction(event -> QQLFM2.setText(mi.getText()));
-        }
-        for (MenuItem mi : QQLFM3.getItems()){
-            mi.setOnAction(event -> QQLFM3.setText(mi.getText()));
-        }
-    }
-
-    private void initPropositions() throws IOException {
+    private void initPropositions() {
         for (int i = 0; i < 3; i++) {  // Ajout des 3 propositions par default
             addGuidedProposition();
+            addFreeProposition();
         }
     }
 
@@ -66,10 +52,15 @@ public class SolverController {
     /**
      * Ajoute une proposition au mode guide.
      */
-    private void addGuidedProposition() throws IOException {
+    private void addGuidedProposition() {
         // Charger l'HBox depuis le fichier FXML
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/composant/GuidedProp.fxml"));
-        HBox hbox = loader.load();
+        HBox hbox = null;
+        try {
+            hbox = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         // Récupérer le contrôleur de l'HBox
         GuidedPropController hboxController = loader.getController();
@@ -78,7 +69,7 @@ public class SolverController {
         guidedPropControllers.add(hboxController);
 
         // Ajouter l'HBox à la VBox
-        propositions.getChildren().add(hbox);
+        guidedPropositions.getChildren().add(hbox);
     }
 
     /**
@@ -86,13 +77,50 @@ public class SolverController {
      *
      * @return Une ArraList de Map representant les propositions du mode guide.
      */
-    private ArrayList<Map<String, String>> getPropositions(){
-        ArrayList<Map<String, String>> propositionsList = new ArrayList<Map<String, String>>();
+    private ArrayList<Map<String, String>> getGuidedPropositions(){
+        ArrayList<Map<String, String>> propositionsList = new ArrayList<>();
         for (GuidedPropController GPP: guidedPropControllers) {
             propositionsList.add(GPP.getProposition());
         }
         return propositionsList;
     }
+
+    /**
+     * Ajoute une proposition au mode libre.
+     */
+    private void addFreeProposition() {
+        // Charger l'HBox depuis le fichier FXML
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/composant/FreeProp.fxml"));
+        HBox hbox = null;
+        try {
+            hbox = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        // Récupérer le contrôleur de l'HBox
+        FreePropController hboxController = loader.getController();
+
+        // Ajouter le contrôleur à la liste pour accéder aux méthodes plus tard
+        freePropControllers.add(hboxController);
+
+        // Ajouter l'HBox à la VBox
+        freePropositions.getChildren().add(hbox);
+    }
+
+    /**
+     * Recupere la liste des proposition.
+     *
+     * @return Une ArraList de Map representant les propositions du mode libre.
+     */
+    private ArrayList<Map<String, String>> getFreePropositions(){
+        ArrayList<Map<String, String>> propositionsList = new ArrayList<>();
+        for (FreePropController FPP: freePropControllers) {
+            propositionsList.add(FPP.getProposition());
+        }
+        return propositionsList;
+    }
+
 
     private void loadMenuItemsFromJson() {
         try {

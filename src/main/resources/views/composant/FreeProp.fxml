@@ -6,12 +6,12 @@
 <?import javafx.geometry.Insets?>
 
 <HBox xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="univ.syllogismverificator.controllers.composant.GuidedPropController"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="univ.syllogismverificator.controllers.composant.FreePropController"
       alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="598.0" spacing="20.0">
     <children>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" HBox.hgrow="ALWAYS" fx:id="text"/>
-        <MenuButton mnemonicParsing="false" text="QQL" HBox.hgrow="ALWAYS" fx:id="guidedQQL">
+        <MenuButton mnemonicParsing="false" text="QQL" textFill="WHITE" HBox.hgrow="ALWAYS" fx:id="freeQQL">
             <items>
                 <MenuItem mnemonicParsing="false" text="A"/>
                 <MenuItem mnemonicParsing="false" text="E"/>
@@ -19,16 +19,25 @@
                 <MenuItem mnemonicParsing="false" text="O"/>
             </items>
         </MenuButton>
-        <TextField prefHeight="25.0" prefWidth="82.0" fx:id="guidedTerme1"/>
-        <MenuButton mnemonicParsing="false" text="Verbe" HBox.hgrow="ALWAYS" fx:id="verbe">
+        <MenuButton mnemonicParsing="false" text="Terme 1" textFill="WHITE"
+                    HBox.hgrow="ALWAYS" fx:id="freeTerme1">
             <items>
                 <MenuItem mnemonicParsing="false" text="Sujet"/>
                 <MenuItem mnemonicParsing="false" text="Moyen terme"/>
                 <MenuItem mnemonicParsing="false" text="Prédicat"/>
             </items>
         </MenuButton>
-        <TextField prefHeight="25.0" prefWidth="82.0" fx:id="guidedTerme2"/>
+        <MenuButton mnemonicParsing="false" text="Terme 2" HBox.hgrow="ALWAYS" fx:id="freeTerme2">
+            <items>
+                <MenuItem mnemonicParsing="false" text="Sujet"/>
+                <MenuItem mnemonicParsing="false" text="Moyen terme"/>
+                <MenuItem mnemonicParsing="false" text="Prédicat"/>
+            </items>
+        </MenuButton>
     </children>
+    <VBox.margin>
+        <Insets/>
+    </VBox.margin>
     <padding>
         <Insets left="10.0" top="10.0"/>
     </padding>
