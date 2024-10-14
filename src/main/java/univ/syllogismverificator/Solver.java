@@ -9,8 +9,11 @@ import java.util.stream.Collectors;
 public class Solver {
     private final List<Rule> rules = new ArrayList<>();
 
+    public Solver(Rule... rules){
+        this.rules.addAll(List.of(rules));
+    }
     public Solver(){
-        rules.add(new MediumTermRule());
+        this(new MediumTermRule());
     }
 
     /**
