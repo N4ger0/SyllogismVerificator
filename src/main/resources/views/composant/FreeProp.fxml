@@ -13,10 +13,6 @@
         <Text strokeType="OUTSIDE" strokeWidth="0.0" HBox.hgrow="ALWAYS" fx:id="text"/>
         <MenuButton mnemonicParsing="false" text="QQL" textFill="WHITE" HBox.hgrow="ALWAYS" fx:id="freeQQL">
             <items>
-                <MenuItem mnemonicParsing="false" text="A"/>
-                <MenuItem mnemonicParsing="false" text="E"/>
-                <MenuItem mnemonicParsing="false" text="I"/>
-                <MenuItem mnemonicParsing="false" text="O"/>
             </items>
         </MenuButton>
         <MenuButton mnemonicParsing="false" text="Terme 1" textFill="WHITE"
