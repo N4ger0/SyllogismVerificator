@@ -6,13 +6,13 @@ import univ.syllogismverificator.models.Proposition;
 public class NnRule implements Rule {
     @Override
     public RuleResult evaluate(Polysyllogism polysyllogism) {
-        boolean result = false;
+        boolean arePremisesOnlyNegative = true;
 
         for (Proposition prop : polysyllogism.getPropositions()) {
-            result = result || prop.quality;
+            arePremisesOnlyNegative = arePremisesOnlyNegative && prop.quality == false;
         }
 
         // TODO: custom message
-        return new RuleResult(result, "");
+        return new RuleResult(!arePremisesOnlyNegative, "");
     }
 }
