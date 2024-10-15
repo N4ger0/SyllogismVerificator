@@ -1,9 +1,19 @@
+.titled-pane > .content {
+    -fx-background-color: #9b8976;
+}
+
+Tab, TabPane {
+    -fx-background-color: #9b8976;
+    -fx-focus-color: #b22635;
+    -fx-faint-focus-color: #b2263445;
+}
+
 Button {
     -fx-border-color : #b22635 ;
     -fx-background-color : #ccc4b4 ;
     -fx-border-width: 2px ;
     -fx-border-radius: 15 ;
-    -fx-background-radius: 40 ;
+    -fx-background-radius: 15 ;
     -fx-text-fill : rgb(178, 38, 53) ;
 }
 
@@ -26,12 +36,6 @@ MenuButton > .label {
 MenuButton .arrow-button .arrow {
     background-color : white;
     -fx-background-color: white;
-}
-
-Tab, TabPane {
-    -fx-background-color: #9b8976;
-    -fx-focus-color: #b22635;
-    -fx-faint-focus-color: #b2263445;
 }
 
 TextField{

@@ -2,10 +2,7 @@ package univ.syllogismverificator.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -67,7 +64,6 @@ public class SolverController {
     private TextField textFieldSujet ;
 
     private Solver solver;
-
 
     @FXML
     public void initialize() {
@@ -201,7 +197,7 @@ public class SolverController {
     /**
      * Recupere la liste des proposition.
      *
-     * @return Une ArraList de Map representant les propositions du mode libre.
+     * @return Une ArrayList de Map representant les propositions du mode libre.
      */
     private Polysyllogism getFreePropositions(){
         ArrayList<Proposition> propositionsList = new ArrayList<>();
@@ -211,6 +207,9 @@ public class SolverController {
         return new Polysyllogism(propositionsList);
     }
 
+    /**
+     * Lance la resolution du syllogisme dans le mode guide.
+     */
     private void guidedSolve() {
         Polysyllogism ps = getGuidedPropositions();
         SyllogismResult res = solver.solve(ps, guidedHE.isSelected());
@@ -227,6 +226,9 @@ public class SolverController {
         }
     }
 
+    /**
+     * Lance la resolution du syllogisme dans le mode libre.
+     */
     private void freeSolve(){
         Polysyllogism ps = getFreePropositions();
         SyllogismResult res = solver.solve(ps, freeHE.isSelected());
