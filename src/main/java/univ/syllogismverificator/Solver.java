@@ -1,9 +1,7 @@
 package univ.syllogismverificator;
 
 import univ.syllogismverificator.models.*;
-import univ.syllogismverificator.models.rules.MediumTermRule;
-import univ.syllogismverificator.models.rules.Rule;
-import univ.syllogismverificator.models.rules.RuleResult;
+import univ.syllogismverificator.models.rules.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +14,13 @@ public class Solver {
         this.rules.addAll(List.of(rules));
     }
     public Solver(){
-        this(new MediumTermRule());
+        this(new MediumTermRule(),
+                new NnRule(),
+                new NnRule(),
+                new PRule(),
+                new PpRule(),
+                new AaRule(),
+                new Ruleuuu());
     }
 
     /**
