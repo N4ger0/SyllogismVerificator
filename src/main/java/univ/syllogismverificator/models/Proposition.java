@@ -21,6 +21,6 @@ public class Proposition {
     }
 
     public boolean isTerm(String term){
-        return term.equals(predicate) || term.equals(subject);
+        return (term.equals(predicate) || term.equals(subject));
     }
 }
