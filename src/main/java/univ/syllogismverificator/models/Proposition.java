@@ -19,4 +19,8 @@ public class Proposition {
         String q2 = quality ? "Affirmative" : "negative";
         return q + " " + q2 + ": " + subject + " " + predicate;
     }
+
+    public boolean isTerm(String term){
+        return term.equals(predicate) || term.equals(subject);
+    }
 }
