@@ -162,14 +162,13 @@ public class GuidedPropController {
     /**
      * Recupere les differentes parties de la proposition.
      * <br>
-     * Les cles sont respectivement "QQL", "terme1", "verbe", "terme2"
-     * @return une Map contenant la QQL, le 1er terme, le verbe et le 2eme terme dans cet ordre.
+     * Les cles sont respectivement "QQL", "terme1", "terme2"
+     * @return une Map contenant la QQL, le 1er terme et le 2eme terme.
      */
     public Map<String, String> getProposition() {
         Map<String, String> proposition = new HashMap<>();
         proposition.put("QQL", guidedQQL.getText());
         proposition.put("terme1", guidedTerme1.getText());
-        proposition.put("verbe", verbe.getText());
         proposition.put("terme2", guidedTerme2.getText());
         return proposition;
     }
