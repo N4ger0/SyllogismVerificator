@@ -36,4 +36,11 @@ public class Polysyllogism {
     public Proposition getConclusion() {
         return conclusion;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        propositions.forEach(p -> builder.append(p).append("\n"));
+        return builder.append(conclusion).toString();
+    }
 }

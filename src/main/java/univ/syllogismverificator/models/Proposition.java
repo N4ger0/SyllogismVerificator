@@ -12,4 +12,11 @@ public class Proposition {
         this.quantity = quantity;
         this.quality = quality;
     }
+
+    @Override
+    public String toString() {
+        String q = quantity ? "Universal" : "Particular";
+        String q2 = quality ? "Affirmative" : "negative";
+        return q + " " + q2 + ": " + subject + " " + predicate;
+    }
 }
