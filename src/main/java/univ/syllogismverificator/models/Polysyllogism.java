@@ -5,6 +5,7 @@ import univ.syllogismverificator.models.rules.RuleResult;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 public class Polysyllogism {
@@ -42,5 +43,9 @@ public class Polysyllogism {
         StringBuilder builder = new StringBuilder();
         propositions.forEach(p -> builder.append(p).append("\n"));
         return builder.append(conclusion).toString();
+    }
+
+    public boolean isMidTerm(String term) {
+        return !term.equals(conclusion.predicate) && !term.equals(conclusion.subject);
     }
 }
