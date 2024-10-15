@@ -1,6 +1,7 @@
 package univ.syllogismverificator.controllers.composant;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
@@ -23,7 +24,7 @@ import java.util.Map;
  * Elle contient les informations necessaire a la resolution du syllogisme.
  */
 public class GuidedPropController {
-    private ArrayList<Pair<String, String>> QQLList = new ArrayList<>() ;
+    private ArrayList<Pair<String, ArrayList<String>>> QQLList = new ArrayList<>() ;
     private String classe ;
 
     public String getClasse() {
@@ -76,7 +77,14 @@ public class GuidedPropController {
             JSONArray j = (JSONArray) o;
             for (Object object : j) {
                 JSONObject myObj = (JSONObject) object;
-                QQLList.add(new Pair<>((String) myObj.get("key"), (String) myObj.get("value")));
+                String tempClasse = (String) myObj.get("value");
+                JSONArray j2 = (JSONArray) myObj.get("array");
+                ArrayList<String> tempList = new ArrayList<>() ;
+                for(Object object2 : j2) {
+                    JSONObject myObj2 = (JSONObject) object2 ;
+                    tempList.add((String) myObj2.get("key")) ;
+                }
+                QQLList.add(new Pair<>((String) myObj.get("value"), tempList));
             }
         } catch (ParseException | IOException e) {
             throw new RuntimeException(e);
@@ -84,15 +92,18 @@ public class GuidedPropController {
     }
 
     private void initMenuItems() {
-        for(Pair<String, String> p : QQLList){
-            MenuItem myItem = new MenuItem(p.getValue()) ;
-            myItem.setGraphic(new Text(p.getKey()));
-            myItem.setOnAction(event -> {
-                guidedQQL.setText(((Text) myItem.getGraphic()).getText()) ;
-                classe = myItem.getText() ;
-            });
+        for(Pair<String, ArrayList<String>> p : QQLList){
+            Menu mySubMenu = new Menu(p.getKey()) ;
+            for(String s : p.getValue()) {
+                MenuItem tempItem = new MenuItem(s) ;
+                mySubMenu.getItems().add(tempItem) ;
+                tempItem.setOnAction(event -> {
+                    guidedQQL.setText(tempItem.getText()) ;
+                    classe = mySubMenu.getText() ;
+                });
+            }
 
-            guidedQQL.getItems().add(myItem);
+            guidedQQL.getItems().add(mySubMenu);
         }
         for (MenuItem mi : verbe.getItems()){
             mi.setOnAction(event -> verbe.setText(mi.getText()));

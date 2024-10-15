@@ -1,27 +1,19 @@
 [
   {
     "value" : "A",
-    "key": "Tous les"
+    "array" : [{"key": "Tous les"}]
   },
   {
     "value" : "E",
-    "key": "Aucun"
+    "array": [{"key" : "Aucun" }]
   },
   {
     "value" : "I",
-    "key": "Il existe"
-  },
-  {
-    "value" : "I",
-    "key" : "Il y a"
+    "array" : [{"key" : "Il existe"}, {"key" : "Il y a" }]
   },
   {
     "value" : "O",
-    "key": "Il n'existe pas"
-  },
-  {
-    "value" : "O",
-    "key" : "Il n'y a pas"
+    "array" : [{"key": "Il n'existe pas"}, {"key" :  "Il n'y a pas"}]
   }
 ]
 
