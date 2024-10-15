@@ -18,16 +18,16 @@
         <MenuButton mnemonicParsing="false" text="Terme 1" textFill="WHITE"
                     HBox.hgrow="ALWAYS" fx:id="freeTerme1">
             <items>
-                <MenuItem mnemonicParsing="false" text="Sujet"/>
-                <MenuItem mnemonicParsing="false" text="Moyen terme"/>
-                <MenuItem mnemonicParsing="false" text="Prédicat"/>
+                <MenuItem mnemonicParsing="false" text="" visible="false"/>
+                <MenuItem mnemonicParsing="false" text="" visible="false"/>
+                <MenuItem mnemonicParsing="false" text="" visible="false"/>
             </items>
         </MenuButton>
         <MenuButton mnemonicParsing="false" text="Terme 2" HBox.hgrow="ALWAYS" fx:id="freeTerme2">
             <items>
-                <MenuItem mnemonicParsing="false" text="Sujet"/>
-                <MenuItem mnemonicParsing="false" text="Moyen terme"/>
-                <MenuItem mnemonicParsing="false" text="Prédicat"/>
+                <MenuItem mnemonicParsing="false" text="" visible="false"/>
+                <MenuItem mnemonicParsing="false" text="" visible="false"/>
+                <MenuItem mnemonicParsing="false" text="" visible="false"/>
             </items>
         </MenuButton>
     </children>

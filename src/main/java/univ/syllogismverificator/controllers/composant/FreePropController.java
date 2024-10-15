@@ -41,9 +41,17 @@ public class FreePropController {
     @FXML
     private MenuButton freeTerme1;
 
+    public MenuButton getFreeTerme1() {
+        return freeTerme1 ;
+    }
+
     /** Le Menu deroulant permettant de choisir le 2eme terme de la proposition.*/
     @FXML
     private MenuButton freeTerme2;
+
+    public MenuButton getFreeTerme2() {
+        return freeTerme2 ;
+    }
 
 
     /** Entier servant de compteur de proposition.*/
