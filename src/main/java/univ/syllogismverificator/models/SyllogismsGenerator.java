@@ -33,6 +33,7 @@ public class SyllogismsGenerator {
                 throw new IllegalArgumentException("Illegal proposition letter: " + propositionLetters);
         }
 
+        // FIXME: change if constructor is edited
         return new Proposition(p, s, quantity, quality);
     }
 
