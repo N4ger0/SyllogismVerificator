@@ -5,8 +5,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import univ.syllogismverificator.controllers.composant.*;
 
 import java.io.IOException;
@@ -25,8 +27,17 @@ import java.util.Hashtable;
 
 public class SolverController {
     @FXML
+    private TabPane tabWindow;
+
+    private Hashtable<String, String> QQLList = new Hashtable<>() ;
+
+    @FXML
     private VBox guidedPropositions;
     private ArrayList<GuidedPropController> guidedPropControllers = new ArrayList<>();
+
+    /** Le champ textuel permettant d'aider l'utilisateur.*/
+    @FXML
+    private Text tutorialText;
 
     @FXML
     private VBox freePropositions;
@@ -35,6 +46,7 @@ public class SolverController {
 
     @FXML
     public void initialize() {
+        initTexts();
         initPropositions();
     }
 
@@ -45,6 +57,24 @@ public class SolverController {
         }
     }
 
+    private void initTexts() {
+        String SyllogismeDef = "Un syllogisme est un raisonnement logique formé de trois propositions : deux prémisses et une conclusion. Chaque prémisse relie deux termes, et la conclusion en déduit une relation entre ces deux termes. Par exemple, dans le syllogisme classique :\n" +
+                "\n" +
+                " 1  - Tous les hommes sont mortels (prémisse majeure),\n" +
+                " 2  - Socrate est un homme (prémisse mineure),\n" +
+                "ccl - Donc, Socrate est mortel (conclusion).\n" +
+                "\n" +
+                "Le syllogisme repose sur des règles strictes de logique formelle pour que la conclusion soit valide.";
+
+        tutorialText.setText(SyllogismeDef);
+
+        tabWindow.setOnMouseClicked(event -> tutorialText.setText(SyllogismeDef));
+    }
+
+    public Text getTutorialText() {
+        return tutorialText;
+    }
+
 
     /**
      * Ajoute une proposition au mode guide.
@@ -52,21 +82,24 @@ public class SolverController {
     private void addGuidedProposition() {
         // Charger l'HBox depuis le fichier FXML
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/composant/GuidedProp.fxml"));
-        HBox hbox = null;
+        HBox GP = null;
         try {
-            hbox = loader.load();
+            GP = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
         // Récupérer le contrôleur de l'HBox
-        GuidedPropController hboxController = loader.getController();
+        GuidedPropController GPC = loader.getController();
+
+        // Donner au controller fils accès au père pour qu'il puisse changer le texte tutoriel
+        GPC.setParentController(this);
 
         // Ajouter le contrôleur à la liste pour accéder aux méthodes plus tard
-        guidedPropControllers.add(hboxController);
+        guidedPropControllers.add(GPC);
 
         // Ajouter l'HBox à la VBox
-        guidedPropositions.getChildren().add(hbox);
+        guidedPropositions.getChildren().add(GP);
     }
 
     /**
@@ -88,21 +121,21 @@ public class SolverController {
     private void addFreeProposition() {
         // Charger l'HBox depuis le fichier FXML
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/composant/FreeProp.fxml"));
-        HBox hbox = null;
+        HBox FP = null;
         try {
-            hbox = loader.load();
+            FP = loader.load();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
         // Récupérer le contrôleur de l'HBox
-        FreePropController hboxController = loader.getController();
+        FreePropController FPC = loader.getController();
 
         // Ajouter le contrôleur à la liste pour accéder aux méthodes plus tard
-        freePropControllers.add(hboxController);
+        freePropControllers.add(FPC);
 
         // Ajouter l'HBox à la VBox
-        freePropositions.getChildren().add(hbox);
+        freePropositions.getChildren().add(FP);
     }
 
     /**

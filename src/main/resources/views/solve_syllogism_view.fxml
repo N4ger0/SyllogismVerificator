@@ -17,7 +17,7 @@
             text="Syllogism solver" xmlns="http://javafx.com/javafx/21"
             fx:controller="univ.syllogismverificator.controllers.SolverController">
     <content>
-        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" fx:id="tabWindow">
             <tabs>
                 <Tab text="Guided mode">
                     <content>
@@ -30,14 +30,7 @@
                                                 prefWidth="84.0" text="Solve"/>
                                     </children>
                                 </HBox>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Qu'est ce qu'un syllogisme ?">
-                                    <VBox.margin>
-                                        <Insets left="10.0"/>
-                                    </VBox.margin>
-                                </Text>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0"
-                                      text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed blandit bibendum malesuada. Nunc placerat sapien vitae libero pellentesque, id dictum risus lobortis. Praesent cursus lacinia nulla, rhoncus cursus ipsum aliquam eu. Maecenas sem quam, cursus a finibus a, vehicula a velit. Praesent orci velit, ultricies a interdum in, tincidunt sed eros. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam lacinia viverra dignissim. Nam aliquet sollicitudin sem sit amet vehicula. "
-                                      wrappingWidth="590.330078125">
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="590.3" fx:id="tutorialText">
                                     <VBox.margin>
                                         <Insets bottom="10.0" left="10.0"/>
                                     </VBox.margin>
