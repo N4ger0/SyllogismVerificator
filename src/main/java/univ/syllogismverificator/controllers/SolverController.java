@@ -4,8 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.HBox;
@@ -14,18 +12,7 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Hashtable;
-import java.util.*;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.*;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
 
 import univ.syllogismverificator.Solver;
 import univ.syllogismverificator.controllers.composant.*;
@@ -53,53 +40,31 @@ public class SolverController {
     @FXML
     private CheckBox guidedHE;
     @FXML
+    private CheckBox guidedCCLUniversal;
+    @FXML
     private Text guidedCCL;
 
     @FXML
     private VBox freePropositions;
     private ArrayList<FreePropController> freePropControllers = new ArrayList<>();
 
-    @FXML
-    private TextField textFieldPredicat ;
 
-    @FXML
-    private TextField textFieldMoyen ;
-
-    @FXML
-    private TextField textFieldSujet ;
-
-    private void setEventOnTextFields() {
-        textFieldPredicat.setOnKeyTyped((event) -> {
-            for(FreePropController control : freePropControllers) {
-                control.getFreeTerme1().getItems().get(0).setText(textFieldPredicat.getText());
-                control.getFreeTerme1().getItems().get(0).setVisible(!(textFieldPredicat.getText().equals("")));
-                control.getFreeTerme2().getItems().get(0).setText(textFieldPredicat.getText());
-                control.getFreeTerme2().getItems().get(0).setVisible(!(textFieldPredicat.getText().equals("")));
-            }
-        });
-        textFieldMoyen.setOnKeyTyped((event) -> {
-            for(FreePropController control : freePropControllers) {
-                control.getFreeTerme1().getItems().get(1).setText(textFieldMoyen.getText());
-                control.getFreeTerme1().getItems().get(1).setVisible(!(textFieldMoyen.getText().equals("")));
-                control.getFreeTerme2().getItems().get(1).setText(textFieldMoyen.getText());
-                control.getFreeTerme2().getItems().get(1).setVisible(!(textFieldMoyen.getText().equals("")));
-            }
-        });
-        textFieldSujet.setOnKeyTyped((event) -> {
-            for(FreePropController control : freePropControllers) {
-                control.getFreeTerme1().getItems().get(2).setText(textFieldSujet.getText());
-                control.getFreeTerme1().getItems().get(2).setVisible(!(textFieldSujet.getText().equals("")));
-                control.getFreeTerme2().getItems().get(2).setText(textFieldSujet.getText());
-                control.getFreeTerme2().getItems().get(2).setVisible(!(textFieldSujet.getText().equals("")));
-            }
-        });
-    }
     @FXML
     private Button freeSolve;
     @FXML
     private CheckBox freeHE;
     @FXML
+    private CheckBox freeCCLUniversal;
+    @FXML
     private Text freeCCL;
+
+
+    @FXML
+    private TextField textFieldPredicat ;
+    @FXML
+    private TextField textFieldMoyen ;
+    @FXML
+    private TextField textFieldSujet ;
 
     private Solver solver;
 
@@ -137,6 +102,33 @@ public class SolverController {
     private void initButtons() {
         guidedSolve.setOnAction(event -> guidedSolve());
         freeSolve.setOnAction(event -> freeSolve());
+    }
+
+    private void setEventOnTextFields() {
+        textFieldPredicat.setOnKeyTyped((event) -> {
+            for(FreePropController control : freePropControllers) {
+                control.getFreeTerme1().getItems().get(0).setText(textFieldPredicat.getText());
+                control.getFreeTerme1().getItems().get(0).setVisible(!(textFieldPredicat.getText().equals("")));
+                control.getFreeTerme2().getItems().get(0).setText(textFieldPredicat.getText());
+                control.getFreeTerme2().getItems().get(0).setVisible(!(textFieldPredicat.getText().equals("")));
+            }
+        });
+        textFieldMoyen.setOnKeyTyped((event) -> {
+            for(FreePropController control : freePropControllers) {
+                control.getFreeTerme1().getItems().get(1).setText(textFieldMoyen.getText());
+                control.getFreeTerme1().getItems().get(1).setVisible(!(textFieldMoyen.getText().equals("")));
+                control.getFreeTerme2().getItems().get(1).setText(textFieldMoyen.getText());
+                control.getFreeTerme2().getItems().get(1).setVisible(!(textFieldMoyen.getText().equals("")));
+            }
+        });
+        textFieldSujet.setOnKeyTyped((event) -> {
+            for(FreePropController control : freePropControllers) {
+                control.getFreeTerme1().getItems().get(2).setText(textFieldSujet.getText());
+                control.getFreeTerme1().getItems().get(2).setVisible(!(textFieldSujet.getText().equals("")));
+                control.getFreeTerme2().getItems().get(2).setText(textFieldSujet.getText());
+                control.getFreeTerme2().getItems().get(2).setVisible(!(textFieldSujet.getText().equals("")));
+            }
+        });
     }
 
     public Text getTutorialText() {

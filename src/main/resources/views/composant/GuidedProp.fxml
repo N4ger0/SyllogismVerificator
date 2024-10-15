@@ -8,7 +8,7 @@
 <HBox xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="univ.syllogismverificator.controllers.composant.GuidedPropController"
-      alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="598.0" spacing="20.0">
+      alignment="CENTER" prefHeight="49.0" prefWidth="598.0" spacing="20.0">
     <children>
         <Text strokeType="OUTSIDE" strokeWidth="0.0" HBox.hgrow="ALWAYS" fx:id="text"/>
         <MenuButton mnemonicParsing="false" text="QQL" HBox.hgrow="ALWAYS" fx:id="guidedQQL">
@@ -26,7 +26,4 @@
         </MenuButton>
         <TextField prefHeight="25.0" prefWidth="82.0" fx:id="guidedTerme2"/>
     </children>
-    <padding>
-        <Insets left="10.0" top="10.0"/>
-    </padding>
 </HBox>

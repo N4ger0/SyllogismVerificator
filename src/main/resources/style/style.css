@@ -1,12 +1,9 @@
 Button {
-    border-color: #b22635 ;
     -fx-border-color : #b22635 ;
-    background-color: transparent ;
-    -fx-background-color : transparent ;
-    border-width: 2px;
+    -fx-background-color : #ccc4b4 ;
     -fx-border-width: 2px ;
-    border-radius: 15;
     -fx-border-radius: 15 ;
+    -fx-background-radius: 40 ;
     -fx-text-fill : rgb(178, 38, 53) ;
 }
 
@@ -14,14 +11,10 @@ Text {
     -fx-font-family: 'Consolas'
 }
 
-menu-button, menu, menu-bar, Menu, MenuBar, MenuButton {
-    border-color: #b22635 ;
+menu-button, menu, menu-bar, Menu, MenuBar, MenuButton, MenuItem {
     -fx-border-color : #b22635 ;
-    background-color: #b22635 ;
     -fx-background-color : #b22635 ;
-    border-width: 2px;
     -fx-border-width: 2px ;
-    border-radius: 15;
     -fx-border-radius: 15 ;
     -fx-text-fill : rgb(178, 38, 53) ;
 }
@@ -35,8 +28,19 @@ MenuButton .arrow-button .arrow {
     -fx-background-color: white;
 }
 
-TextField, Tab, TabPane {
+Tab, TabPane {
+    -fx-background-color: #9b8976;
     -fx-focus-color: #b22635;
     -fx-faint-focus-color: #b2263445;
 }
 
+TextField{
+    -fx-background-color : #ccc4b4 ;
+    -fx-prompt-text-fill: #3b3b3b;
+}
+
+CheckBox {
+    -fx-padding: 7px ;
+    -fx-background-color: #ccc4b4 ;
+    -fx-background-radius: 15 ;
+}
