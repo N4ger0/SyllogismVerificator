@@ -17,7 +17,7 @@ public class Solver {
      * @param polysyllogism the polysyllogism to solve
      * @return the results of the syllogism
      */
-    public SyllogismResult solve(Polysyllogism polysyllogism){
+    public SyllogismResult solve(Polysyllogism polysyllogism, boolean useExistenceHypothesis){
         List<RuleResult> results = rules.stream()
                 .map(polysyllogism::accept)
                 .collect(Collectors.toList());
