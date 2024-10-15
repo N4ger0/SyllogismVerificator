@@ -33,4 +33,18 @@ public class MainMenuController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    public void handleClickButtonTable() {
+        try {
+            //Charger solve_syllogism_view.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/TableAll.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            mainStage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

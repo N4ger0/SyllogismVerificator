@@ -20,7 +20,8 @@
                         onAction="#handleClickButtonSolver"/>
                 <Region prefHeight="30.0" prefWidth="577.0"/>
                 <Button fx:id="ButtonTab" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="87.0"
-                        prefWidth="150.0" text="All possible syllogism"/>
+                        prefWidth="150.0" text="All possible syllogism"
+                        onAction="#handleClickButtonTable"/>
             </children>
         </VBox>
     </content>
