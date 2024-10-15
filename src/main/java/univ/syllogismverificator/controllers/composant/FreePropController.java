@@ -11,12 +11,14 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import univ.syllogismverificator.models.Proposition;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Cette classe représente le controller d'une des proposition du mode libre.
@@ -122,11 +124,11 @@ public class FreePropController {
      * Les cles sont respectivement "QQL", "terme1", "terme2"
      * @return une Map contenant la QQL, le 1er terme et le 2eme terme dans cet ordre.
      */
-    public Map<String, String> getProposition() {
-        Map<String, String> proposition = new HashMap<>();
-        proposition.put("QQL", freeQQL.getText());
-        proposition.put("terme1", freeTerme1.getText());
-        proposition.put("terme2", freeTerme2.getText());
-        return proposition;
+    public Proposition getProposition() {
+        String QQL = freeQQL.getText();
+        boolean qtt = Objects.equals(QQL, "A") || Objects.equals(QQL, "E");
+        boolean qual = Objects.equals(QQL, "A") || Objects.equals(QQL, "I");
+
+        return new Proposition(freeTerme1.getText(), freeTerme2.getText(), qtt, qual);
     }
 }

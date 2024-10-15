@@ -11,6 +11,14 @@ public class SyllogismResult {
         this.results = results;
     }
 
+    public boolean isValid(){
+        return valid;
+    }
+
+    public List<RuleResult> getResults() {
+        return results;
+    }
+
     @Override
     public String toString() {
         return results.stream()

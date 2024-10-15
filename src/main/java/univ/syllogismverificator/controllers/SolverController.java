@@ -3,6 +3,7 @@ package univ.syllogismverificator.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
@@ -10,9 +11,11 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import univ.syllogismverificator.controllers.composant.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Hashtable;
 import java.util.*;
 
 import org.json.simple.JSONArray;
@@ -23,6 +26,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import univ.syllogismverificator.Solver;
+import univ.syllogismverificator.controllers.composant.*;
+import univ.syllogismverificator.models.Polysyllogism;
+import univ.syllogismverificator.models.Proposition;
+import univ.syllogismverificator.models.RuleResult;
+import univ.syllogismverificator.models.SyllogismResult;
 
 public class SolverController {
     @FXML
@@ -37,6 +47,13 @@ public class SolverController {
     /** Le champ textuel permettant d'aider l'utilisateur.*/
     @FXML
     private Text tutorialText;
+
+    @FXML
+    private Button guidedSolve;
+    @FXML
+    private CheckBox guidedHE;
+    @FXML
+    private Text guidedCCL;
 
     @FXML
     private VBox freePropositions;
@@ -77,11 +94,22 @@ public class SolverController {
             }
         });
     }
+    @FXML
+    private Button freeSolve;
+    @FXML
+    private CheckBox freeHE;
+    @FXML
+    private Text freeCCL;
+
+    private Solver solver;
+
 
     @FXML
     public void initialize() {
         initTexts();
         initPropositions();
+        initButtons();
+        solver = new Solver();
         setEventOnTextFields();
     }
 
@@ -104,6 +132,11 @@ public class SolverController {
         tutorialText.setText(SyllogismeDef);
 
         tabWindow.setOnMouseClicked(event -> tutorialText.setText(SyllogismeDef));
+    }
+
+    private void initButtons() {
+        guidedSolve.setOnAction(event -> guidedSolve());
+        freeSolve.setOnAction(event -> freeSolve());
     }
 
     public Text getTutorialText() {
@@ -142,12 +175,12 @@ public class SolverController {
      *
      * @return Une ArraList de Map representant les propositions du mode guide.
      */
-    private ArrayList<Map<String, String>> getGuidedPropositions(){
-        ArrayList<Map<String, String>> propositionsList = new ArrayList<>();
+    private Polysyllogism getGuidedPropositions(){
+        ArrayList<Proposition> propositionsList = new ArrayList<>();
         for (GuidedPropController GPP: guidedPropControllers) {
             propositionsList.add(GPP.getProposition());
         }
-        return propositionsList;
+        return new Polysyllogism(propositionsList);
     }
 
     /**
@@ -178,12 +211,43 @@ public class SolverController {
      *
      * @return Une ArraList de Map representant les propositions du mode libre.
      */
-    private ArrayList<Map<String, String>> getFreePropositions(){
-        ArrayList<Map<String, String>> propositionsList = new ArrayList<>();
+    private Polysyllogism getFreePropositions(){
+        ArrayList<Proposition> propositionsList = new ArrayList<>();
         for (FreePropController FPP: freePropControllers) {
             propositionsList.add(FPP.getProposition());
         }
-        return propositionsList;
+        return new Polysyllogism(propositionsList);
     }
 
+    private void guidedSolve() {
+        Polysyllogism ps = getGuidedPropositions();
+        SyllogismResult res = solver.solve(ps, guidedHE.isSelected());
+
+        if (res.isValid()){
+            guidedCCL.setText("Syllogisme valide!");
+        }
+        else {
+            String ccl = "";
+            for (RuleResult rr: res.getResults()){
+                ccl += rr.toString() + "\n";
+            }
+            guidedCCL.setText(ccl);
+        }
+    }
+
+    private void freeSolve(){
+        Polysyllogism ps = getFreePropositions();
+        SyllogismResult res = solver.solve(ps, freeHE.isSelected());
+
+        if (res.isValid()){
+            freeCCL.setText("Syllogisme valide!");
+        }
+        else {
+            String ccl = "";
+            for (RuleResult rr: res.getResults()){
+                ccl += rr.toString() + "\n";
+            }
+            freeCCL.setText(ccl);
+        }
+    }
 }

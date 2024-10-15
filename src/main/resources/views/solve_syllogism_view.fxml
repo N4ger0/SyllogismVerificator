@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.ToggleButton?>
 <TitledPane xmlns:fx="http://javafx.com/fxml/1" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity"
             minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/style.css"
@@ -21,26 +22,87 @@
             <tabs>
                 <Tab text="Guided mode">
                     <content>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                            <children>
-                                <VBox fx:id="guidedPropositions"/>
-                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                                    <children>
-                                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="34.0"
-                                                prefWidth="84.0" text="Solve"/>
-                                    </children>
-                                </HBox>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="590.3" fx:id="tutorialText">
-                                    <VBox.margin>
-                                        <Insets bottom="10.0" left="10.0"/>
-                                    </VBox.margin>
-                                </Text>
-                            </children>
-                        </VBox>
+                        <HBox>
+                            <VBox prefHeight="200.0" prefWidth="100.0">
+                                <children>
+                                    <VBox fx:id="guidedPropositions"/>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                        <children>
+                                            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="34.0"
+                                                    prefWidth="84.0" text="Solve" fx:id="guidedSolve"/>
+                                            <CheckBox text="Hypothese d'exsistence" fx:id="guidedHE"/>
+                                        </children>
+                                    </HBox>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="590.3" fx:id="tutorialText">
+                                        <VBox.margin>
+                                            <Insets bottom="10.0" left="10.0"/>
+                                        </VBox.margin>
+                                    </Text>
+                                </children>
+                            </VBox>
+                            <Text style="-fx-font-size: 16" text="AAAH" fx:id="guidedCCL"/>
+                        </HBox>
                     </content>
                 </Tab>
                 <Tab text="Free mode">
                     <content>
+                        <HBox>
+                            <VBox prefHeight="200.0" prefWidth="100.0">
+                                <children>
+                                    <HBox alignment="TOP_RIGHT" prefHeight="8.0" prefWidth="598.0">
+                                        <children>
+                                            <CheckBox mnemonicParsing="false" text="Tutoriel">
+                                                <padding>
+                                                    <Insets right="10.0" top="10.0"/>
+                                                </padding>
+                                            </CheckBox>
+                                        </children>
+                                    </HBox>
+                                    <HBox prefHeight="81.0" prefWidth="598.0" spacing="20.0">
+                                        <children>
+                                            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                                <children>
+                                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sujet"/>
+                                                    <TextField/>
+                                                </children>
+                                                <padding>
+                                                    <Insets top="10.0"/>
+                                                </padding>
+                                            </VBox>
+                                            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                                <children>
+                                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Moyen terme"/>
+                                                    <TextField/>
+                                                </children>
+                                                <padding>
+                                                    <Insets top="10.0"/>
+                                                </padding>
+                                            </VBox>
+                                            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                                <children>
+                                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prédicat"/>
+                                                    <TextField/>
+                                                </children>
+                                                <padding>
+                                                    <Insets top="10.0"/>
+                                                </padding>
+                                            </VBox>
+                                        </children>
+                                        <padding>
+                                            <Insets left="10.0" right="10.0"/>
+                                        </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                        <children>
+                                            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="34.0"
+                                                    prefWidth="84.0" text="Solve" fx:id="freeSolve"/>
+                                            <CheckBox text="Hypothese d'exsistence" fx:id="freeHE"/>
+                                        </children>
+                                    </HBox>
+                                </children>
+                            </VBox>
+                            <Text fx:id="freeCCL"/>
+                        </HBox>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                             <children>
                                 <HBox alignment="TOP_RIGHT" prefHeight="8.0" prefWidth="598.0">

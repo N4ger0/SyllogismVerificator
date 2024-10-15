@@ -13,13 +13,11 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import univ.syllogismverificator.models.Proposition;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Cette classe représente le controller d'une des proposition du mode guidé.
@@ -165,11 +163,11 @@ public class GuidedPropController {
      * Les cles sont respectivement "QQL", "terme1", "terme2"
      * @return une Map contenant la QQL, le 1er terme et le 2eme terme.
      */
-    public Map<String, String> getProposition() {
-        Map<String, String> proposition = new HashMap<>();
-        proposition.put("QQL", guidedQQL.getText());
-        proposition.put("terme1", guidedTerme1.getText());
-        proposition.put("terme2", guidedTerme2.getText());
-        return proposition;
+    public Proposition getProposition() {
+        String QQL = guidedQQL.getText();
+        boolean qtt = Objects.equals(QQL, "A") || Objects.equals(QQL, "E");
+        boolean qual = Objects.equals(QQL, "A") || Objects.equals(QQL, "I");
+
+        return new Proposition(guidedTerme1.getText(), guidedTerme2.getText(), qtt, qual);
     }
 }
