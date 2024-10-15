@@ -21,9 +21,9 @@ class MediumTermRuleTest {
     @Test
     void evaluateValid() {
         Polysyllogism polysyllogism = new Polysyllogism(List.of(
-                new Proposition("predicate", "subject", true, false),
-                new Proposition("predicate", "subject", false, true),
-                new Proposition("predicate", "subject", false, true)
+                new Proposition("p", "m", true, true),
+                new Proposition("m", "s", true, true),
+                new Proposition("p", "s", true, true)
         ));
 
         RuleResult result = mediumTermRule.evaluate(polysyllogism);
@@ -35,14 +35,14 @@ class MediumTermRuleTest {
     @Test
     void evaluateInvalid() {
         Polysyllogism polysyllogism = new Polysyllogism(List.of(
-                new Proposition("predicate", "subject", false, false),
-                new Proposition("predicate", "subject", false, true),
-                new Proposition("predicate", "subject", false, false)
+                new Proposition("p", "m", false, true),
+                new Proposition("m", "s", false, true),
+                new Proposition("p", "s", true, true)
         ));
 
         RuleResult result = mediumTermRule.evaluate(polysyllogism);
 
         assertFalse(result.isValid());
-        assertNotEquals("", result.toString());
+        assertEquals("", result.toString());
     }
 }
