@@ -1,5 +1,7 @@
 package univ.syllogismverificator.models;
 
+import univ.syllogismverificator.models.rules.RuleResult;
+
 import java.util.List;
 
 public class SyllogismResult {

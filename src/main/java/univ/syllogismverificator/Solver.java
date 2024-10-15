@@ -1,6 +1,9 @@
 package univ.syllogismverificator;
 
 import univ.syllogismverificator.models.*;
+import univ.syllogismverificator.models.rules.MediumTermRule;
+import univ.syllogismverificator.models.rules.Rule;
+import univ.syllogismverificator.models.rules.RuleResult;
 
 import java.util.ArrayList;
 import java.util.List;

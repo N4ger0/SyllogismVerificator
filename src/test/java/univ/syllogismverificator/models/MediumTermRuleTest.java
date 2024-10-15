@@ -1,8 +1,9 @@
 package univ.syllogismverificator.models;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import univ.syllogismverificator.models.rules.MediumTermRule;
+import univ.syllogismverificator.models.rules.RuleResult;
 
 import java.util.List;
 

@@ -1,5 +1,8 @@
 package univ.syllogismverificator.models;
 
+import univ.syllogismverificator.models.rules.Rule;
+import univ.syllogismverificator.models.rules.RuleResult;
+
 import java.util.List;
 import java.util.stream.Stream;
 

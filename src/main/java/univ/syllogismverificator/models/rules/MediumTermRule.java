@@ -1,4 +1,6 @@
-package univ.syllogismverificator.models;
+package univ.syllogismverificator.models.rules;
+
+import univ.syllogismverificator.models.Polysyllogism;
 
 public class MediumTermRule implements Rule{
     @Override
