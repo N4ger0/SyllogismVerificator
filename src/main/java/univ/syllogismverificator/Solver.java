@@ -20,7 +20,7 @@ public class Solver {
                 new PRule(),
                 new PpRule(),
                 new AaRule(),
-                new Ruleuuu());
+                new Ruleuu());
     }
 
     /**
