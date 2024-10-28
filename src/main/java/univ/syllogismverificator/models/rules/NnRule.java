@@ -13,6 +13,6 @@ public class NnRule implements Rule {
         }
 
         // TODO: custom message
-        return new RuleResult(!arePremisesOnlyNegative, "");
+        return new RuleResult(!arePremisesOnlyNegative, "Regle Nn : ");
     }
 }

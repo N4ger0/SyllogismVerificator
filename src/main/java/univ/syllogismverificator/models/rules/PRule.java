@@ -17,12 +17,12 @@ public class PRule implements Rule {
             boolean result = !polysyllogism.getConclusion().quantity;
 
             if (result) {
-                return new RuleResult(true, "Une prémisse est particulière, et la conclusion l'est aussi.");
+                return new RuleResult(true, "Regle P : Une prémisse est particulière, et la conclusion l'est aussi.");
             } else {
-                return new RuleResult(false, "Une prémisse est particulière, mais la conclusion ne l'est pas.");
+                return new RuleResult(false, "Regle P : Une prémisse est particulière, mais la conclusion ne l'est pas.");
             }
         } else {
-            return new RuleResult(true, "Aucune prémisse n'est particulière !");
+            return new RuleResult(true, "Regle P : Aucune prémisse n'est particulière !");
         }
     }
 }

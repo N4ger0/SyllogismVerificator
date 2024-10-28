@@ -49,9 +49,9 @@ public class MediumTermRule implements Rule{
 
         if (!badMidTerms.isEmpty()) {
             //TODO: affichage réponse avec les termes moyens faux
-            return new RuleResult(false, "");
+            return new RuleResult(false, "Regle Mt : ");
         }
         //TODO: affichage réponse
-        return new RuleResult(true, "");
+        return new RuleResult(true, "Regle Mt : ");
     }
 }

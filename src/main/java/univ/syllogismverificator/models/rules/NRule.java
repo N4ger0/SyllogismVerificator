@@ -13,7 +13,7 @@ public class NRule implements Rule{
                 }
             }
         }
-        return new RuleResult(true, "");
+        return new RuleResult(true, "Regle N : ");
     }
 }
 

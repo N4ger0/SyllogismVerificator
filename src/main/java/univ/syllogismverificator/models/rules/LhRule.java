@@ -42,6 +42,6 @@ public class LhRule implements Rule {
         }
 
         // TODO: custom message
-        return new RuleResult(isConclusionPredicateValid && isConclusionSubjectValid, "");
+        return new RuleResult(isConclusionPredicateValid && isConclusionSubjectValid, "Regle Lh");
     }
 }
