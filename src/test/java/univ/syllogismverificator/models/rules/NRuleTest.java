@@ -31,11 +31,11 @@ class NRuleTest {
     @Test
     void evaluatePositiveNegative() {
         Polysyllogism polysyllogism = new Polysyllogism(List.of(
-                new Proposition("a", "b", true, true),
+                new Proposition("a", "b", true, false),
                 new Proposition("b", "c", false, true),
                 new Proposition("a", "c", true, false)
         ));
-        assertFalse(nRule.evaluate(polysyllogism).isValid());
+        assertTrue(nRule.evaluate(polysyllogism).isValid());
     }
 
     @Test
@@ -45,7 +45,7 @@ class NRuleTest {
                 new Proposition("b", "c", false, true),
                 new Proposition("a", "c", true, true)
         ));
-        assertTrue(nRule.evaluate(polysyllogism).isValid());
+        assertFalse(nRule.evaluate(polysyllogism).isValid());
     }
 
     @Test
@@ -53,7 +53,7 @@ class NRuleTest {
         Polysyllogism polysyllogism = new Polysyllogism(List.of(
                 new Proposition("a", "b", true, false),
                 new Proposition("b", "c", false, false),
-                new Proposition("a", "c", true, true)
+                new Proposition("a", "c", true, false)
         ));
         assertTrue(nRule.evaluate(polysyllogism).isValid());
     }

@@ -6,13 +6,12 @@ import univ.syllogismverificator.models.Proposition;
 public class NRule implements Rule{
     @Override
     public RuleResult evaluate(Polysyllogism polysyllogism) {
-        if (!polysyllogism.getConclusion().quality){
-            for (Proposition proposition : polysyllogism.getPropositions()){
-                if (!proposition.quality){
-                    return new RuleResult(true, "");
+        for (Proposition proposition : polysyllogism.getPropositions()){
+            if (!proposition.quality){
+                if (polysyllogism.getConclusion().quality){
+                    return new RuleResult(false, "");
                 }
             }
-            return new RuleResult(false, "");
         }
         return new RuleResult(true, "");
     }
