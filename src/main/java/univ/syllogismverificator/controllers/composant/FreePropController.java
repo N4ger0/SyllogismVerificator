@@ -70,8 +70,9 @@ public class FreePropController {
         initMenuItems();
     }
 
-    private void loadMenuItemsFromJson() {
+    public void loadMenuItemsFromJson() {
         try {
+            QQLList.clear();
             Object o = new JSONParser().parse(new FileReader("src/main/resources/data/quanqual.json"));
             JSONArray j = (JSONArray) o;
             for (Object object : j) {

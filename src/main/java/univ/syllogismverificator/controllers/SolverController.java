@@ -1,29 +1,24 @@
 package univ.syllogismverificator.controllers;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Hashtable;
 import java.util.*;
 
+import javafx.util.Pair;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -35,6 +30,7 @@ import univ.syllogismverificator.models.SyllogismResult;
 import univ.syllogismverificator.models.rules.RuleResult;
 
 public class SolverController {
+    public Button schemaAdd;
     @FXML
     private TabPane tabWindow;
 
@@ -137,6 +133,7 @@ public class SolverController {
     private void initButtons() {
         guidedSolve.setOnAction(event -> guidedSolve());
         freeSolve.setOnAction(event -> freeSolve());
+        schemaAdd.setOnAction(event -> askSchema());
     }
 
     public Text getTutorialText() {
@@ -248,6 +245,46 @@ public class SolverController {
                 ccl += rr.toString() + "\n";
             }
             freeCCL.setText(ccl);
+        }
+    }
+
+    public void askSchema() {
+        // open a dialogue to ask
+        Dialog<Pair<String, String>> dialog = new Dialog<>();
+        ComboBox<String> comboBox = new ComboBox<>(FXCollections.observableArrayList("A", "E", "I", "O"));
+        TextField text = new TextField();
+        VBox content = new VBox(10, comboBox, text);
+        dialog.getDialogPane().setContent(content);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        dialog.setResultConverter(btn -> btn == ButtonType.OK ? new Pair<>(comboBox.getValue(), text.getText()) : null);
+        dialog.showAndWait().ifPresent(p -> saveOnJson(p.getKey(), p.getValue()));
+    }
+
+    private void saveOnJson(String name, String say){
+        try {
+            Object o = new JSONParser().parse(new FileReader("src/main/resources/data/quanqual.json"));
+            JSONArray j = (JSONArray) o;
+            for (Object object : j) {
+                JSONObject myObj = (JSONObject) object;
+                if (myObj.get("value").equals(name)){
+                    JSONArray j2 = (JSONArray) myObj.get("array");
+                    JSONObject newObject = new JSONObject();
+                    newObject.put("key", say);
+                    j2.add(newObject);
+                    break;
+                }
+            }
+
+            // Write the new json
+            try (FileWriter file = new FileWriter("src/main/resources/data/quanqual.json")) {
+                file.write(j.toJSONString());
+                file.flush();
+            }
+
+            freePropControllers.forEach(FreePropController::loadMenuItemsFromJson);
+            guidedPropControllers.forEach(GuidedPropController::loadMenuItemsFromJson);
+        } catch (ParseException | IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
