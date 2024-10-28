@@ -221,7 +221,7 @@ public class SolverController {
 
     private void guidedSolve() {
         Polysyllogism ps = getGuidedPropositions();
-        SyllogismResult res = solver.solve(ps, guidedHE.isSelected());
+        SyllogismResult res = solver.solve(ps);
 
         if (res.isValid()){
             guidedCCL.setText("Syllogisme valide!");
@@ -237,7 +237,7 @@ public class SolverController {
 
     private void freeSolve(){
         Polysyllogism ps = getFreePropositions();
-        SyllogismResult res = solver.solve(ps, freeHE.isSelected());
+        SyllogismResult res = solver.solve(ps);
 
         if (res.isValid()){
             freeCCL.setText("Syllogisme valide!");
