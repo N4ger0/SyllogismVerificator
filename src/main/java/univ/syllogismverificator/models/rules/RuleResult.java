@@ -1,6 +1,4 @@
-package univ.syllogismverificator.models;
-
-import java.util.List;
+package univ.syllogismverificator.models.rules;
 
 public class RuleResult {
     private final boolean valid;
