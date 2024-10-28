@@ -20,24 +20,24 @@ public class LhRule implements Rule {
         boolean isConclusionSubjectValid = true;
         // Checks if the subject of the conclusion is universal. If the subject is universal elsewhere, the rule is respected for it.
         if (isConclusionSubjectUniversal) {
-            boolean isMidTermPredicate = polysyllogism.getPropositions().getFirst().subject.equals(polysyllogism.getConclusion().subject);
+            boolean isMidTermPredicate = polysyllogism.getPropositions().getLast().subject.equals(polysyllogism.getConclusion().subject);
 
             if (isMidTermPredicate) {
-                isConclusionSubjectValid = getSubjectQuantity(polysyllogism.getPropositions().getFirst());
+                isConclusionSubjectValid = getSubjectQuantity(polysyllogism.getPropositions().getLast());
             } else {
-                isConclusionSubjectValid = getPredicateQuantity(polysyllogism.getPropositions().getFirst());
+                isConclusionSubjectValid = getPredicateQuantity(polysyllogism.getPropositions().getLast());
             }
         }
 
         boolean isConclusionPredicateValid = true;
         // Checks if the subject of the conclusion is universal. If the subject is universal elsewhere, the rule is respected for it.
         if (isConclusionQuantityUniversal) {
-            boolean isMidTermPredicate = polysyllogism.getPropositions().getLast().predicate.equals(polysyllogism.getConclusion().subject);
+            boolean isMidTermPredicate = !polysyllogism.getPropositions().getFirst().predicate.equals(polysyllogism.getConclusion().predicate);
 
             if (isMidTermPredicate) {
-                isConclusionPredicateValid = getSubjectQuantity(polysyllogism.getPropositions().getLast());
+                isConclusionPredicateValid = getSubjectQuantity(polysyllogism.getPropositions().getFirst());
             } else {
-                isConclusionPredicateValid = getPredicateQuantity(polysyllogism.getPropositions().getLast());
+                isConclusionPredicateValid = getPredicateQuantity(polysyllogism.getPropositions().getFirst());
             }
         }
 
