@@ -19,42 +19,43 @@ class RuleuuTest {
     }
 
     @Test
-    public void evaluateUniversalUniversal(){
+    public void evaluateTrueAllUniversal(){
         Polysyllogism polysyllogism = new Polysyllogism(List.of(
                 new Proposition("U", "U", true, false),
                 new Proposition("U", "U", true, false),
                 new Proposition("U", "U", true, false)
         ));
+        assertTrue(rule.evaluate(polysyllogism).isValid());
+    }
+
+    @Test
+    public void evaluateTrueAllParticularExceptConclusion(){
+        Polysyllogism polysyllogism = new Polysyllogism(List.of(
+                new Proposition("U", "U", false, false),
+                new Proposition("U", "U", false, false),
+                new Proposition("U", "U", true, false)
+        ));
+        assertTrue(rule.evaluate(polysyllogism).isValid());
+    }
+
+    @Test
+    public void evaluateTrueAllParticular(){
+        Polysyllogism polysyllogism = new Polysyllogism(List.of(
+                new Proposition("U", "U", false, false),
+                new Proposition("U", "U", false, false),
+                new Proposition("U", "U", false, false)
+        ));
+        assertTrue(rule.evaluate(polysyllogism).isValid());
+    }
+
+    @Test
+    public void evaluateFalse(){
+        Polysyllogism polysyllogism = new Polysyllogism(List.of(
+                new Proposition("U", "U", true, false),
+                new Proposition("U", "U", true, false),
+                new Proposition("U", "U", false, false)
+        ));
+
         assertFalse(rule.evaluate(polysyllogism).isValid());
-    }
-
-    @Test
-    public void evaluateUniversalParticular(){
-        Polysyllogism polysyllogism = new Polysyllogism(List.of(
-                new Proposition("U", "U", true, false),
-                new Proposition("U", "U", true, false),
-                new Proposition("U", "U", false, false)
-        ));
-        assertTrue(rule.evaluate(polysyllogism).isValid());
-    }
-
-    @Test
-    public void evaluateParticularUniversal(){
-        Polysyllogism polysyllogism = new Polysyllogism(List.of(
-                new Proposition("U", "U", false, false),
-                new Proposition("U", "U", false, false),
-                new Proposition("U", "U", true, false)
-        ));
-        assertTrue(rule.evaluate(polysyllogism).isValid());
-    }
-
-    @Test
-    public void evaluateParticularParticular(){
-        Polysyllogism polysyllogism = new Polysyllogism(List.of(
-                new Proposition("U", "U", false, false),
-                new Proposition("U", "U", false, false),
-                new Proposition("U", "U", false, false)
-        ));
-        assertTrue(rule.evaluate(polysyllogism).isValid());
     }
 }

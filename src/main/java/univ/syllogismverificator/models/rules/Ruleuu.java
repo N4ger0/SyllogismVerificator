@@ -14,7 +14,8 @@ public class Ruleuu implements Rule{
         if (arePropositionsUniversal && !polysyllogism.getConclusion().quantity)
             return new RuleResult(false, "");
         else
-            return new RuleResult(true, "");    }
+            return new RuleResult(true, "");
+    }
 }
 
 /*
