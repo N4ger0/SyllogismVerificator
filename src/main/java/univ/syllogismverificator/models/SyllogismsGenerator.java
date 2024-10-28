@@ -46,15 +46,15 @@ public class SyllogismsGenerator {
                 majorPremise = createPropositionFromLetters(firstProp, "m", "p");
                 minorPremise = createPropositionFromLetters(secondProp, "s", "m");
                 break;
-            case 1: // figure 1
+            case 1: // figure 2
                 majorPremise = createPropositionFromLetters(firstProp, "p", "m");
                 minorPremise = createPropositionFromLetters(secondProp, "s", "m");
                 break;
-            case 2: // figure 1
+            case 2: // figure 3
                 majorPremise = createPropositionFromLetters(firstProp, "m", "p");
                 minorPremise = createPropositionFromLetters(secondProp, "m", "s");
                 break;
-            case 3: // figure 1
+            case 3: // figure 4
                 majorPremise = createPropositionFromLetters(firstProp, "p", "m");
                 minorPremise = createPropositionFromLetters(secondProp, "m", "s");
                 break;
