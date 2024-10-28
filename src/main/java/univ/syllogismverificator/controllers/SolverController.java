@@ -31,8 +31,8 @@ import univ.syllogismverificator.Solver;
 import univ.syllogismverificator.controllers.composant.*;
 import univ.syllogismverificator.models.Polysyllogism;
 import univ.syllogismverificator.models.Proposition;
-import univ.syllogismverificator.models.RuleResult;
 import univ.syllogismverificator.models.SyllogismResult;
+import univ.syllogismverificator.models.rules.RuleResult;
 
 public class SolverController {
     @FXML
