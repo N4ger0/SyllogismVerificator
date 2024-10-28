@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import univ.syllogismverificator.models.Polysyllogism;
 import univ.syllogismverificator.models.Proposition;
+import univ.syllogismverificator.models.Syllogism;
 
 import java.util.List;
 
@@ -160,5 +161,31 @@ class AaRuleTest {
 
         // TODO: Error messages
         // assertEquals("", result.toString());
+    }
+
+    @Test
+    void testIeo() {
+        Polysyllogism polysyllogism = new Polysyllogism(List.of(
+                new Proposition("c", "b", false, true),
+                new Proposition("b", "a", true, false),
+                new Proposition("a", "c", false, false)
+        ));
+
+        RuleResult result = polysyllogism.accept(lhRule);
+
+        assertFalse(result.isValid());
+    }
+
+    @Test
+    void testOao() {
+        Polysyllogism polysyllogism = new Polysyllogism(List.of(
+                new Proposition("b", "c", false, false),
+                new Proposition("b", "a", true, true),
+                new Proposition("a", "c", false, false)
+        ));
+
+        RuleResult result = polysyllogism.accept(lhRule);
+
+        assertFalse(result.isValid());
     }
 }

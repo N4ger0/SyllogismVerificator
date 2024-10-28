@@ -1,11 +1,19 @@
 package univ.syllogismverificator.models.rules;
 
 import univ.syllogismverificator.models.Polysyllogism;
+import univ.syllogismverificator.models.Proposition;
 
 public class NRule implements Rule{
     @Override
     public RuleResult evaluate(Polysyllogism polysyllogism) {
-        return new RuleResult(polysyllogism.stream().anyMatch(proposition -> !proposition.quality) || polysyllogism.getConclusion().quality, "N Rule Violation: At least one proposition must be negative.");
+        for (Proposition proposition : polysyllogism.getPropositions()){
+            if (!proposition.quality){
+                if (polysyllogism.getConclusion().quality){
+                    return new RuleResult(false, "");
+                }
+            }
+        }
+        return new RuleResult(true, "");
     }
 }
 

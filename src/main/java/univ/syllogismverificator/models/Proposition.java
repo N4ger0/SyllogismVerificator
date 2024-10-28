@@ -15,9 +15,18 @@ public class Proposition {
 
     @Override
     public String toString() {
-        String q = quantity ? "Universal" : "Particular";
-        String q2 = quality ? "Affirmative" : "negative";
-        return q + " " + q2 + ": " + subject + " " + predicate;
+        String returnString = "";
+
+        if (quantity && quality)
+            returnString += "A ";
+        else if (quantity && !quality)
+            returnString += "E ";
+        else if (!quantity && quality)
+            returnString += "I ";
+        else
+            returnString += "O ";
+
+        return returnString + subject + " " + predicate;
     }
 
     public boolean isTerm(String term){
