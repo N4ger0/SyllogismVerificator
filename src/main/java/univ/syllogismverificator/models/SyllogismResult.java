@@ -28,8 +28,4 @@ public class SyllogismResult {
                 .reduce((a, b) -> a + "\n" + b)
                 .orElse("");
     }
-
-    public boolean isValid() {
-        return valid;
-    }
 }
