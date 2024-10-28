@@ -12,9 +12,9 @@ public class Ruleuu implements Rule{
             arePropositionsUniversal = arePropositionsUniversal && proposition.quantity;
 
         if (arePropositionsUniversal && !polysyllogism.getConclusion().quantity)
-            return new RuleResult(false, "");
+            return new RuleResult(false, "Regle Uu");
         else
-            return new RuleResult(true, "");
+            return new RuleResult(true, "Regle Uu");
     }
 }
 

@@ -13,6 +13,6 @@ public class PpRule implements Rule {
         }
 
         // TODO: custom message
-        return new RuleResult(!areAllPremisesParticular, "");
+        return new RuleResult(!areAllPremisesParticular, "Regle Pp : ");
     }
 }
