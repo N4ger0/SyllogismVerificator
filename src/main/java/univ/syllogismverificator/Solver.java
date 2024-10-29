@@ -62,7 +62,7 @@ public class Solver {
     public SyllogismResult solve(Polysyllogism polysyllogism, boolean checkInterestingSyllogism) {
         SyllogismResult res = solve(polysyllogism);
         if (res.isValid()) {
-            if (checkInterestingSyllogism) {
+            if (checkInterestingSyllogism && !polysyllogism.isConclusionUniversal()) {
                 SyllogismResult res_bis;
                 Polysyllogism universalSyllogism = new Polysyllogism(polysyllogism);
                 res_bis = solve(universalSyllogism);

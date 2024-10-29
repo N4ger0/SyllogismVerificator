@@ -84,6 +84,10 @@ public class Polysyllogism {
         return conclusion.toString();
     }
 
+    public boolean isConclusionUniversal() {
+        return conclusion.quantity;
+    }
+
     /**
      * Computes whether a term is a mid term of the polysyllogism.
      * @param term the term that is to be checked.
