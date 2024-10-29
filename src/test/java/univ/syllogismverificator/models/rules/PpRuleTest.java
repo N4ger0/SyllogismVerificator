@@ -1,32 +1,35 @@
-package univ.syllogismverificator.models;
+package univ.syllogismverificator.models.rules;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import univ.syllogismverificator.models.Polysyllogism;
+import univ.syllogismverificator.models.Proposition;
 import univ.syllogismverificator.models.rules.NnRule;
+import univ.syllogismverificator.models.rules.PpRule;
 import univ.syllogismverificator.models.rules.RuleResult;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class NnRuleTest {
+class PpRuleTest {
 
-    private NnRule nnRule;
+    private PpRule ppRule;
 
     @BeforeEach
     void setUp() {
-        nnRule = new NnRule();
+        ppRule = new PpRule();
     }
 
     @Test
     void evaluateValid() {
         Polysyllogism polysyllogism = new Polysyllogism(List.of(
-                new Proposition("a", "b", true, true),
-                new Proposition("b", "c", false, false),
+                new Proposition("a", "b", false, true),
+                new Proposition("b", "c", true, false),
                 new Proposition("a", "c", true, false)
         ));
 
-        RuleResult result = polysyllogism.accept(nnRule);
+        RuleResult result = polysyllogism.accept(ppRule);
 
         assertTrue(result.isValid());
 
@@ -37,12 +40,12 @@ class NnRuleTest {
     @Test
     void evaluateInvalid() {
         Polysyllogism polysyllogism = new Polysyllogism(List.of(
-                new Proposition("a", "b", true, false),
+                new Proposition("a", "b", false, false),
                 new Proposition("b", "c", false, false),
                 new Proposition("a", "c", true, false)
         ));
 
-        RuleResult result = polysyllogism.accept(nnRule);
+        RuleResult result = polysyllogism.accept(ppRule);
 
         assertFalse(result.isValid());
 
@@ -61,7 +64,7 @@ class NnRuleTest {
                 new Proposition("a", "f", true, false)
         ));
 
-        RuleResult result = polysyllogism.accept(nnRule);
+        RuleResult result = polysyllogism.accept(ppRule);
 
         assertTrue(result.isValid());
 
@@ -72,7 +75,7 @@ class NnRuleTest {
     @Test
     void evaluatePolysyllogismInvalid() {
         Polysyllogism polysyllogism = new Polysyllogism(List.of(
-                new Proposition("a", "b", true, false),
+                new Proposition("a", "b", false, false),
                 new Proposition("b", "c", false, false),
                 new Proposition("c", "d", false, false),
                 new Proposition("d", "e", false, false),
@@ -80,7 +83,8 @@ class NnRuleTest {
                 new Proposition("a", "f", true, true)
         ));
 
-        RuleResult result = polysyllogism.accept(nnRule);
+        RuleResult result = polysyllogism.accept(ppRule);
+
         assertFalse(result.isValid());
 
         // TODO: Error messages

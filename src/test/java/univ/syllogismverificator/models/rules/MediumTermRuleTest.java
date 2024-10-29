@@ -1,7 +1,9 @@
-package univ.syllogismverificator.models;
+package univ.syllogismverificator.models.rules;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import univ.syllogismverificator.models.Polysyllogism;
+import univ.syllogismverificator.models.Proposition;
 import univ.syllogismverificator.models.rules.MediumTermRule;
 import univ.syllogismverificator.models.rules.RuleResult;
 
