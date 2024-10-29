@@ -347,12 +347,12 @@ public class SolverController {
 
             // Write the new json
             try (FileWriter file = new FileWriter("src/main/resources/data/quanqual.json")) {
-                file.write(j.toJSONString());
+                j.writeJSONString(file);
                 file.flush();
             }
 
-            freePropControllers.forEach(FreePropController::loadMenuItemsFromJson);
-            guidedPropControllers.forEach(GuidedPropController::loadMenuItemsFromJson);
+            freePropControllers.forEach(FreePropController::initialize);
+            guidedPropControllers.forEach(GuidedPropController::initialize);
         } catch (ParseException | IOException e) {
             throw new RuntimeException(e);
         }
