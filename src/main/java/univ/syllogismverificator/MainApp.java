@@ -8,11 +8,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import univ.syllogismverificator.controllers.MainMenuController;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
+        Traductor traductor = new Traductor() ;
         try {
             // Load FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/main_menu-view.fxml"));
@@ -25,7 +29,7 @@ public class MainApp extends Application {
             // Create the scene and set it on the stage
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
-            primaryStage.setTitle("Syllogism Verificator");
+            primaryStage.setTitle(traductor.get("title"));
             primaryStage.show();
 
         } catch (IOException e) {
