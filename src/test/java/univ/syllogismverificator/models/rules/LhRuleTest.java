@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AaRuleTest {
+class LhRuleTest {
 
     private LhRule lhRule;
 
