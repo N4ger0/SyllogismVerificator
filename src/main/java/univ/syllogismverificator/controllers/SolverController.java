@@ -7,9 +7,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Hashtable;
+import java.util.*;
+
+import javafx.util.Pair;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.*;
+
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 import univ.syllogismverificator.Solver;
 import univ.syllogismverificator.controllers.composant.*;
@@ -17,8 +27,10 @@ import univ.syllogismverificator.models.Polysyllogism;
 import univ.syllogismverificator.models.Proposition;
 import univ.syllogismverificator.models.RuleResult;
 import univ.syllogismverificator.models.SyllogismResult;
+import univ.syllogismverificator.models.rules.RuleResult;
 
 public class SolverController {
+    public Button schemaAdd;
     @FXML
     private TabPane tabWindow;
 
@@ -45,7 +57,41 @@ public class SolverController {
     private VBox freePropositions;
     private ArrayList<FreePropController> freePropControllers = new ArrayList<>();
 
+    @FXML
+    private TextField textFieldPredicat ;
 
+    @FXML
+    private TextField textFieldMoyen ;
+
+    @FXML
+    private TextField textFieldSujet ;
+
+    private void setEventOnTextFields() {
+        textFieldPredicat.setOnKeyTyped((event) -> {
+            for(FreePropController control : freePropControllers) {
+                control.getFreeTerme1().getItems().get(0).setText(textFieldPredicat.getText());
+                control.getFreeTerme1().getItems().get(0).setVisible(!(textFieldPredicat.getText().equals("")));
+                control.getFreeTerme2().getItems().get(0).setText(textFieldPredicat.getText());
+                control.getFreeTerme2().getItems().get(0).setVisible(!(textFieldPredicat.getText().equals("")));
+            }
+        });
+        textFieldMoyen.setOnKeyTyped((event) -> {
+            for(FreePropController control : freePropControllers) {
+                control.getFreeTerme1().getItems().get(1).setText(textFieldMoyen.getText());
+                control.getFreeTerme1().getItems().get(1).setVisible(!(textFieldMoyen.getText().equals("")));
+                control.getFreeTerme2().getItems().get(1).setText(textFieldMoyen.getText());
+                control.getFreeTerme2().getItems().get(1).setVisible(!(textFieldMoyen.getText().equals("")));
+            }
+        });
+        textFieldSujet.setOnKeyTyped((event) -> {
+            for(FreePropController control : freePropControllers) {
+                control.getFreeTerme1().getItems().get(2).setText(textFieldSujet.getText());
+                control.getFreeTerme1().getItems().get(2).setVisible(!(textFieldSujet.getText().equals("")));
+                control.getFreeTerme2().getItems().get(2).setText(textFieldSujet.getText());
+                control.getFreeTerme2().getItems().get(2).setVisible(!(textFieldSujet.getText().equals("")));
+            }
+        });
+    }
     @FXML
     private Button freeSolve;
     @FXML
@@ -64,6 +110,7 @@ public class SolverController {
     private TextField textFieldSujet ;
 
     private Solver solver;
+
 
     @FXML
     public void initialize() {
@@ -98,6 +145,7 @@ public class SolverController {
     private void initButtons() {
         guidedSolve.setOnAction(event -> guidedSolve());
         freeSolve.setOnAction(event -> freeSolve());
+        schemaAdd.setOnAction(event -> askSchema());
     }
 
     private void setEventOnTextFields() {
@@ -197,7 +245,7 @@ public class SolverController {
     /**
      * Recupere la liste des proposition.
      *
-     * @return Une ArrayList de Map representant les propositions du mode libre.
+     * @return Une ArraList de Map representant les propositions du mode libre.
      */
     private Polysyllogism getFreePropositions(){
         ArrayList<Proposition> propositionsList = new ArrayList<>();
@@ -242,6 +290,46 @@ public class SolverController {
                 ccl += rr.toString() + "\n";
             }
             freeCCL.setText(ccl);
+        }
+    }
+
+    public void askSchema() {
+        // open a dialogue to ask
+        Dialog<Pair<String, String>> dialog = new Dialog<>();
+        ComboBox<String> comboBox = new ComboBox<>(FXCollections.observableArrayList("A", "E", "I", "O"));
+        TextField text = new TextField();
+        VBox content = new VBox(10, comboBox, text);
+        dialog.getDialogPane().setContent(content);
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        dialog.setResultConverter(btn -> btn == ButtonType.OK ? new Pair<>(comboBox.getValue(), text.getText()) : null);
+        dialog.showAndWait().ifPresent(p -> saveOnJson(p.getKey(), p.getValue()));
+    }
+
+    private void saveOnJson(String name, String say){
+        try {
+            Object o = new JSONParser().parse(new FileReader("src/main/resources/data/quanqual.json"));
+            JSONArray j = (JSONArray) o;
+            for (Object object : j) {
+                JSONObject myObj = (JSONObject) object;
+                if (myObj.get("value").equals(name)){
+                    JSONArray j2 = (JSONArray) myObj.get("array");
+                    JSONObject newObject = new JSONObject();
+                    newObject.put("key", say);
+                    j2.add(newObject);
+                    break;
+                }
+            }
+
+            // Write the new json
+            try (FileWriter file = new FileWriter("src/main/resources/data/quanqual.json")) {
+                file.write(j.toJSONString());
+                file.flush();
+            }
+
+            freePropControllers.forEach(FreePropController::loadMenuItemsFromJson);
+            guidedPropControllers.forEach(GuidedPropController::loadMenuItemsFromJson);
+        } catch (ParseException | IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

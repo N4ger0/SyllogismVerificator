@@ -6,120 +6,161 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
-<TabPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity"
-         minHeight="-Infinity"
-         minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/style.css"
-         xmlns="http://javafx.com/javafx/21" tabClosingPolicy="UNAVAILABLE" fx:id="tabWindow"
-         fx:controller="univ.syllogismverificator.controllers.SolverController">
-    <Tab text="Guided mode">
-        <HBox>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-                <VBox fx:id="guidedPropositions"/>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="35">
-                    <Button alignment="CENTER" mnemonicParsing="false" prefHeight="34.0"
-                            prefWidth="84.0" text="Solve" fx:id="guidedSolve"/>
-                    <CheckBox text="Hypothese d'exsistence" fx:id="guidedHE"/>
-                    <CheckBox text="ccl universelle" fx:id="guidedCCLUniversal"/>
-                </HBox>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="590.3" fx:id="tutorialText">
-                    <VBox.margin>
-                        <Insets bottom="10.0" left="10.0"/>
-                    </VBox.margin>
-                </Text>
-            </VBox>
-            <Text style="-fx-font-size: 16" text="AAAH" fx:id="guidedCCL"/>
-        </HBox>
-    </Tab>
-    <Tab text="Free mode">
-        <HBox>
-            <VBox prefHeight="200.0" prefWidth="100.0">
-                <HBox alignment="TOP_RIGHT" prefHeight="8.0" prefWidth="598.0">
-                    <CheckBox mnemonicParsing="false" text="Tutoriel">
-                        <padding>
-                            <Insets right="10.0" top="10.0"/>
-                        </padding>
-                    </CheckBox>
-                </HBox>
-                <HBox prefHeight="81.0" prefWidth="598.0" spacing="20.0">
-                    <padding>
-                        <Insets left="10.0" right="10.0"/>
-                    </padding>
-                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
-                        <padding>
-                            <Insets top="10.0"/>
-                        </padding>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sujet"/>
-                        <TextField/>
-                    </VBox>
-                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
-                        <padding>
-                            <Insets top="10.0"/>
-                        </padding>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Moyen terme"/>
-                        <TextField/>
-                    </VBox>
-                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
-                        <padding>
-                            <Insets top="10.0"/>
-                        </padding>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prédicat"/>
-                        <TextField/>
-                    </VBox>
-                </HBox>
-                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="35">
-                    <Button alignment="CENTER" mnemonicParsing="false" prefHeight="34.0"
-                            prefWidth="84.0" text="Solve" fx:id="freeSolve"
-                            style="-fx-background-color: #ccc4b4"/>
-                    <CheckBox text="Hypothese d'exsistence" fx:id="freeHE"/>
-                    <CheckBox text="ccl universelle" fx:id="freeCCLUniversal"/>
-                </HBox>
-            </VBox>
-            <Text text="AAAAAAAH" fx:id="freeCCL"/>
-        </HBox>
-        <VBox prefHeight="200.0" prefWidth="100.0">
-            <HBox alignment="TOP_RIGHT" prefHeight="8.0" prefWidth="598.0">
-                <CheckBox mnemonicParsing="false" text="Tutoriel">
-                    <padding>
-                        <Insets right="10.0" top="10.0"/>
-                    </padding>
-                </CheckBox>
-            </HBox>
-            <HBox prefHeight="81.0" prefWidth="598.0" spacing="20.0">
-                <padding>
-                    <Insets left="10.0" right="10.0"/>
-                </padding>
-                <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
-                    <padding>
-                        <Insets top="10.0"/>
-                    </padding>
-                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sujet"/>
-                    <TextField fx:id="textFieldSujet"/>
-                </VBox>
-                <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
-                    <padding>
-                        <Insets top="10.0"/>
-                    </padding>
-                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Moyen terme"/>
-                    <TextField fx:id="textFieldMoyen"/>
-                </VBox>
-                <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
-                    <padding>
-                        <Insets top="10.0"/>
-                    </padding>
-                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prédicat"/>
-                    <TextField fx:id="textFieldPredicat"/>
-                </VBox>
-            </HBox>
-            <VBox fx:id="freePropositions"/>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                <Button alignment="CENTER" mnemonicParsing="false" prefHeight="34.0"
-                        prefWidth="84.0" text="Solve"/>
-            </HBox>
-        </VBox>
-    </Tab>
-</TabPane>
+<?import javafx.scene.control.ToggleButton?>
+<TitledPane xmlns:fx="http://javafx.com/fxml/1" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../style/style.css"
+            text="Syllogism solver" xmlns="http://javafx.com/javafx/21"
+            fx:controller="univ.syllogismverificator.controllers.SolverController">
+    <content>
+        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" fx:id="tabWindow">
+            <tabs>
+                <Tab text="Guided mode">
+                    <content>
+                        <HBox>
+                            <VBox prefHeight="200.0" prefWidth="100.0">
+                                <children>
+                                    <VBox fx:id="guidedPropositions"/>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                        <children>
+                                            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="34.0"
+                                                    prefWidth="84.0" text="Solve" fx:id="guidedSolve"/>
+                                            <CheckBox text="Hypothese d'exsistence" fx:id="guidedHE"/>
+                                            <Button fx:id="schemaAdd" mnemonicParsing="false" text="Add schema"/>
+                                        </children>
+                                    </HBox>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="590.3" fx:id="tutorialText">
+                                        <VBox.margin>
+                                            <Insets bottom="10.0" left="10.0"/>
+                                        </VBox.margin>
+                                    </Text>
+                                </children>
+                            </VBox>
+                            <Text style="-fx-font-size: 16" text="AAAH" fx:id="guidedCCL"/>
+                        </HBox>
+                    </content>
+                </Tab>
+                <Tab text="Free mode">
+                    <content>
+                        <HBox>
+                            <VBox prefHeight="200.0" prefWidth="100.0">
+                                <children>
+                                    <HBox alignment="TOP_RIGHT" prefHeight="8.0" prefWidth="598.0">
+                                        <children>
+                                            <CheckBox mnemonicParsing="false" text="Tutoriel">
+                                                <padding>
+                                                    <Insets right="10.0" top="10.0"/>
+                                                </padding>
+                                            </CheckBox>
+                                        </children>
+                                    </HBox>
+                                    <HBox prefHeight="81.0" prefWidth="598.0" spacing="20.0">
+                                        <children>
+                                            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                                <children>
+                                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sujet"/>
+                                                    <TextField/>
+                                                </children>
+                                                <padding>
+                                                    <Insets top="10.0"/>
+                                                </padding>
+                                            </VBox>
+                                            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                                <children>
+                                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Moyen terme"/>
+                                                    <TextField/>
+                                                </children>
+                                                <padding>
+                                                    <Insets top="10.0"/>
+                                                </padding>
+                                            </VBox>
+                                            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                                <children>
+                                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prédicat"/>
+                                                    <TextField/>
+                                                </children>
+                                                <padding>
+                                                    <Insets top="10.0"/>
+                                                </padding>
+                                            </VBox>
+                                        </children>
+                                        <padding>
+                                            <Insets left="10.0" right="10.0"/>
+                                        </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                        <children>
+                                            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="34.0"
+                                                    prefWidth="84.0" text="Solve" fx:id="freeSolve"/>
+                                            <CheckBox text="Hypothese d'exsistence" fx:id="freeHE"/>
+                                        </children>
+                                    </HBox>
+                                </children>
+                            </VBox>
+                            <Text fx:id="freeCCL"/>
+                        </HBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <HBox alignment="TOP_RIGHT" prefHeight="8.0" prefWidth="598.0">
+                                    <children>
+                                        <CheckBox mnemonicParsing="false" text="Tutoriel">
+                                            <padding>
+                                                <Insets right="10.0" top="10.0"/>
+                                            </padding>
+                                        </CheckBox>
+                                    </children>
+                                </HBox>
+                                <HBox prefHeight="81.0" prefWidth="598.0" spacing="20.0">
+                                    <children>
+                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sujet"/>
+                                                <TextField fx:id="textFieldSujet"/>
+                                            </children>
+                                            <padding>
+                                                <Insets top="10.0"/>
+                                            </padding>
+                                        </VBox>
+                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Moyen terme"/>
+                                                <TextField fx:id="textFieldMoyen"/>
+                                            </children>
+                                            <padding>
+                                                <Insets top="10.0"/>
+                                            </padding>
+                                        </VBox>
+                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                                            <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prédicat"/>
+                                                <TextField fx:id="textFieldPredicat"/>
+                                            </children>
+                                            <padding>
+                                                <Insets top="10.0"/>
+                                            </padding>
+                                        </VBox>
+                                    </children>
+                                    <padding>
+                                        <Insets left="10.0" right="10.0"/>
+                                    </padding>
+                                </HBox>
+                                <VBox fx:id="freePropositions"/>
+                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="34.0"
+                                                prefWidth="84.0" text="Solve"/>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </content>
+</TitledPane>

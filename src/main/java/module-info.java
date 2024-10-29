@@ -14,4 +14,5 @@ module univ.syllogismverificator {
 
     opens univ.syllogismverificator.controllers;
     opens univ.syllogismverificator.controllers.composant;
+    exports univ.syllogismverificator.models.rules;
 }
