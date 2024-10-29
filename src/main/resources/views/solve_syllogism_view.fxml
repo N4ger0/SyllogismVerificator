@@ -51,12 +51,13 @@
                         <HBox>
                             <VBox prefHeight="200.0" prefWidth="100.0">
                                 <children>
+                                    <!-- Retain only one version of each VBox structure with fx:id where applicable -->
                                     <HBox prefHeight="81.0" prefWidth="598.0" spacing="20.0">
                                         <children>
                                             <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
                                                 <children>
                                                     <Text fx:id="text_sujet" strokeType="OUTSIDE" strokeWidth="0.0"/>
-                                                    <TextField/>
+                                                    <TextField fx:id="textFieldSujet"/>
                                                 </children>
                                                 <padding>
                                                     <Insets top="10.0"/>
@@ -65,7 +66,7 @@
                                             <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
                                                 <children>
                                                     <Text fx:id="text_middle" strokeType="OUTSIDE" strokeWidth="0.0"/>
-                                                    <TextField/>
+                                                    <TextField fx:id="textFieldMoyen"/>
                                                 </children>
                                                 <padding>
                                                     <Insets top="10.0"/>
@@ -74,7 +75,7 @@
                                             <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
                                                 <children>
                                                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prédicat"/>
-                                                    <TextField/>
+                                                    <TextField fx:id="textFieldPredicat"/>
                                                 </children>
                                                 <padding>
                                                     <Insets top="10.0"/>
@@ -85,6 +86,7 @@
                                             <Insets left="10.0" right="10.0"/>
                                         </padding>
                                     </HBox>
+                                    <VBox fx:id="freePropositions"/>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                         <children>
                                             <Button alignment="CENTER" mnemonicParsing="false" prefHeight="34.0"
@@ -96,60 +98,6 @@
                             </VBox>
                             <Text fx:id="freeCCL"/>
                         </HBox>
-                        <VBox prefHeight="200.0" prefWidth="100.0">
-                            <children>
-                                <HBox alignment="TOP_RIGHT" prefHeight="8.0" prefWidth="598.0">
-                                    <children>
-                                        <CheckBox mnemonicParsing="false" text="Tutoriel">
-                                            <padding>
-                                                <Insets right="10.0" top="10.0"/>
-                                            </padding>
-                                        </CheckBox>
-                                    </children>
-                                </HBox>
-                                <HBox prefHeight="81.0" prefWidth="598.0" spacing="20.0">
-                                    <children>
-                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
-                                            <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sujet"/>
-                                                <TextField fx:id="textFieldSujet"/>
-                                            </children>
-                                            <padding>
-                                                <Insets top="10.0"/>
-                                            </padding>
-                                        </VBox>
-                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
-                                            <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MITAINE LE CHAT"/>
-                                                <TextField fx:id="textFieldMoyen"/>
-                                            </children>
-                                            <padding>
-                                                <Insets top="10.0"/>
-                                            </padding>
-                                        </VBox>
-                                        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" HBox.hgrow="ALWAYS">
-                                            <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prédicat"/>
-                                                <TextField fx:id="textFieldPredicat"/>
-                                            </children>
-                                            <padding>
-                                                <Insets top="10.0"/>
-                                            </padding>
-                                        </VBox>
-                                    </children>
-                                    <padding>
-                                        <Insets left="10.0" right="10.0"/>
-                                    </padding>
-                                </HBox>
-                                <VBox fx:id="freePropositions"/>
-                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                                    <children>
-                                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="34.0"
-                                                prefWidth="84.0" text="Solve"/>
-                                    </children>
-                                </HBox>
-                            </children>
-                        </VBox>
                     </content>
                 </Tab>
             </tabs>

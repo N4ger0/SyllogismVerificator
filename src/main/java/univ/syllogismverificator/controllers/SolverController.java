@@ -117,18 +117,15 @@ public class SolverController {
 
     @FXML
     public void initialize() {
-        //initTexts();
+        initTexts();
         System.out.println("INIT");
-        Platform.runLater(() -> {
-            titled_pane.setText(traductor.get("title"));
-            System.out.println(traductor.get("title"));
-            tab_guided.setText(traductor.get("guided_mode"));
-            tab_free.setText(traductor.get("free_mode"));
-            guidedSolve.setText(traductor.get("solve"));
-            guidedHE.setText(traductor.get("exist_hypothese"));
-            text_sujet.setText(traductor.get("subject"));
-            text_middle.setText(traductor.get("moyen_terme"));
-        });
+        titled_pane.setText(traductor.get("title"));
+        tab_guided.setText(traductor.get("guided_mode"));
+        tab_free.setText(traductor.get("free_mode"));
+        guidedSolve.setText(traductor.get("solve"));
+        guidedHE.setText(traductor.get("exist_hypothese"));
+        text_sujet.setText(traductor.get("subject"));
+        text_middle.setText(traductor.get("moyen_terme"));
 
         initPropositions();
         initButtons();
