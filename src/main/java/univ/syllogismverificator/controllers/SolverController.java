@@ -301,7 +301,7 @@ public class SolverController {
 
             // Write the new json
             try (FileWriter file = new FileWriter("src/main/resources/data/quanqual.json")) {
-                file.write(j.toJSONString());
+                j.writeJSONString(file);
                 file.flush();
             }
 
