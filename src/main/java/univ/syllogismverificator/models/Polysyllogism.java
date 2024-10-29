@@ -26,6 +26,12 @@ public class Polysyllogism {
         this.conclusion = this.propositions.removeLast();
     }
 
+    //Builder by copy to make the conclusion universal
+    public Polysyllogism(Polysyllogism polysyllogism){
+        this.propositions = new ArrayList<>(polysyllogism.propositions);
+        this.conclusion = new Proposition(polysyllogism.conclusion.predicate, polysyllogism.conclusion.subject, true, polysyllogism.conclusion.quality);
+    }
+
     /**
      * Apply a rule to the polysyllogism
      *
@@ -72,6 +78,10 @@ public class Polysyllogism {
         StringBuilder builder = new StringBuilder();
         propositions.forEach(p -> builder.append(p).append("\n"));
         return builder.append(conclusion).toString();
+    }
+
+    public String toStringConclusion() {
+        return conclusion.toString();
     }
 
     /**
