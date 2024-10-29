@@ -7,6 +7,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import univ.syllogismverificator.Traductor;
 import univ.syllogismverificator.controllers.SolverController;
 import javafx.util.Pair;
 import org.json.simple.JSONArray;
@@ -77,8 +78,8 @@ public class GuidedPropController {
     private void loadMenuItemsFromJson() {
         try {
             QQLList.clear();
-            Object o = new JSONParser().parse(new FileReader("src/main/resources/data/quanqual.json"));
-            JSONArray j = (JSONArray) o;
+            JSONObject o = (JSONObject) new JSONParser().parse(new FileReader("src/main/resources/data/quanqual.json"));
+            JSONArray j = (JSONArray) o.get(Traductor.getLang());
             for (Object object : j) {
                 JSONObject myObj = (JSONObject) object;
                 String tempClasse = (String) myObj.get("value");

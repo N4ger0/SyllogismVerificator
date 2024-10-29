@@ -389,8 +389,8 @@ public class SolverController {
 
     private void saveOnJson(String name, String say){
         try {
-            Object o = new JSONParser().parse(new FileReader("src/main/resources/data/quanqual.json"));
-            JSONArray j = (JSONArray) o;
+            JSONObject o = (JSONObject) new JSONParser().parse(new FileReader("src/main/resources/data/quanqual.json"));
+            JSONArray j = (JSONArray) o.get(Traductor.getLang());
             for (Object object : j) {
                 JSONObject myObj = (JSONObject) object;
                 if (myObj.get("value").equals(name)){
@@ -404,7 +404,7 @@ public class SolverController {
 
             // Write the new json
             try (FileWriter file = new FileWriter("src/main/resources/data/quanqual.json")) {
-                j.writeJSONString(file);
+                o.writeJSONString(file);
                 file.flush();
             }
 

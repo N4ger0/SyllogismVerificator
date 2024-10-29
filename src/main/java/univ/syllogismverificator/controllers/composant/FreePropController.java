@@ -11,6 +11,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import univ.syllogismverificator.Traductor;
 import univ.syllogismverificator.models.Proposition;
 
 import java.io.FileReader;
@@ -73,8 +74,8 @@ public class FreePropController {
     private void loadMenuItemsFromJson() {
         try {
             QQLList.clear();
-            Object o = new JSONParser().parse(new FileReader("src/main/resources/data/quanqual.json"));
-            JSONArray j = (JSONArray) o;
+            JSONObject o = (JSONObject) new JSONParser().parse(new FileReader("src/main/resources/data/quanqual.json"));
+            JSONArray j = (JSONArray) o.get(Traductor.getLang());
             for (Object object : j) {
                 JSONObject myObj = (JSONObject) object;
                 String tempClasse = (String) myObj.get("value");

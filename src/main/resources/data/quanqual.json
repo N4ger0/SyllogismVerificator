@@ -1,19 +1,76 @@
-[
-  {
-    "value" : "A",
-    "array" : [{"key": "Tous les"}]
-  },
-  {
-    "value" : "E",
-    "array": [{"key" : "Aucun" }]
-  },
-  {
-    "value" : "I",
-    "array" : [{"key" : "Il existe"}, {"key" : "Il y a" }]
-  },
-  {
-    "value" : "O",
-    "array" : [{"key": "Il n'existe pas"}, {"key" :  "Il n'y a pas"}]
-  }
-]
-
+{
+  "en": [
+    {
+      "array": [
+        {
+          "key": "All"
+        }
+      ],
+      "value": "A"
+    },
+    {
+      "array": [
+        {
+          "key": "No"
+        }
+      ],
+      "value": "E"
+    },
+    {
+      "array": [
+        {
+          "key": "There is"
+        }
+      ],
+      "value": "I"
+    },
+    {
+      "array": [
+        {
+          "key": "There is no"
+        }
+      ],
+      "value": "O"
+    }
+  ],
+  "fr": [
+    {
+      "array": [
+        {
+          "key": "Tous les"
+        }
+      ],
+      "value": "A"
+    },
+    {
+      "array": [
+        {
+          "key": "Aucun"
+        }
+      ],
+      "value": "E"
+    },
+    {
+      "array": [
+        {
+          "key": "Il existe"
+        },
+        {
+          "key": "Il y a"
+        }
+      ],
+      "value": "I"
+    },
+    {
+      "array": [
+        {
+          "key": "Il n'existe pas"
+        },
+        {
+          "key": "Il n'y a pas"
+        }
+      ],
+      "value": "O"
+    }
+  ]
+}
