@@ -17,21 +17,31 @@ import java.util.Scanner;
 
 public class MainMenuController {
     @FXML
+    public TitledPane titled_pane;
+    @FXML
     public Button ButtonTab;
     @FXML
     public Button buttonSolver;
-    @FXML
-    public TitledPane titled_pane;
     Stage mainStage ;
 
     Traductor traductor = new Traductor() ;
 
     @FXML
     public void initialize(Stage mainStage){
-        ButtonTab.setText(traductor.get("all_syllogism"));
-        buttonSolver.setText(traductor.get("solve_syllogism"));
+        initButtons();
+
         titled_pane.setText(traductor.get("title"));
         this.mainStage = mainStage ;
+    }
+
+    private void initButtons() {
+        buttonSolver.setText(traductor.get("solve_syllogism"));
+        buttonSolver.setPrefSize(titled_pane.getPrefWidth() / 3, titled_pane.getPrefHeight() / 3);
+        buttonSolver.setStyle("-fx-font-size: 40");
+
+        ButtonTab.setText(traductor.get("all_syllogism"));
+        ButtonTab.setPrefSize(titled_pane.getPrefWidth() / 3, titled_pane.getPrefHeight() / 3);
+        ButtonTab.setStyle("-fx-font-size: 30");
     }
 
     @FXML

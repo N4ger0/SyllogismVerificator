@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.util.Pair;
 import org.json.simple.JSONArray;
@@ -17,8 +16,6 @@ import univ.syllogismverificator.models.Proposition;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 /**

@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import univ.syllogismverificator.Traductor;
