@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * Resolves the medium term rule.
+ */
 public class MediumTermRule implements Rule{
-    // TODO: JavaDoc
     @Override
     public RuleResult evaluate(Polysyllogism polysyllogism) {
         Set<String> goodMidTerms = new HashSet<>();

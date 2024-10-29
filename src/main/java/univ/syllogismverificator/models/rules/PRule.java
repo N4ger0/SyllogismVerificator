@@ -3,6 +3,9 @@ package univ.syllogismverificator.models.rules;
 import univ.syllogismverificator.models.Polysyllogism;
 import univ.syllogismverificator.models.Proposition;
 
+/**
+ * Resolves the p rule.
+ */
 public class PRule implements Rule {
     @Override
     public RuleResult evaluate(Polysyllogism polysyllogism) {

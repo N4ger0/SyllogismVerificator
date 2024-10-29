@@ -3,6 +3,9 @@ package univ.syllogismverificator.models.rules;
 import univ.syllogismverificator.models.Polysyllogism;
 import univ.syllogismverificator.models.Proposition;
 
+/**
+ * Resolves the lh rule.
+ */
 public class LhRule implements Rule {
     private boolean getSubjectQuantity(Proposition proposition) {
         return proposition.quantity;
