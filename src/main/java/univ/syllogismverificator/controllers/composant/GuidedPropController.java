@@ -159,6 +159,37 @@ public class GuidedPropController {
         initTutorialText();
     }
 
+    public String getTerm1() {
+        return guidedTerme1.getText();
+    }
+
+    public String getTerm2() {
+        return guidedTerme2.getText();
+    }
+
+    /**
+     * Verifie la validite de la proposition.
+     * <br>
+     * Il faut verifier que la QQL est selectionne et que les termes sont utilises 2 fois chacun"
+     * @return un Boolean exprimant la valisite de la proposition.
+     */
+    public String isValid(){
+        String msg = "";
+        if (guidedQQL.getText().equals("QQL")){
+            msg += "Il faut selectionner une QQL pour la " + text.getText() + "\n";
+        }
+        if (guidedTerme1.getText().isEmpty()) {
+            msg += "Le 1er terme de la " + text.getText() + " n'est pas definit\n";
+        }
+        if (guidedTerme2.getText().isEmpty()) {
+            msg += "Le 2eme terme de la " + text.getText() + " n'est pas definit\n";
+        }
+        if (!msg.isEmpty()) {
+            msg += "\n";
+        }
+        return msg;
+    }
+
     /**
      * Recupere les differentes parties de la proposition.
      * <br>
@@ -166,7 +197,8 @@ public class GuidedPropController {
      * @return une Map contenant la QQL, le 1er terme et le 2eme terme.
      */
     public Proposition getProposition() {
-        String QQL = guidedQQL.getText();
+        String QQL = classe;
+
         boolean qtt = Objects.equals(QQL, "A") || Objects.equals(QQL, "E");
         boolean qual = Objects.equals(QQL, "A") || Objects.equals(QQL, "I");
 

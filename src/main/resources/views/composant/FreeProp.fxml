@@ -3,23 +3,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
-<?import javafx.geometry.Insets?>
 
 <HBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="univ.syllogismverificator.controllers.composant.FreePropController"
-      alignment="CENTER_LEFT" prefHeight="49.0" prefWidth="598.0" spacing="20.0">
-    <VBox.margin>
-        <Insets/>
-    </VBox.margin>
-    <padding>
-        <Insets left="10.0" top="10.0"/>
-    </padding>
+      alignment="CENTER" prefHeight="49.0" prefWidth="598.0" spacing="20.0">
     <Text strokeType="OUTSIDE" strokeWidth="0.0" HBox.hgrow="ALWAYS" fx:id="text"/>
-    <MenuButton mnemonicParsing="false" text="QQL" textFill="WHITE" HBox.hgrow="ALWAYS" fx:id="freeQQL">
-        <items>
-        </items>
-    </MenuButton>
+    <MenuButton mnemonicParsing="false" text="QQL" HBox.hgrow="ALWAYS" fx:id="freeQQL"/>
     <MenuButton mnemonicParsing="false" text="Terme 1" textFill="WHITE"
                 HBox.hgrow="ALWAYS" fx:id="freeTerme1">
         <items>

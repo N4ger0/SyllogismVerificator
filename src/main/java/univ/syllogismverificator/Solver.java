@@ -33,6 +33,9 @@ public class Solver {
                 .map(polysyllogism::accept)
                 .collect(Collectors.toList());
         boolean valid = results.stream().allMatch(RuleResult::isValid);
+
+        System.out.println(polysyllogism);
+
         return new SyllogismResult(results, valid);
     }
 }

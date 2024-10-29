@@ -120,6 +120,37 @@ public class FreePropController {
         }
     }
 
+    public String getTerm1() {
+        return freeTerme1.getText();
+    }
+
+    public String getTerm2() {
+        return freeTerme2.getText();
+    }
+
+    /**
+     * Verifie la validite de la proposition.
+     * <br>
+     * Il faut verifier que la QQL est selectionne et que les termes sont utilises 2 fois chacun"
+     * @return un Boolean exprimant la valisite de la proposition.
+     */
+    public String isValid(){
+        String msg = "";
+        if (freeQQL.getText().equals("QQL")){
+            msg += "Il faut selectionner une QQL pour la " + text.getText() + "\n";
+        }
+        if (freeTerme1.getText().equals("Terme 1")) {
+            msg += "Le 1er terme de la " + text.getText() + " n'est pas definit\n";
+        }
+        if (freeTerme2.getText().equals("Terme 2")) {
+            msg += "Le 2eme terme de la " + text.getText() + " n'est pas definit\n";
+        }
+        if (!msg.isEmpty()) {
+            msg += "\n";
+        }
+        return msg;
+    }
+
     /**
      * Recupere les differentes parties de la proposition.
      * <br>
@@ -127,7 +158,8 @@ public class FreePropController {
      * @return une Map contenant la QQL, le 1er terme et le 2eme terme dans cet ordre.
      */
     public Proposition getProposition() {
-        String QQL = freeQQL.getText();
+        String QQL = classe;
+
         boolean qtt = Objects.equals(QQL, "A") || Objects.equals(QQL, "E");
         boolean qual = Objects.equals(QQL, "A") || Objects.equals(QQL, "I");
 

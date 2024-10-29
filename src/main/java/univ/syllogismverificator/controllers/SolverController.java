@@ -1,7 +1,6 @@
 package univ.syllogismverificator.controllers;
 
 import javafx.collections.FXCollections;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -12,7 +11,6 @@ import javafx.scene.text.Text;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Hashtable;
 import java.util.*;
 
 import javafx.util.Pair;
@@ -21,16 +19,13 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import univ.syllogismverificator.Solver;
 import univ.syllogismverificator.Traductor;
 import univ.syllogismverificator.controllers.composant.*;
 import univ.syllogismverificator.models.Polysyllogism;
 import univ.syllogismverificator.models.Proposition;
-import univ.syllogismverificator.models.RuleResult;
 import univ.syllogismverificator.models.SyllogismResult;
-import univ.syllogismverificator.models.rules.RuleResult;
 
 public class SolverController {
     Traductor traductor = new Traductor() ;
@@ -82,32 +77,6 @@ public class SolverController {
     @FXML
     private TextField textFieldSujet ;
 
-    private void setEventOnTextFields() {
-        textFieldPredicat.setOnKeyTyped((event) -> {
-            for(FreePropController control : freePropControllers) {
-                control.getFreeTerme1().getItems().get(0).setText(textFieldPredicat.getText());
-                control.getFreeTerme1().getItems().get(0).setVisible(!(textFieldPredicat.getText().equals("")));
-                control.getFreeTerme2().getItems().get(0).setText(textFieldPredicat.getText());
-                control.getFreeTerme2().getItems().get(0).setVisible(!(textFieldPredicat.getText().equals("")));
-            }
-        });
-        textFieldMoyen.setOnKeyTyped((event) -> {
-            for(FreePropController control : freePropControllers) {
-                control.getFreeTerme1().getItems().get(1).setText(textFieldMoyen.getText());
-                control.getFreeTerme1().getItems().get(1).setVisible(!(textFieldMoyen.getText().equals("")));
-                control.getFreeTerme2().getItems().get(1).setText(textFieldMoyen.getText());
-                control.getFreeTerme2().getItems().get(1).setVisible(!(textFieldMoyen.getText().equals("")));
-            }
-        });
-        textFieldSujet.setOnKeyTyped((event) -> {
-            for(FreePropController control : freePropControllers) {
-                control.getFreeTerme1().getItems().get(2).setText(textFieldSujet.getText());
-                control.getFreeTerme1().getItems().get(2).setVisible(!(textFieldSujet.getText().equals("")));
-                control.getFreeTerme2().getItems().get(2).setText(textFieldSujet.getText());
-                control.getFreeTerme2().getItems().get(2).setVisible(!(textFieldSujet.getText().equals("")));
-            }
-        });
-    }
     @FXML
     private Button freeSolve;
     @FXML
@@ -116,14 +85,6 @@ public class SolverController {
     private CheckBox freeCCLUniversal;
     @FXML
     private Text freeCCL;
-
-
-    @FXML
-    private TextField textFieldPredicat ;
-    @FXML
-    private TextField textFieldMoyen ;
-    @FXML
-    private TextField textFieldSujet ;
 
     private Solver solver;
 
@@ -281,40 +242,136 @@ public class SolverController {
     }
 
     /**
+     * Creer une map qui compte les occurences de chaque terme du mode guide.
+     *
+     * @return Une HashMap contenant chaque terme en clé ainsi que leurs occurence en valeur.
+     */
+    private Map<String, Integer> getGuidedTermsOccurence(){
+        Map<String, Integer> map = new HashMap<>();
+        String term;
+        for (GuidedPropController GPC: guidedPropControllers) {
+            term = GPC.getTerm1();
+            if (map.containsKey(term)) {
+                map.put(term, map.get(term) + 1);
+            }
+            else if (!term.isEmpty()) {
+                map.put(term, 1);
+            }
+
+            term = GPC.getTerm2();
+            if (map.containsKey(term)){
+                map.put(term, map.get(term) + 1);
+            }
+            else if (!term.isEmpty()) {
+                map.put(term, 1);
+            }
+        }
+        return map;
+    }
+
+    /**
+     * Creer une map qui compte les occurences de chaque terme du mode libre.
+     *
+     * @return Une HashMap contenant chaque terme en clé ainsi que leurs occurence en valeur.
+     */
+    private Map<String, Integer> getFreeTermsOccurence(){
+        Map<String, Integer> map = new HashMap<>();
+        String term;
+        for (FreePropController FPC: freePropControllers) {
+            term = FPC.getTerm1();
+            if (map.containsKey(term)){
+                map.put(term, map.get(term) + 1);
+            }
+            else if (!term.equals("Terme 1")) {
+                map.put(term, 1);
+            }
+
+            term = FPC.getTerm2();
+            if (map.containsKey(term)){
+                map.put(term, map.get(term) + 1);
+            }
+            else if (!term.equals("Terme 2")) {
+                map.put(term, 1);
+            }
+        }
+        return map;
+    }
+
+    /**
+     * Construit un message d'erreur si les entrées du mode guide sont non coherentes.
+     *<br>
+     * Si toutes les entrees sont cherentes, le message est une chaine vide
+     * @return Le message d'erreur.
+     */
+    private boolean isGuidedPSValid() {
+        String msg = "";
+        for (GuidedPropController GPC: guidedPropControllers) {
+            msg += GPC.isValid();
+        }
+        Map<String, Integer> occ = getGuidedTermsOccurence();
+        for (Map.Entry<String, Integer> entry : occ.entrySet()) {
+            if (entry.getValue() != 2){
+                msg += "Le terme " + entry.getKey() + " n'apparait pas 2 fois.\n";
+            }
+        }
+        guidedCCL.setText(msg);
+
+        return msg.isEmpty();
+    }
+
+    /**
+     * Construit un message d'erreur si les entrées du mode libre sont non coherentes.
+     *<br>
+     * Si toutes les entrees sont cherentes, le message est une chaine vide
+     * @return Le message d'erreur.
+     */
+    private boolean isFreePSValid() {
+        String msg = "";
+        for (FreePropController FPC: freePropControllers) {
+            msg += FPC.isValid();
+        }
+        Map<String, Integer> occ = getFreeTermsOccurence();
+        for (Map.Entry<String, Integer> entry : occ.entrySet()) {
+            if (entry.getValue() != 2){
+                msg += "Le terme " + entry.getKey() + " n'apparait pas 2 fois.\n";
+            }
+        }
+        freeCCL.setText(msg);
+
+        return msg.isEmpty();
+    }
+
+    /**
      * Lance la resolution du syllogisme dans le mode guide.
      */
     private void guidedSolve() {
-        Polysyllogism ps = getGuidedPropositions();
-        SyllogismResult res = solver.solve(ps);
+        if (isGuidedPSValid()){
+            Polysyllogism ps = getGuidedPropositions();
 
-        if (res.isValid()){
-            guidedCCL.setText("Syllogisme valide!");
-        }
-        else {
-            String ccl = "";
-            for (RuleResult rr: res.getResults()){
-                ccl += rr.toString() + "\n";
+            SyllogismResult res = solver.solve(ps);
+
+            if (res.isValid()){
+                guidedCCL.setText("Syllogisme valide!");
             }
-            guidedCCL.setText(ccl);
+            else {
+                guidedCCL.setText(res.toString());
+            }
         }
     }
 
     /**
      * Lance la resolution du syllogisme dans le mode libre.
      */
-    private void freeSolve(){
-        Polysyllogism ps = getFreePropositions();
-        SyllogismResult res = solver.solve(ps);
+    private void freeSolve() {
+        if (isFreePSValid()) {
+            Polysyllogism ps = getFreePropositions();
+            SyllogismResult res = solver.solve(ps);
 
-        if (res.isValid()){
-            freeCCL.setText("Syllogisme valide!");
-        }
-        else {
-            String ccl = "";
-            for (RuleResult rr: res.getResults()){
-                ccl += rr.toString() + "\n";
+            if (res.isValid()) {
+                freeCCL.setText("Syllogisme valide!");
+            } else {
+                freeCCL.setText(res.toString());
             }
-            freeCCL.setText(ccl);
         }
     }
 
