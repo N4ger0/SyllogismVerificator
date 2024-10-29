@@ -1,6 +1,5 @@
 package univ.syllogismverificator;
 
-import javafx.util.Pair;
 import univ.syllogismverificator.models.*;
 import univ.syllogismverificator.models.rules.*;
 
@@ -53,5 +52,31 @@ public class Solver {
                 .collect(Collectors.toList());
         boolean valid = results.stream().allMatch(RuleResult::isValid);
         return new SyllogismResult(results, valid);
+    }
+
+    /**
+     * Solve a polysyllogism
+     * @param polysyllogism the polysyllogism to solve
+     * @return the results of the syllogism
+     */
+    public SyllogismResult solve(Polysyllogism polysyllogism, boolean checkInterestingSyllogism) {
+        SyllogismResult res = solve(polysyllogism);
+        if (res.isValid()) {
+            if (checkInterestingSyllogism) {
+                SyllogismResult res_bis;
+                Polysyllogism universalSyllogism = new Polysyllogism(polysyllogism);
+                res_bis = solve(universalSyllogism);
+                RuleResult interestingSRuleResult;
+                if (res_bis.isValid()) {
+                    String universalSyllogismString = "Ce syllogisme est ininteressant. \nVoici la conclusion universelle : ";
+                    interestingSRuleResult = new RuleResult(false, universalSyllogismString.concat(universalSyllogism.toStringConclusion()));
+                }
+                else {
+                    interestingSRuleResult = new RuleResult(true, "Ce syllogisme est interessant.");
+                }
+                res.addRuleResult(interestingSRuleResult);
+            }
+        }
+        return res;
     }
 }
