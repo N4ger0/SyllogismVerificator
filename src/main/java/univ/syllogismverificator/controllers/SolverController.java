@@ -305,8 +305,8 @@ public class SolverController {
                 file.flush();
             }
 
-            freePropControllers.forEach(FreePropController::loadMenuItemsFromJson);
-            guidedPropControllers.forEach(GuidedPropController::loadMenuItemsFromJson);
+            freePropControllers.forEach(FreePropController::initialize);
+            guidedPropControllers.forEach(GuidedPropController::initialize);
         } catch (ParseException | IOException e) {
             throw new RuntimeException(e);
         }

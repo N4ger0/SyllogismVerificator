@@ -74,7 +74,7 @@ public class GuidedPropController {
         TextCounter++;
     }
 
-    public void loadMenuItemsFromJson() {
+    private void loadMenuItemsFromJson() {
         try {
             QQLList.clear();
             Object o = new JSONParser().parse(new FileReader("src/main/resources/data/quanqual.json"));
@@ -96,6 +96,7 @@ public class GuidedPropController {
     }
 
     private void initMenuItems() {
+        guidedQQL.getItems().clear();
         for(Pair<String, ArrayList<String>> p : QQLList){
             Menu mySubMenu = new Menu(p.getKey()) ;
             for(String s : p.getValue()) {
