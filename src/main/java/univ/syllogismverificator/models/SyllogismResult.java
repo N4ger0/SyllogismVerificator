@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class SyllogismResult {
     private final boolean valid;
-    private final List<RuleResult> results;
+    private List<RuleResult> results;
 
     /**
      * Creates a result from rule results and whether the polysyllogism is valid or not.
@@ -33,6 +33,10 @@ public class SyllogismResult {
                 .map(RuleResult::toString)
                 .reduce((a, b) -> a + "\n" + b)
                 .orElse("");
+    }
+
+    public void addRuleResult(RuleResult ruleResult) {
+        results.add(ruleResult);
     }
 
     /**
