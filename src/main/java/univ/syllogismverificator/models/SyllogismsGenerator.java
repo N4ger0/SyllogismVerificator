@@ -1,7 +1,6 @@
 package univ.syllogismverificator.models;
 
 import javafx.util.Pair;
-import univ.syllogismverificator.Solver;
 
 import java.util.ArrayList;
 import java.util.List;

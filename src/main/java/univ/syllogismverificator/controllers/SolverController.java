@@ -20,7 +20,7 @@ import org.json.simple.parser.*;
 
 import java.io.IOException;
 
-import univ.syllogismverificator.Solver;
+import univ.syllogismverificator.models.Solver;
 import univ.syllogismverificator.Traductor;
 import univ.syllogismverificator.controllers.composant.*;
 import univ.syllogismverificator.models.Polysyllogism;

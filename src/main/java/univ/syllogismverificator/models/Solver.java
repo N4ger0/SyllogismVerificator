@@ -1,4 +1,4 @@
-package univ.syllogismverificator;
+package univ.syllogismverificator.models;
 
 import univ.syllogismverificator.models.*;
 import univ.syllogismverificator.models.rules.*;
