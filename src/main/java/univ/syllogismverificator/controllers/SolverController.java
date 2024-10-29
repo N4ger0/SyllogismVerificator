@@ -1,5 +1,7 @@
 package univ.syllogismverificator.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -22,6 +24,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import univ.syllogismverificator.Solver;
+import univ.syllogismverificator.Traductor;
 import univ.syllogismverificator.controllers.composant.*;
 import univ.syllogismverificator.models.Polysyllogism;
 import univ.syllogismverificator.models.Proposition;
@@ -30,14 +33,27 @@ import univ.syllogismverificator.models.SyllogismResult;
 import univ.syllogismverificator.models.rules.RuleResult;
 
 public class SolverController {
+    Traductor traductor = new Traductor() ;
     public Button schemaAdd;
     @FXML
     private TabPane tabWindow;
 
-    private Hashtable<String, String> QQLList = new Hashtable<>() ;
+    @FXML
+    private Tab tab_guided ;
+
+    @FXML
+    private Tab tab_free ;
+
+    @FXML
+    private TitledPane titled_pane ;
 
     @FXML
     private VBox guidedPropositions;
+    @FXML
+    private Text text_sujet ;
+
+    @FXML
+    private Text text_middle ;
     private ArrayList<GuidedPropController> guidedPropControllers = new ArrayList<>();
 
     /** Le champ textuel permettant d'aider l'utilisateur.*/
@@ -115,6 +131,15 @@ public class SolverController {
     @FXML
     public void initialize() {
         initTexts();
+        System.out.println("INIT");
+        titled_pane.setText(traductor.get("title"));
+        tab_guided.setText(traductor.get("guided_mode"));
+        tab_free.setText(traductor.get("free_mode"));
+        guidedSolve.setText(traductor.get("solve"));
+        guidedHE.setText(traductor.get("exist_hypothese"));
+        text_sujet.setText(traductor.get("subject"));
+        text_middle.setText(traductor.get("moyen_terme"));
+
         initPropositions();
         initButtons();
         solver = new Solver();
@@ -137,9 +162,9 @@ public class SolverController {
                 "\n" +
                 "Le syllogisme repose sur des règles strictes de logique formelle pour que la conclusion soit valide.";
 
-        tutorialText.setText(SyllogismeDef);
+        tutorialText.setText(traductor.get("syllogism_def"));
 
-        tabWindow.setOnMouseClicked(event -> tutorialText.setText(SyllogismeDef));
+        tabWindow.setOnMouseClicked(event -> tutorialText.setText(traductor.get("syllogism_def")));
     }
 
     private void initButtons() {
@@ -260,7 +285,7 @@ public class SolverController {
      */
     private void guidedSolve() {
         Polysyllogism ps = getGuidedPropositions();
-        SyllogismResult res = solver.solve(ps, guidedHE.isSelected());
+        SyllogismResult res = solver.solve(ps);
 
         if (res.isValid()){
             guidedCCL.setText("Syllogisme valide!");
@@ -279,7 +304,7 @@ public class SolverController {
      */
     private void freeSolve(){
         Polysyllogism ps = getFreePropositions();
-        SyllogismResult res = solver.solve(ps, freeHE.isSelected());
+        SyllogismResult res = solver.solve(ps);
 
         if (res.isValid()){
             freeCCL.setText("Syllogisme valide!");
