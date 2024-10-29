@@ -20,7 +20,7 @@
     <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" fx:id="tabWindow">
         <Tab fx:id="tab_guided" text="Guided mode">
             <HBox alignment="CENTER" spacing="50">
-                <VBox spacing="50">
+                <VBox spacing="40">
                     <VBox/>
                     <VBox fx:id="guidedPropositions" spacing="25"/>
                     <HBox alignment="CENTER" spacing="40">
@@ -38,26 +38,28 @@
         </Tab>
         <Tab fx:id="tab_free" text="Free mode">
             <HBox alignment="CENTER" spacing="50">
+                <VBox/>
                 <VBox spacing="50" alignment="CENTER">
                     <HBox spacing="40.0" alignment="CENTER">
                         <VBox spacing="10.0" alignment="CENTER">
                             <Text fx:id="text_sujet"/>
-                            <TextField fx:id="textFieldSujet" prefWidth="150.0"/>
+                            <TextField fx:id="textFieldSujet" prefWidth="180.0"/>
                         </VBox>
                         <VBox spacing="10.0" alignment="CENTER">
                             <Text fx:id="text_middle"/>
-                            <TextField fx:id="textFieldMoyen" prefWidth="150.0"/>
+                            <TextField fx:id="textFieldMoyen" prefWidth="180.0"/>
                         </VBox>
                         <VBox spacing="10.0" alignment="CENTER">
                             <Text fx:id="text_predicat" text="Prédicat"/>
-                            <TextField fx:id="textFieldPredicat" prefWidth="150.0"/>
+                            <TextField fx:id="textFieldPredicat" prefWidth="180.0"/>
                         </VBox>
                     </HBox>
                     <VBox fx:id="freePropositions"/>
-                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                        <Button alignment="CENTER" mnemonicParsing="false" prefHeight="34.0"
-                                prefWidth="84.0" text="Solve" fx:id="freeSolve"/>
-                        <CheckBox text="Hypothese d'exsistence" fx:id="freeHE"/>
+                    <HBox alignment="CENTER" spacing="40">
+                        <Button fx:id="freeSolve" alignment="CENTER" mnemonicParsing="false" prefHeight="50"
+                                prefWidth="125" text="Solve" style="-fx-font-size: 20"/>
+                        <CheckBox text="Hypothese d'exsistence" fx:id="freeHE"
+                                  prefHeight="50" prefWidth="200" style="-fx-font-size: 15"/>
                     </HBox>
                 </VBox>
                 <Text fx:id="freeCCL" wrappingWidth="550"/>

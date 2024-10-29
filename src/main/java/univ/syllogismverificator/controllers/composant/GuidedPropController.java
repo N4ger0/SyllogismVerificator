@@ -141,10 +141,10 @@ public class GuidedPropController {
                 " -  Qualité : Elle précise si la proposition est affirmative ou négative. Une proposition affirmative établit une relation positive entre les termes, tandis qu'une proposition négative nie cette relation."));
 
         guidedTerme1.setOnMouseClicked(event -> tutorialText.setText("Explication terme: \n" +
-                "Dans un syllogisme, les termes sont les éléments utilisés dans les propositions, ils jouent un rôle central dans le raisonnement logique. Il y a trois types de termes :\n" +
+                "Dans un syllogisme, les termes sont les éléments utilisés dans les propositions. Il y a trois types de termes :\n" +
                 "\n" +
-                " -  Terme majeur : C'est le prédicat de la conclusion, c'est la partie d'une proposition qui affirme ou nie quelque chose à propos du sujet.\n" +
-                " -  Terme mineur : C'est le sujet de la conclusion, c'est la partie d'une proposition qui désigne ce dont on parle. Il représente l'élément ou l'entité à propos de laquelle le prédicat fait une affirmation.\n" +
+                " -  Terme majeur : C'est le prédicat de la conclusion, la partie d'une proposition qui affirme ou nie quelque chose à propos du sujet.\n" +
+                " -  Terme mineur : C'est le sujet de la conclusion, il représente l'élément ou l'entité à propos de laquelle le prédicat fait une affirmation.\n" +
                 " -  Terme moyen : C'est le terme qui relie les deux prémisses d'un syllogisme, mais qui ne figure pas dans la conclusion. Il sert de lien entre le terme majeur et le terme mineur.\n" +
                 "\n" +
                 "Ces trois termes permettent de structurer le raisonnement du syllogisme."));
@@ -153,10 +153,10 @@ public class GuidedPropController {
                 "Le verbe est le mot ou le groupe de mots qui exprime l'action, l'état ou le processus dans une proposition. Il est essentiel pour établir une relation entre le sujet et le prédicat."));
 
         guidedTerme2.setOnMouseClicked(event -> tutorialText.setText("Explication terme: \n" +
-                "Dans un syllogisme, les termes sont les éléments utilisés dans les propositions, ils jouent un rôle central dans le raisonnement logique. Il y a trois types de termes :\n" +
+                "Dans un syllogisme, les termes sont les éléments utilisés dans les propositions. Il y a trois types de termes :\n" +
                 "\n" +
-                " -  Terme majeur : C'est le prédicat de la conclusion, c'est la partie d'une proposition qui affirme ou nie quelque chose à propos du sujet.\n" +
-                " -  Terme mineur : C'est le sujet de la conclusion, c'est la partie d'une proposition qui désigne ce dont on parle. Il représente l'élément ou l'entité à propos de laquelle le prédicat fait une affirmation.\n" +
+                " -  Terme majeur : C'est le prédicat de la conclusion, la partie d'une proposition qui affirme ou nie quelque chose à propos du sujet.\n" +
+                " -  Terme mineur : C'est le sujet de la conclusion, il représente l'élément ou l'entité à propos de laquelle le prédicat fait une affirmation.\n" +
                 " -  Terme moyen : C'est le terme qui relie les deux prémisses d'un syllogisme, mais qui ne figure pas dans la conclusion. Il sert de lien entre le terme majeur et le terme mineur.\n" +
                 "\n" +
                 "Ces trois termes permettent de structurer le raisonnement du syllogisme."));

@@ -19,7 +19,7 @@ Button {
 
 Text {
     -fx-font-family: 'Consolas';
-    -fx-font-size: 20;
+    -fx-font-size: 18;
 }
 
 menu-button, menu, menu-bar, Menu, MenuBar, MenuButton, MenuItem {
