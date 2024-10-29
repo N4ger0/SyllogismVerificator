@@ -7,6 +7,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import univ.syllogismverificator.Traductor;
 import univ.syllogismverificator.controllers.SolverController;
 import javafx.util.Pair;
 import org.json.simple.JSONArray;
@@ -26,6 +27,8 @@ import java.util.*;
 public class GuidedPropController {
     private ArrayList<Pair<String, ArrayList<String>>> QQLList = new ArrayList<>() ;
     private String classe ;
+
+    private Traductor traductor = new Traductor() ;
 
     public String getClasse() {
         return classe ;
@@ -50,6 +53,15 @@ public class GuidedPropController {
     @FXML
     private TextField guidedTerme2;
 
+    @FXML
+    private MenuItem sont ;
+    @FXML
+    private MenuItem est ;
+    @FXML
+    private MenuItem ont ;
+    @FXML
+    private MenuItem a ;
+
 
     /** Entier servant de compteur de proposition.*/
     private SolverController parentController;
@@ -70,15 +82,20 @@ public class GuidedPropController {
     }
 
     private void initText(){
-        text.setText("Prémisse " + TextCounter);
+        text.setText(traductor.get("premisse") + TextCounter);
+        verbe.setText(traductor.get("verbe"));
+        sont.setText(traductor.get("sont"));
+        est.setText(traductor.get("est"));
+        ont.setText(traductor.get("ont"));
+        a.setText(traductor.get("a"));
         TextCounter++;
     }
 
     private void loadMenuItemsFromJson() {
         try {
             QQLList.clear();
-            Object o = new JSONParser().parse(new FileReader("src/main/resources/data/quanqual.json"));
-            JSONArray j = (JSONArray) o;
+            JSONObject o = (JSONObject) new JSONParser().parse(new FileReader("src/main/resources/data/quanqual.json"));
+            JSONArray j = (JSONArray) o.get(Traductor.getLang());
             for (Object object : j) {
                 JSONObject myObj = (JSONObject) object;
                 String tempClasse = (String) myObj.get("value");

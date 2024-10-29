@@ -85,6 +85,8 @@ public class SolverController {
     private CheckBox freeCCLUniversal;
     @FXML
     private Text freeCCL;
+    @FXML
+    private Text text_predicat ;
 
     private Solver solver;
 
@@ -100,6 +102,11 @@ public class SolverController {
         guidedHE.setText(traductor.get("exist_hypothese"));
         text_sujet.setText(traductor.get("subject"));
         text_middle.setText(traductor.get("moyen_terme"));
+        text_predicat.setText(traductor.get("predicate"));
+        freeSolve.setText(traductor.get("solve"));
+        freeHE.setText(traductor.get("exist_hypothese"));
+
+        schemaAdd.setText(traductor.get("add_schema"));
 
         initPropositions();
         initButtons();
@@ -389,8 +396,8 @@ public class SolverController {
 
     private void saveOnJson(String name, String say){
         try {
-            Object o = new JSONParser().parse(new FileReader("src/main/resources/data/quanqual.json"));
-            JSONArray j = (JSONArray) o;
+            JSONObject o = (JSONObject) new JSONParser().parse(new FileReader("src/main/resources/data/quanqual.json"));
+            JSONArray j = (JSONArray) o.get(Traductor.getLang());
             for (Object object : j) {
                 JSONObject myObj = (JSONObject) object;
                 if (myObj.get("value").equals(name)){
@@ -404,7 +411,7 @@ public class SolverController {
 
             // Write the new json
             try (FileWriter file = new FileWriter("src/main/resources/data/quanqual.json")) {
-                j.writeJSONString(file);
+                o.writeJSONString(file);
                 file.flush();
             }
 

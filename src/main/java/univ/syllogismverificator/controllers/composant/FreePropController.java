@@ -11,6 +11,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import univ.syllogismverificator.Traductor;
 import univ.syllogismverificator.models.Proposition;
 
 import java.io.FileReader;
@@ -27,6 +28,8 @@ import java.util.Objects;
 public class FreePropController {
     private ArrayList<Pair<String, ArrayList<String>>> QQLList = new ArrayList<>() ;
     private String classe ;
+
+    private Traductor traductor = new Traductor() ;
 
     public String getClasse() {
         return classe ;
@@ -65,6 +68,8 @@ public class FreePropController {
 
     @FXML
     public void initialize() {
+        freeTerme1.setText(traductor.get("terme") + "1");
+        freeTerme2.setText(traductor.get("terme") + "2");
         loadMenuItemsFromJson();
         initText();
         initMenuItems();
@@ -73,8 +78,8 @@ public class FreePropController {
     private void loadMenuItemsFromJson() {
         try {
             QQLList.clear();
-            Object o = new JSONParser().parse(new FileReader("src/main/resources/data/quanqual.json"));
-            JSONArray j = (JSONArray) o;
+            JSONObject o = (JSONObject) new JSONParser().parse(new FileReader("src/main/resources/data/quanqual.json"));
+            JSONArray j = (JSONArray) o.get(Traductor.getLang());
             for (Object object : j) {
                 JSONObject myObj = (JSONObject) object;
                 String tempClasse = (String) myObj.get("value");
@@ -92,7 +97,7 @@ public class FreePropController {
     }
 
     private void initText(){
-        text.setText("Prémisse " + TextCounter);
+        text.setText(traductor.get("premisse") + TextCounter);
         TextCounter++;
     }
 
