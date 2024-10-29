@@ -65,7 +65,7 @@
                             <padding>
                                 <Insets top="10.0"/>
                             </padding>
-                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prédicat"/>
+                            <Text fx:id="text_predicat" strokeType="OUTSIDE" strokeWidth="0.0" text="Prédicat"/>
                             <TextField fx:id="textFieldPredicat"/>
                         </VBox>
                     </HBox>

@@ -15,10 +15,10 @@
     <TextField prefHeight="25.0" prefWidth="82.0" fx:id="guidedTerme1"/>
     <MenuButton mnemonicParsing="false" text="Verbe" HBox.hgrow="ALWAYS" fx:id="verbe">
         <items>
-            <MenuItem mnemonicParsing="false" text="sont"/>
-            <MenuItem mnemonicParsing="false" text="est"/>
-            <MenuItem mnemonicParsing="false" text="ont"/>
-            <MenuItem mnemonicParsing="false" text="a"/>
+            <MenuItem fx:id="sont" mnemonicParsing="false" text="sont"/>
+            <MenuItem fx:id="est" mnemonicParsing="false" text="est"/>
+            <MenuItem fx:id="ont" mnemonicParsing="false" text="ont"/>
+            <MenuItem fx:id="a" mnemonicParsing="false" text="a"/>
         </items>
     </MenuButton>
     <TextField prefHeight="25.0" prefWidth="82.0" fx:id="guidedTerme2"/>

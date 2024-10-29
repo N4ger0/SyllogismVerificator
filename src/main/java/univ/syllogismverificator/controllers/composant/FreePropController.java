@@ -29,6 +29,8 @@ public class FreePropController {
     private ArrayList<Pair<String, ArrayList<String>>> QQLList = new ArrayList<>() ;
     private String classe ;
 
+    private Traductor traductor = new Traductor() ;
+
     public String getClasse() {
         return classe ;
     }
@@ -66,6 +68,8 @@ public class FreePropController {
 
     @FXML
     public void initialize() {
+        freeTerme1.setText(traductor.get("terme") + "1");
+        freeTerme2.setText(traductor.get("terme") + "2");
         loadMenuItemsFromJson();
         initText();
         initMenuItems();
@@ -93,7 +97,7 @@ public class FreePropController {
     }
 
     private void initText(){
-        text.setText("Prémisse " + TextCounter);
+        text.setText(traductor.get("premisse") + TextCounter);
         TextCounter++;
     }
 

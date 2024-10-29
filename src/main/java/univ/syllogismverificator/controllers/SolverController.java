@@ -85,6 +85,8 @@ public class SolverController {
     private CheckBox freeCCLUniversal;
     @FXML
     private Text freeCCL;
+    @FXML
+    private Text text_predicat ;
 
     private Solver solver;
 
@@ -100,6 +102,11 @@ public class SolverController {
         guidedHE.setText(traductor.get("exist_hypothese"));
         text_sujet.setText(traductor.get("subject"));
         text_middle.setText(traductor.get("moyen_terme"));
+        text_predicat.setText(traductor.get("predicate"));
+        freeSolve.setText(traductor.get("solve"));
+        freeHE.setText(traductor.get("exist_hypothese"));
+
+        schemaAdd.setText(traductor.get("add_schema"));
 
         initPropositions();
         initButtons();
