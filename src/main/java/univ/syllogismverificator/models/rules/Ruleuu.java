@@ -3,6 +3,9 @@ package univ.syllogismverificator.models.rules;
 import univ.syllogismverificator.models.Polysyllogism;
 import univ.syllogismverificator.models.Proposition;
 
+/**
+ * Resolves the uu rule.
+ */
 public class Ruleuu implements Rule{
     @Override
     public RuleResult evaluate(Polysyllogism polysyllogism) {
@@ -17,11 +20,3 @@ public class Ruleuu implements Rule{
             return new RuleResult(true, "Regle Uu");
     }
 }
-
-/*
-premisse conclusion
-U U F
-U P V
-P U V
-P P V
- */

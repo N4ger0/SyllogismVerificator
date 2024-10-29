@@ -6,6 +6,10 @@ import univ.syllogismverificator.Solver;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class that generates all the syllogisms that can exist and that
+ * checks whether they are valid or not.
+ */
 public class SyllogismsGenerator {
     private List<Pair<Syllogism, SyllogismResult>> syllogisms = new ArrayList<>();
 
@@ -65,6 +69,10 @@ public class SyllogismsGenerator {
         return new Syllogism(majorPremise, minorPremise, conclusion);
     }
 
+    /**
+     * Creates a SyllogismGenerator object that contains every syllogism
+     * and their validity.
+     */
     public SyllogismsGenerator() {
         Solver solver = new Solver();
 
@@ -81,6 +89,12 @@ public class SyllogismsGenerator {
         }
     }
 
+    /**
+     * Returns a list of all the syllogisms and their validity.
+     *
+     * @return a list of pairs (JavaFx standard class) of a Syllogism and a
+     * SyllogismResult for all the 256 syllogisms.
+     */
     public List<Pair<Syllogism, SyllogismResult>> getSyllogisms() {
         return this.syllogisms;
     }
