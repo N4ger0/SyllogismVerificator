@@ -361,7 +361,7 @@ public class SolverController {
                 guidedCCL.setText("Syllogisme valide!");
             }
             else {
-                guidedCCL.setText(res.toString());
+                guidedCCL.setText("Syllogisme invalide!\n" + res);
             }
         }
     }
@@ -377,7 +377,7 @@ public class SolverController {
             if (res.isValid()) {
                 freeCCL.setText("Syllogisme valide!");
             } else {
-                freeCCL.setText(res.toString());
+                freeCCL.setText("Syllogisme invalide!\n" + res);
             }
         }
     }
