@@ -51,8 +51,6 @@ public class Solver {
                 .collect(Collectors.toList());
         boolean valid = results.stream().allMatch(RuleResult::isValid);
 
-        System.out.println(polysyllogism);
-
         return new SyllogismResult(results, valid);
     }
 
