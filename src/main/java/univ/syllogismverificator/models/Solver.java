@@ -36,7 +36,6 @@ public class Solver {
                 new PpRule(),
                 new AaRule(),
                 new LhRule(),
-                new LhRule(),
                 new Ruleuu()
         );
     }
