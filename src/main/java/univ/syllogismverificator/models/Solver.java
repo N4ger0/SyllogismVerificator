@@ -59,7 +59,7 @@ public class Solver {
      * @param polysyllogism the polysyllogism to solve
      * @return the results of the syllogism
      */
-    public SyllogismResult solve(Polysyllogism polysyllogism, boolean checkInterestingSyllogism) {
+    public SyllogismResult solve(Polysyllogism polysyllogism, boolean checkRmt, boolean checkRlh, boolean checkRnn, boolean checkRn, boolean checkRaa, boolean checkRpp, boolean checkRp, boolean checkRuu, boolean checkInterestingSyllogism) {
         SyllogismResult res = solve(polysyllogism);
         if (res.isValid()) {
             if (checkInterestingSyllogism && !polysyllogism.isConclusionUniversal()) {
