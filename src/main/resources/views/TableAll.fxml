@@ -5,16 +5,18 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TitledPane?>
 
-<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="All possible syllogism" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21">
+<TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" text="All possible syllogism" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21"
+fx:controller="univ.syllogismverificator.controllers.TableAllController">
    <content>
       <ScrollPane prefHeight="200.0" prefWidth="200.0">
          <content>
-            <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="375.0" prefWidth="600.0">
+            <TableView fx:id="tableView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="375.0" prefWidth="600.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="QQL1" />
-                <TableColumn prefWidth="75.0" text="QQL2" />
-                  <TableColumn prefWidth="75.0" text="QQL3" />
-                  <TableColumn prefWidth="75.0" text="Validity" />
+                <TableColumn fx:id="qql1" prefWidth="75.0" text="QQL1" />
+                <TableColumn fx:id="qql2" prefWidth="75.0" text="QQL2" />
+                  <TableColumn fx:id="qql3" prefWidth="75.0" text="QQL3" />
+                  <TableColumn fx:id="figure" prefWidth="75.0" text="Figure"/>
+                  <TableColumn fx:id="validity" prefWidth="75.0" text="Validity" />
               </columns>
             </TableView>
          </content>
