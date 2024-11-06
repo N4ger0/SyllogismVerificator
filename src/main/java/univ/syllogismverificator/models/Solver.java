@@ -30,12 +30,12 @@ public class Solver {
     public Solver(){
         this(
                 new MediumTermRule(),
-                new NRule(),
-                new NnRule(),
-                new PRule(),
-                new PpRule(),
-                new AaRule(),
                 new LhRule(),
+                new NnRule(),
+                new NRule(),
+                new AaRule(),
+                new PpRule(),
+                new PRule(),
                 new Ruleuu()
         );
     }
@@ -46,7 +46,7 @@ public class Solver {
      * @return the results of the syllogism
      */
     public SyllogismResult solve(Polysyllogism polysyllogism, boolean checkRmt, boolean checkRlh, boolean checkRnn, boolean checkRn, boolean checkRaa, boolean checkRpp, boolean checkRp, boolean checkRuu){
-        List<RuleResult> results = null;
+        List<RuleResult> results = new ArrayList<>();
         if (checkRmt) {
             results.add(rules.get(0).evaluate(polysyllogism));
         }
@@ -72,7 +72,7 @@ public class Solver {
             results.add(rules.get(7).evaluate(polysyllogism));
         }
         boolean valid = true;
-        if (results != null) {
+        if (!results.isEmpty()) {
             valid = results.stream().allMatch(RuleResult::isValid);
         }
 

@@ -80,6 +80,22 @@ public class SolverController {
     @FXML
     private Button freeSolve;
     @FXML
+    private CheckBox freeMt;
+    @FXML
+    private CheckBox freeLh;
+    @FXML
+    private CheckBox freeNn;
+    @FXML
+    private CheckBox freeN;
+    @FXML
+    private CheckBox freeAa;
+    @FXML
+    private CheckBox freePp;
+    @FXML
+    private CheckBox freeP;
+    @FXML
+    private CheckBox freeUu;
+    @FXML
     private CheckBox freeHE;
     @FXML
     private CheckBox freeCCLUniversal;
@@ -104,7 +120,7 @@ public class SolverController {
         text_middle.setText(traductor.get("moyen_terme"));
         text_predicat.setText(traductor.get("predicate"));
         freeSolve.setText(traductor.get("solve"));
-        freeHE.setText(traductor.get("exist_hypothese"));
+        //freeHE.setText(traductor.get("exist_hypothese"));
 
         schemaAdd.setText(traductor.get("add_schema"));
 
@@ -355,14 +371,14 @@ public class SolverController {
         if (isGuidedPSValid()){
             Polysyllogism ps = getGuidedPropositions();
 
-            SyllogismResult res = solver.solve(ps);
+            /*SyllogismResult res = solver.solve(ps);
 
             if (res.isValid()){
                 guidedCCL.setText("Syllogisme valide!");
             }
             else {
                 guidedCCL.setText("Syllogisme invalide!\n" + res);
-            }
+            }*/
         }
     }
 
@@ -372,7 +388,7 @@ public class SolverController {
     private void freeSolve() {
         if (isFreePSValid()) {
             Polysyllogism ps = getFreePropositions();
-            SyllogismResult res = solver.solve(ps);
+            SyllogismResult res = solver.solve(ps, freeMt.isSelected(), freeLh.isSelected(), freeNn.isSelected(), freeN.isSelected(), freeAa.isSelected(), freePp.isSelected(), freeP.isSelected(), freeUu.isSelected(), freeHE.isSelected());
 
             if (res.isValid()) {
                 freeCCL.setText("Syllogisme valide!");
