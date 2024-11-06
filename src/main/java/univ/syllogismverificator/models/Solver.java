@@ -45,11 +45,36 @@ public class Solver {
      * @param polysyllogism the polysyllogism to solve
      * @return the results of the syllogism
      */
-    public SyllogismResult solve(Polysyllogism polysyllogism){
-        List<RuleResult> results = rules.stream()
-                .map(polysyllogism::accept)
-                .collect(Collectors.toList());
-        boolean valid = results.stream().allMatch(RuleResult::isValid);
+    public SyllogismResult solve(Polysyllogism polysyllogism, boolean checkRmt, boolean checkRlh, boolean checkRnn, boolean checkRn, boolean checkRaa, boolean checkRpp, boolean checkRp, boolean checkRuu){
+        List<RuleResult> results = null;
+        if (checkRmt) {
+            results.add(rules.get(0).evaluate(polysyllogism));
+        }
+        if (checkRlh) {
+            results.add(rules.get(1).evaluate(polysyllogism));
+        }
+        if (checkRnn) {
+            results.add(rules.get(2).evaluate(polysyllogism));
+        }
+        if (checkRn) {
+            results.add(rules.get(3).evaluate(polysyllogism));
+        }
+        if (checkRaa) {
+            results.add(rules.get(4).evaluate(polysyllogism));
+        }
+        if (checkRpp) {
+            results.add(rules.get(5).evaluate(polysyllogism));
+        }
+        if (checkRp) {
+            results.add(rules.get(6).evaluate(polysyllogism));
+        }
+        if (checkRuu) {
+            results.add(rules.get(7).evaluate(polysyllogism));
+        }
+        boolean valid = true;
+        if (results != null) {
+            valid = results.stream().allMatch(RuleResult::isValid);
+        }
 
         return new SyllogismResult(results, valid);
     }
@@ -60,12 +85,12 @@ public class Solver {
      * @return the results of the syllogism
      */
     public SyllogismResult solve(Polysyllogism polysyllogism, boolean checkRmt, boolean checkRlh, boolean checkRnn, boolean checkRn, boolean checkRaa, boolean checkRpp, boolean checkRp, boolean checkRuu, boolean checkInterestingSyllogism) {
-        SyllogismResult res = solve(polysyllogism);
+        SyllogismResult res = solve(polysyllogism, checkRmt, checkRlh, checkRnn, checkRn, checkRaa, checkRpp, checkRp, checkRuu);
         if (res.isValid()) {
             if (checkInterestingSyllogism && !polysyllogism.isConclusionUniversal()) {
                 SyllogismResult res_bis;
                 Polysyllogism universalSyllogism = new Polysyllogism(polysyllogism);
-                res_bis = solve(universalSyllogism);
+                res_bis = solve(universalSyllogism, checkRmt, checkRlh, checkRnn, checkRn, checkRaa, checkRpp, checkRp, checkRuu);
                 RuleResult interestingSRuleResult;
                 if (res_bis.isValid()) {
                     String universalSyllogismString = "Ce syllogisme est ininteressant. \nVoici la conclusion universelle : ";
