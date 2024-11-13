@@ -218,6 +218,6 @@ public class GuidedPropController {
         boolean qtt = Objects.equals(QQL, "A") || Objects.equals(QQL, "E");
         boolean qual = Objects.equals(QQL, "A") || Objects.equals(QQL, "I");
 
-        return new Proposition(guidedTerme1.getText(), guidedTerme2.getText(), qtt, qual);
+        return new Proposition(guidedTerme2.getText(), guidedTerme1.getText(), qtt, qual);
     }
 }

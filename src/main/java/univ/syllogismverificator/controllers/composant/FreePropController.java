@@ -165,6 +165,6 @@ public class FreePropController {
         boolean qtt = Objects.equals(QQL, "A") || Objects.equals(QQL, "E");
         boolean qual = Objects.equals(QQL, "A") || Objects.equals(QQL, "I");
 
-        return new Proposition(freeTerme1.getText(), freeTerme2.getText(), qtt, qual);
+        return new Proposition(freeTerme2.getText(), freeTerme1.getText(), qtt, qual);
     }
 }
