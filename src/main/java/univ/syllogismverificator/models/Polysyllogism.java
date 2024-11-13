@@ -4,6 +4,7 @@ import univ.syllogismverificator.models.rules.Rule;
 import univ.syllogismverificator.models.rules.RuleResult;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -95,5 +96,55 @@ public class Polysyllogism {
      */
     public boolean isMidTerm(String term) {
         return !term.equals(conclusion.predicate) && !term.equals(conclusion.subject);
+    }
+
+    private void swapProps(int i, int j) {
+        Proposition temp = propositions.get(i);
+        propositions.set(i, propositions.get(j));
+        propositions.set(j, temp);
+    }
+
+    public boolean sort() {
+        String currentTerm = conclusion.predicate;
+
+        for (int i = 0; i < propositions.size(); i++) {
+            int j = i;
+            boolean isDone = false;
+            while (j < propositions.size() && !isDone) {
+                if (currentTerm.equals(propositions.get(j).predicate))
+                {
+                    swapProps(i, j);
+                    currentTerm = propositions.get(i).subject;
+                    isDone = true;
+
+                } else if (currentTerm.equals(propositions.get(j).subject)) {
+                    swapProps(i, j);
+                    currentTerm = propositions.get(i).predicate;
+                    isDone = true;
+                }
+                j++;
+            }
+
+            if (!isDone)
+                return false;
+        }
+
+        System.out.println(currentTerm + " " + conclusion.subject);
+        return (conclusion.subject.equals(currentTerm));
+    }
+
+    public boolean equals(Object o) {
+        if (o.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Polysyllogism p = (Polysyllogism)o;
+        boolean result = conclusion.equals(p.conclusion);
+
+        for (int i = 0; i < propositions.size(); i++) {
+            result = result && propositions.get(i).equals(p.propositions.get(i));
+        }
+
+        return result;
     }
 }

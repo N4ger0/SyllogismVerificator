@@ -51,4 +51,14 @@ public class Proposition {
     public boolean isTerm(String term){
         return (term.equals(predicate) || term.equals(subject));
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o.getClass() != this.getClass()) {
+            return false;
+        }
+
+        Proposition p = (Proposition)o;
+        return this.predicate.equals(p.predicate) && this.subject.equals(p.subject);
+    }
 }
