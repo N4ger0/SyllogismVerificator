@@ -42,4 +42,12 @@ public class SyllogismResult {
     public boolean isValid() {
         return valid;
     }
+
+    public List<RuleResult> getResults() {
+        return results;
+    }
+
+    public int getResultCount() {
+        return results.size();
+    }
 }
