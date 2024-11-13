@@ -188,4 +188,17 @@ class LhRuleTest {
 
         assertFalse(result.isValid());
     }
+
+    @Test
+    void testAAAFig1() {
+        Polysyllogism polysyllogism = new Polysyllogism(List.of(
+                new Proposition("gris", "animaux", true, true),
+                new Proposition("animaux", "chat", true, true),
+                new Proposition("gris", "chat", true, true)
+        ));
+
+        RuleResult result = polysyllogism.accept(lhRule);
+
+        assertTrue(result.isValid());
+    }
 }
