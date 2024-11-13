@@ -8,24 +8,23 @@ import univ.syllogismverificator.models.Proposition;
  */
 public class LhRule implements Rule {
     private boolean getSubjectQuantity(Proposition proposition) {
-        return proposition.quantity;
+        return proposition.quantity; //
     }
 
     private boolean getPredicateQuantity(Proposition proposition) {
-        return !proposition.quality;
+        return !proposition.quality; //
     }
 
     @Override
     public RuleResult evaluate(Polysyllogism polysyllogism) {
-        boolean isConclusionSubjectUniversal = getSubjectQuantity(polysyllogism.getConclusion());
-        boolean isConclusionQuantityUniversal = getPredicateQuantity(polysyllogism.getConclusion());
+        boolean isConclusionSubjectUniversal = getSubjectQuantity(polysyllogism.getConclusion()); //
+        boolean isConclusionQuantityUniversal = getPredicateQuantity(polysyllogism.getConclusion()); //
 
         boolean isConclusionSubjectValid = true;
         // Checks if the subject of the conclusion is universal. If the subject is universal elsewhere, the rule is respected for it.
         if (isConclusionSubjectUniversal) {
-            boolean isMidTermPredicate = polysyllogism.getPropositions().getLast().subject.equals(polysyllogism.getConclusion().subject);
 
-            if (isMidTermPredicate) {
+            if (polysyllogism.isMidTerm(polysyllogism.getPropositions().getLast().predicate)) {
                 isConclusionSubjectValid = getSubjectQuantity(polysyllogism.getPropositions().getLast());
             } else {
                 isConclusionSubjectValid = getPredicateQuantity(polysyllogism.getPropositions().getLast());
@@ -35,9 +34,7 @@ public class LhRule implements Rule {
         boolean isConclusionPredicateValid = true;
         // Checks if the subject of the conclusion is universal. If the subject is universal elsewhere, the rule is respected for it.
         if (isConclusionQuantityUniversal) {
-            boolean isMidTermPredicate = !polysyllogism.getPropositions().getFirst().predicate.equals(polysyllogism.getConclusion().predicate);
-
-            if (isMidTermPredicate) {
+            if (polysyllogism.isMidTerm(polysyllogism.getPropositions().getFirst().predicate)) {
                 isConclusionPredicateValid = getSubjectQuantity(polysyllogism.getPropositions().getFirst());
             } else {
                 isConclusionPredicateValid = getPredicateQuantity(polysyllogism.getPropositions().getFirst());

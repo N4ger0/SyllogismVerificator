@@ -25,14 +25,43 @@
                     <HBox alignment="CENTER" spacing="40">
                         <Button fx:id="guidedSolve" alignment="CENTER" mnemonicParsing="false" prefHeight="50"
                                 prefWidth="125" text="Solve" style="-fx-font-size: 20"/>
-                        <CheckBox fx:id="guidedHE" text="Hypothese d'exsistence"
-                                  prefHeight="50" prefWidth="200" style="-fx-font-size: 15"/>
                         <Button fx:id="schemaAdd" mnemonicParsing="false" prefHeight="50"
                                 prefWidth="175" text="Add schema" style="-fx-font-size: 20"/>
                     </HBox>
                     <Text wrappingWidth="600" fx:id="tutorialText"/>
                 </VBox>
-                <Text fx:id="guidedCCL" wrappingWidth="550"/>
+                <VBox style="-fx-background-color: #b22635; -fx-padding: 5; -fx-background-radius: 5"/>
+                <VBox spacing="10" alignment="CENTER" prefWidth="550" style="-fx-padding: 20">
+                    <VBox alignment="CENTER" style="-fx-background-color: #ccc4b4; -fx-background-radius: 10" prefHeight="40" ><Text text="Regles" style="-fx-font-size: 25"/></VBox>
+                    <HBox spacing="10" alignment="CENTER">
+                        <CheckBox text="Mt" fx:id="guidedMt"
+                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>
+                        <CheckBox text="Lh" fx:id="guidedLh"
+                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>
+                        <CheckBox text="Nn" fx:id="guidedNn"
+                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>
+                    </HBox>
+                    <HBox spacing="10" alignment="CENTER">
+                        <CheckBox text="N" fx:id="guidedN"
+                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>
+                        <CheckBox text="Aa" fx:id="guidedAa"
+                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>
+                        <CheckBox text="Pp" fx:id="guidedPp"
+                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>
+                    </HBox>
+                    <HBox spacing="10" alignment="CENTER">
+                        <CheckBox text="P" fx:id="guidedP"
+                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>
+                        <CheckBox text="Uu" fx:id="guidedUu"
+                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>
+                        <CheckBox text="He" fx:id="guidedHE"
+                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>
+                    </HBox>
+                    <VBox style="-fx-background-color: #ccc4b4; -fx-background-radius: 10; -fx-padding: 10" spacing="10" alignment="CENTER">
+                        <Text text="CONCLUSION" style="-fx-font-size: 25"/>
+                        <Text fx:id="guidedCCL" text="LOL"/>
+                    </VBox>
+                </VBox>
             </HBox>
         </Tab>
         <Tab fx:id="tab_free" text="Free mode">
@@ -55,6 +84,8 @@
                     </HBox>
                     <VBox fx:id="freePropositions" spacing="10"/>
                     <HBox alignment="CENTER" spacing="40">
+                        <Button fx:id="addFreeProp" alignment="CENTER" mnemonicParsing="false" prefHeight="50"
+                                prefWidth="150" text="add Proposition" style="-fx-font-size: 20"/>
                         <Button fx:id="freeSolve" alignment="CENTER" mnemonicParsing="false" prefHeight="50"
                                 prefWidth="125" text="Solve" style="-fx-font-size: 20"/>
                     </HBox>
@@ -64,27 +95,27 @@
                     <VBox alignment="CENTER" style="-fx-background-color: #ccc4b4; -fx-background-radius: 10" prefHeight="40" ><Text text="Regles" style="-fx-font-size: 25"/></VBox>
                     <HBox spacing="10" alignment="CENTER">
                         <CheckBox text="Mt" fx:id="freeMt"
-                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15"/>
+                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>
                         <CheckBox text="Lh" fx:id="freeLh"
-                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15"/>
+                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>
                         <CheckBox text="Nn" fx:id="freeNn"
-                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15"/>
+                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>
                     </HBox>
                     <HBox spacing="10" alignment="CENTER">
                         <CheckBox text="N" fx:id="freeN"
-                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15"/>
+                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>
                         <CheckBox text="Aa" fx:id="freeAa"
-                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15"/>
+                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>
                         <CheckBox text="Pp" fx:id="freePp"
-                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15"/>
+                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>
                     </HBox>
                     <HBox spacing="10" alignment="CENTER">
                         <CheckBox text="P" fx:id="freeP"
-                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15"/>
+                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>
                         <CheckBox text="Uu" fx:id="freeUu"
-                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15"/>
+                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>
                         <CheckBox text="He" fx:id="freeHE"
-                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15"/>
+                                  prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>
                     </HBox>
                     <VBox style="-fx-background-color: #ccc4b4; -fx-background-radius: 10; -fx-padding: 10" spacing="10" alignment="CENTER">
                         <Text text="CONCLUSION" style="-fx-font-size: 25"/>
