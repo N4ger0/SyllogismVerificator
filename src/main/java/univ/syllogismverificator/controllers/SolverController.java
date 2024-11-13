@@ -58,6 +58,22 @@ public class SolverController {
     @FXML
     private Button guidedSolve;
     @FXML
+    private CheckBox guidedMt;
+    @FXML
+    private CheckBox guidedLh;
+    @FXML
+    private CheckBox guidedNn;
+    @FXML
+    private CheckBox guidedN;
+    @FXML
+    private CheckBox guidedAa;
+    @FXML
+    private CheckBox guidedPp;
+    @FXML
+    private CheckBox guidedP;
+    @FXML
+    private CheckBox guidedUu;
+    @FXML
     private CheckBox guidedHE;
     @FXML
     private CheckBox guidedCCLUniversal;
@@ -370,15 +386,14 @@ public class SolverController {
     private void guidedSolve() {
         if (isGuidedPSValid()){
             Polysyllogism ps = getGuidedPropositions();
-
-            /*SyllogismResult res = solver.solve(ps);
+            SyllogismResult res = solver.solve(ps, guidedMt.isSelected(), guidedLh.isSelected(), guidedNn.isSelected(), guidedN.isSelected(), guidedAa.isSelected(), guidedPp.isSelected(), guidedP.isSelected(), guidedUu.isSelected(), guidedHE.isSelected());
 
             if (res.isValid()){
                 guidedCCL.setText("Syllogisme valide!");
             }
             else {
                 guidedCCL.setText("Syllogisme invalide!\n" + res);
-            }*/
+            }
         }
     }
 
