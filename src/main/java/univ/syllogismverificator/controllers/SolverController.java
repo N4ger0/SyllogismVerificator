@@ -76,8 +76,6 @@ public class SolverController {
     @FXML
     private CheckBox guidedHE;
     @FXML
-    private CheckBox guidedCCLUniversal;
-    @FXML
     private Text guidedCCL;
 
     @FXML
@@ -93,6 +91,8 @@ public class SolverController {
     @FXML
     private TextField textFieldSujet ;
 
+    @FXML
+    private Button addFreeProp;
     @FXML
     private Button freeSolve;
     @FXML
@@ -113,8 +113,6 @@ public class SolverController {
     private CheckBox freeUu;
     @FXML
     private CheckBox freeHE;
-    @FXML
-    private CheckBox freeCCLUniversal;
     @FXML
     private Text freeCCL;
     @FXML
@@ -168,6 +166,7 @@ public class SolverController {
     }
 
     private void initButtons() {
+        addFreeProp.setOnAction(event -> addFreeProposition());
         guidedSolve.setOnAction(event -> guidedSolve());
         freeSolve.setOnAction(event -> freeSolve());
         schemaAdd.setOnAction(event -> askSchema());
