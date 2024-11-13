@@ -22,19 +22,19 @@ public class SolverTest {
                 new Proposition("b", "c", true, false),
                 new Proposition("c", "a", false, false)
         ));
-        assertFalse(solver.solve(polysyllogism, true).isValid());
-        assertEquals(solver.solve(polysyllogism).toString(), solver.solve(polysyllogism, false).toString());
+        assertFalse(solver.solve(polysyllogism, true, true, true, true, true, true, true, true, true).isValid());
+        assertEquals(solver.solve(polysyllogism, true, true, true, true, true, true, true, true, true).toString(), solver.solve(polysyllogism, true, true, true, true, true, true, true, true, false).toString());
     }
 
     @Test
     public void testIntegrationRule() {
-        Solver solver = new Solver(new Ruleuu());
+        Solver solver = new Solver();
         Polysyllogism polysyllogism = new Polysyllogism(List.of(
                 new Proposition("U", "U", true, false),
                 new Proposition("U", "U", true, false),
                 new Proposition("U", "U", false, false)
         ));
-        SyllogismResult s1 = solver.solve(polysyllogism);
+        SyllogismResult s1 = solver.solve(polysyllogism, false, false, false, false, false, false, false, true, false);
 
         assertFalse(s1.isValid());
 
@@ -43,6 +43,6 @@ public class SolverTest {
                 new Proposition("U", "U", false, false),
                 new Proposition("U", "U", false, false)
         ));
-        SyllogismResult s2 = solver.solve(polysyllogism);
+        SyllogismResult s2 = solver.solve(polysyllogism, false, false, false, false, false, false, false, true, false);
     }
 }
