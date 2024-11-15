@@ -66,7 +66,7 @@ public class GuidedPropController {
     private SolverController parentController;
 
     /** Entier servant de compteur de proposition.*/
-    private static int TextCounter;
+    public static int TextCounter;
 
     static {
         TextCounter = 1;

@@ -28,6 +28,7 @@ import univ.syllogismverificator.models.Proposition;
 import univ.syllogismverificator.models.SyllogismResult;
 
 public class SolverController {
+    public Button language;
     Traductor traductor = new Traductor() ;
     public Button schemaAdd;
     @FXML
@@ -120,28 +121,29 @@ public class SolverController {
 
     private Solver solver;
 
+    private void clear(){
+        guidedPropControllers.clear();
+        freePropControllers.clear();
+        guidedPropositions.getChildren().clear();
+        freePropositions.getChildren().clear();
+        FreePropController.TextCounter = 1;
+        GuidedPropController.TextCounter = 1;
+    }
 
     @FXML
     public void initialize() {
+        clear();
         initTexts();
         System.out.println("INIT");
-        titled_pane.setText(traductor.get("title"));
-        tab_guided.setText(traductor.get("guided_mode"));
-        tab_free.setText(traductor.get("free_mode"));
-        guidedSolve.setText(traductor.get("solve"));
-        guidedHE.setText(traductor.get("exist_hypothese"));
-        text_sujet.setText(traductor.get("subject"));
-        text_middle.setText(traductor.get("moyen_terme"));
-        text_predicat.setText(traductor.get("predicate"));
-        freeSolve.setText(traductor.get("solve"));
-        //freeHE.setText(traductor.get("exist_hypothese"));
-
-        schemaAdd.setText(traductor.get("add_schema"));
 
         initPropositions();
         initButtons();
         solver = new Solver();
         setEventOnTextFields();
+        language.setOnAction(event -> {
+            traductor.setLang(Traductor.getLang().equals("fr") ? "en" : "fr");
+            initialize();
+        });
     }
 
     private void initPropositions() {
@@ -163,6 +165,18 @@ public class SolverController {
         tutorialText.setText(traductor.get("syllogism_def"));
 
         tabWindow.setOnMouseClicked(event -> tutorialText.setText(traductor.get("syllogism_def")));
+        titled_pane.setText(traductor.get("title"));
+        tab_guided.setText(traductor.get("guided_mode"));
+        tab_free.setText(traductor.get("free_mode"));
+        guidedSolve.setText(traductor.get("solve"));
+        schemaAdd.setText(traductor.get("add_schema"));
+        guidedHE.setText(traductor.get("exist_hypothese"));
+        text_sujet.setText(traductor.get("subject"));
+        text_middle.setText(traductor.get("moyen_terme"));
+        text_predicat.setText(traductor.get("predicate"));
+        freeSolve.setText(traductor.get("solve"));
+        //freeHE.setText(traductor.get("exist_hypothese"));
+        language.setText(Traductor.getLang().equals("fr") ? "EN" : "FR");
     }
 
     private void initButtons() {

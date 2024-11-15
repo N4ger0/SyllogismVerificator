@@ -57,7 +57,7 @@ public class FreePropController {
 
 
     /** Entier servant de compteur de proposition.*/
-    private static int TextCounter;
+    public static int TextCounter;
 
     static {
         TextCounter = 1;

@@ -28,6 +28,10 @@ public class TableAllController {
     private TableColumn<SyllogismData, String> qql3;
     @FXML
     private TableColumn<SyllogismData, String> validity;
+    @FXML
+    private TableColumn<SyllogismData, String> interesting;
+    @FXML
+    private TableColumn<SyllogismData, String> ruu;
 
     private ObservableList<SyllogismData> data;
 
@@ -39,16 +43,37 @@ public class TableAllController {
         qql3.setCellValueFactory(new PropertyValueFactory<>("qql3"));
         figure.setCellValueFactory(new PropertyValueFactory<>("figure"));
         validity.setCellValueFactory(new PropertyValueFactory<>("validity"));
+        interesting.setCellValueFactory(new PropertyValueFactory<>("interesting"));
+        ruu.setCellValueFactory(new PropertyValueFactory<>("ruu"));
 
         data = FXCollections.observableArrayList();
         for (Pair<Syllogism, SyllogismResult> syllogismPair : generator.getSyllogisms()) {
             Syllogism syllogism = syllogismPair.getKey();
             SyllogismResult result = syllogismPair.getValue();
+            String valid = "false";
+            String interesting = "false";
+            if (result.getResults().getFirst().isValid()
+                    && result.getResults().get(1).isValid()
+                    && result.getResults().get(2).isValid()
+                    && result.getResults().get(3).isValid()
+                    && result.getResults().get(4).isValid()
+                    && result.getResults().get(5).isValid()
+                    && result.getResults().get(6).isValid()
+            ) {valid = "true";}
+
+            if (result.getResultCount() == 8 && valid.equals("true")) {
+                interesting = "true";
+            }
+            else if (result.getResultCount() == 9 && result.getResults().get(8).isValid() && valid.equals("true")) {
+                valid = "true";
+            }
 
             data.add(new SyllogismData(syllogism.getPropositions().get(0).toString().split(" ")[0],
                     syllogism.getPropositions().get(1).toString().split(" ")[0],
                     syllogism.getConclusion().toString().split(" ")[0],
                     Integer.toString(getFigureAndProps(syllogism)),
+                    valid,
+                    interesting,
                     Objects.toString(result.isValid())
             ));
         }
