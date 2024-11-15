@@ -80,7 +80,12 @@ public class SyllogismsGenerator {
                 for (int secondProp = 0; secondProp < 4; secondProp++) {
                     for (int thirdProp = 0; thirdProp < 4; thirdProp++) {
                         Syllogism syllogism = createPolysyllogismFromFigureAndProps(figure, firstProp, secondProp, thirdProp);
-                        SyllogismResult result = solver.solve(syllogism, true, true, true, true, true, true, true, true, true);
+                        SyllogismResult result = solver.solve(syllogism, true, true, true, true, true, true, true, true, false);
+                        SyllogismResult interestingResult = solver.solve(syllogism, true, true, true, true, true, true, true, false, true);
+                        if (interestingResult.getResults().size() == 8) {
+                            result.addRuleResult(interestingResult.getResults().get(7));
+                        }
+
                         syllogisms.add(new Pair<>(syllogism, result));
                     }
                 }

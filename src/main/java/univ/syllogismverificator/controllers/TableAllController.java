@@ -52,6 +52,8 @@ public class TableAllController {
             SyllogismResult result = syllogismPair.getValue();
             String valid = "false";
             String interesting = "false";
+
+            // Verification if the 7 first rules are valid.
             if (result.getResults().getFirst().isValid()
                     && result.getResults().get(1).isValid()
                     && result.getResults().get(2).isValid()
@@ -61,11 +63,9 @@ public class TableAllController {
                     && result.getResults().get(6).isValid()
             ) {valid = "true";}
 
-            if (result.getResultCount() == 8 && valid.equals("true")) {
+            // Verification if the syllogism is interesting.
+            if (valid.equals("true") && result.getResults().size() == 9 && result.getResults().get(8).isValid()) {
                 interesting = "true";
-            }
-            else if (result.getResultCount() == 9 && result.getResults().get(8).isValid() && valid.equals("true")) {
-                valid = "true";
             }
 
             data.add(new SyllogismData(syllogism.getPropositions().get(0).toString().split(" ")[0],
