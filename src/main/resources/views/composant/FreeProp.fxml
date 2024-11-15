@@ -9,19 +9,21 @@
       fx:controller="univ.syllogismverificator.controllers.composant.FreePropController"
       alignment="CENTER" prefHeight="49.0" prefWidth="598.0" spacing="20.0">
     <Text HBox.hgrow="ALWAYS" fx:id="text"/>
-    <MenuButton mnemonicParsing="false" text="QQL" prefWidth="100" fx:id="freeQQL"/>
-    <MenuButton mnemonicParsing="false" text="Terme 1" prefWidth="100" fx:id="freeTerme1">
+    <MenuButton mnemonicParsing="false" text="QQL" prefWidth="75" fx:id="freeQQL"/>
+    <MenuButton mnemonicParsing="false" text="Terme 1" prefWidth="75" fx:id="freeTerme1">
+        <items>
+            <MenuItem mnemonicParsing="false" visible="false"/>
+        </items>
+    </MenuButton>
+    <MenuButton mnemonicParsing="false" text="Terme 2" prefWidth="75" fx:id="freeTerme2">
         <items>
             <MenuItem mnemonicParsing="false" visible="false"/>
             <MenuItem mnemonicParsing="false" visible="false"/>
             <MenuItem mnemonicParsing="false" visible="false"/>
         </items>
     </MenuButton>
-    <MenuButton mnemonicParsing="false" text="Terme 2" prefWidth="100" fx:id="freeTerme2">
-        <items>
-            <MenuItem mnemonicParsing="false" visible="false"/>
-            <MenuItem mnemonicParsing="false" visible="false"/>
-            <MenuItem mnemonicParsing="false" visible="false"/>
-        </items>
-    </MenuButton>
+    <VBox fx:id="freeMediumTerm">
+        <Text text="Middle Term"/>
+        <TextField fx:id="freeTextFieldMedium" prefWidth="180.0"/>
+    </VBox>
 </HBox>

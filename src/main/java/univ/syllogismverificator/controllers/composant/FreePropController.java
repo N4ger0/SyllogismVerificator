@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Pair;
 import org.json.simple.JSONArray;
@@ -42,7 +44,6 @@ public class FreePropController {
     /** Le Menu deroulant permettant de choisir le 1er terme de la proposition.*/
     @FXML
     private MenuButton freeTerme1;
-
     public MenuButton getFreeTerme1() {
         return freeTerme1 ;
     }
@@ -50,17 +51,27 @@ public class FreePropController {
     /** Le Menu deroulant permettant de choisir le 2eme terme de la proposition.*/
     @FXML
     private MenuButton freeTerme2;
-
     public MenuButton getFreeTerme2() {
         return freeTerme2 ;
     }
 
+    @FXML
+    private TextField freeTextFieldMedium;
+    @FXML
+    private VBox freeMediumTerm;
+    public TextField getFreeTextFieldMedium() {
+        return freeTextFieldMedium;
+    }
+
+    private static FreePropController lastFreeProp;
+    static {
+        lastFreeProp = null;
+    }
 
     /** Entier servant de compteur de proposition.*/
     public static int TextCounter;
-
     static {
-        TextCounter = 1;
+        TextCounter = 0;
     }
 
     @FXML
@@ -69,7 +80,11 @@ public class FreePropController {
         freeTerme2.setText(traductor.get("terme") + "2");
         loadMenuItemsFromJson();
         initText();
+        updateText();
         initMenuItems();
+
+        lastFreeProp = this;
+        TextCounter++;
     }
 
     private void loadMenuItemsFromJson() {
@@ -94,10 +109,18 @@ public class FreePropController {
     }
 
     private void initText(){
-        text.setText(traductor.get("premisse") + TextCounter);
-        TextCounter++;
+        freeMediumTerm.setVisible(false);
+        text.setText("Conclusion");
     }
 
+    public void updateText() {
+        if (lastFreeProp != null){
+            lastFreeProp.text.setText("Premisse " + TextCounter);
+            if (TextCounter != 1){
+                lastFreeProp.freeMediumTerm.setVisible(true);
+            }
+        }
+    }
 
     private void initMenuItems() {
         freeQQL.getItems().clear();
@@ -147,6 +170,9 @@ public class FreePropController {
         if (freeTerme2.getText().equals("Terme 2")) {
             msg += "Le 2eme terme de la " + text.getText() + " n'est pas definit\n";
         }
+        if (freeTerme1.getText().equals(freeTerme2.getText())) {
+            msg += "Une proposition ne peux pas avoir 2 fois le même terme\n";
+        }
         if (!msg.isEmpty()) {
             msg += "\n";
         }
@@ -166,5 +192,15 @@ public class FreePropController {
         boolean qual = Objects.equals(QQL, "A") || Objects.equals(QQL, "I");
 
         return new Proposition(freeTerme2.getText(), freeTerme1.getText(), qtt, qual);
+    }
+
+    public void addItemMenu() {
+        MenuItem MI1 = new MenuItem();
+        MI1.setOnAction(event -> freeTerme1.setText(MI1.getText()));
+        freeTerme1.getItems().add(MI1);
+
+        MenuItem MI2 = new MenuItem();
+        MI2.setOnAction(event -> freeTerme1.setText(MI2.getText()));
+        freeTerme2.getItems().add(MI2);
     }
 }

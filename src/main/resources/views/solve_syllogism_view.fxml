@@ -75,10 +75,6 @@
                             <TextField fx:id="textFieldSujet" prefWidth="180.0"/>
                         </VBox>
                         <VBox spacing="10.0" alignment="CENTER">
-                            <Text fx:id="text_middle"/>
-                            <TextField fx:id="textFieldMoyen" prefWidth="180.0"/>
-                        </VBox>
-                        <VBox spacing="10.0" alignment="CENTER">
                             <Text fx:id="text_predicat" text="Prédicat"/>
                             <TextField fx:id="textFieldPredicat" prefWidth="180.0"/>
                         </VBox>

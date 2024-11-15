@@ -85,10 +85,6 @@ public class SolverController {
 
     @FXML
     private TextField textFieldPredicat ;
-
-    @FXML
-    private TextField textFieldMoyen ;
-
     @FXML
     private TextField textFieldSujet ;
 
@@ -126,8 +122,8 @@ public class SolverController {
         freePropControllers.clear();
         guidedPropositions.getChildren().clear();
         freePropositions.getChildren().clear();
-        FreePropController.TextCounter = 1;
-        GuidedPropController.TextCounter = 1;
+        FreePropController.TextCounter = 0;
+        GuidedPropController.TextCounter = 0;
     }
 
     @FXML
@@ -172,7 +168,7 @@ public class SolverController {
         schemaAdd.setText(traductor.get("add_schema"));
         guidedHE.setText(traductor.get("exist_hypothese"));
         text_sujet.setText(traductor.get("subject"));
-        text_middle.setText(traductor.get("moyen_terme"));
+        //text_middle.setText(traductor.get("moyen_terme"));
         text_predicat.setText(traductor.get("predicate"));
         freeSolve.setText(traductor.get("solve"));
         //freeHE.setText(traductor.get("exist_hypothese"));
@@ -187,30 +183,32 @@ public class SolverController {
     }
 
     private void setEventOnTextFields() {
-        textFieldPredicat.setOnKeyTyped((event) -> {
-            for(FreePropController control : freePropControllers) {
-                control.getFreeTerme1().getItems().get(0).setText(textFieldPredicat.getText());
-                control.getFreeTerme1().getItems().get(0).setVisible(!(textFieldPredicat.getText().equals("")));
-                control.getFreeTerme2().getItems().get(0).setText(textFieldPredicat.getText());
-                control.getFreeTerme2().getItems().get(0).setVisible(!(textFieldPredicat.getText().equals("")));
-            }
-        });
-        textFieldMoyen.setOnKeyTyped((event) -> {
-            for(FreePropController control : freePropControllers) {
-                control.getFreeTerme1().getItems().get(1).setText(textFieldMoyen.getText());
-                control.getFreeTerme1().getItems().get(1).setVisible(!(textFieldMoyen.getText().equals("")));
-                control.getFreeTerme2().getItems().get(1).setText(textFieldMoyen.getText());
-                control.getFreeTerme2().getItems().get(1).setVisible(!(textFieldMoyen.getText().equals("")));
-            }
-        });
         textFieldSujet.setOnKeyTyped((event) -> {
             for(FreePropController control : freePropControllers) {
-                control.getFreeTerme1().getItems().get(2).setText(textFieldSujet.getText());
-                control.getFreeTerme1().getItems().get(2).setVisible(!(textFieldSujet.getText().equals("")));
-                control.getFreeTerme2().getItems().get(2).setText(textFieldSujet.getText());
-                control.getFreeTerme2().getItems().get(2).setVisible(!(textFieldSujet.getText().equals("")));
+                control.getFreeTerme1().getItems().get(0).setText(textFieldSujet.getText());
+                control.getFreeTerme1().getItems().get(0).setVisible(!(textFieldSujet.getText().equals("")));
+                control.getFreeTerme2().getItems().get(0).setText(textFieldSujet.getText());
+                control.getFreeTerme2().getItems().get(0).setVisible(!(textFieldSujet.getText().equals("")));
             }
         });
+        textFieldPredicat.setOnKeyTyped((event) -> {
+            for(FreePropController control : freePropControllers) {
+                control.getFreeTerme1().getItems().get(1).setText(textFieldPredicat.getText());
+                control.getFreeTerme1().getItems().get(1).setVisible(!(textFieldPredicat.getText().equals("")));
+                control.getFreeTerme2().getItems().get(1).setText(textFieldPredicat.getText());
+                control.getFreeTerme2().getItems().get(1).setVisible(!(textFieldPredicat.getText().equals("")));
+            }
+        });
+        for (FreePropController p: freePropControllers) {
+            p.getFreeTextFieldMedium().setOnKeyTyped((event) -> {
+                for (FreePropController control : freePropControllers) {
+                    control.getFreeTerme1().getItems().get(2).setText(p.getFreeTextFieldMedium().getText());
+                    control.getFreeTerme1().getItems().get(2).setVisible(!(p.getFreeTextFieldMedium().getText().equals("")));
+                    control.getFreeTerme2().getItems().get(2).setText(p.getFreeTextFieldMedium().getText());
+                    control.getFreeTerme2().getItems().get(2).setVisible(!(p.getFreeTextFieldMedium().getText().equals("")));
+                }
+            });
+        }
     }
 
     public Text getTutorialText() {
@@ -278,6 +276,11 @@ public class SolverController {
 
         // Ajouter l'HBox à la VBox
         freePropositions.getChildren().add(FP);
+
+        //Ajouter une option dans les menus de selection
+        for (FreePropController fpc: freePropControllers) {
+            fpc.addItemMenu();
+        }
     }
 
     /**
@@ -399,13 +402,16 @@ public class SolverController {
     private void guidedSolve() {
         if (isGuidedPSValid()){
             Polysyllogism ps = getGuidedPropositions();
-            SyllogismResult res = solver.solve(ps, guidedMt.isSelected(), guidedLh.isSelected(), guidedNn.isSelected(), guidedN.isSelected(), guidedAa.isSelected(), guidedPp.isSelected(), guidedP.isSelected(), guidedUu.isSelected(), guidedHE.isSelected());
 
-            if (res.isValid()){
-                guidedCCL.setText("Syllogisme valide!");
-            }
-            else {
-                guidedCCL.setText("Syllogisme invalide!\n" + res);
+            if (ps.sort()){
+                SyllogismResult res = solver.solve(ps, guidedMt.isSelected(), guidedLh.isSelected(), guidedNn.isSelected(), guidedN.isSelected(), guidedAa.isSelected(), guidedPp.isSelected(), guidedP.isSelected(), guidedUu.isSelected(), guidedHE.isSelected());
+
+                if (res.isValid()){
+                    guidedCCL.setText("Syllogisme valide!");
+                }
+                else {
+                    guidedCCL.setText("Syllogisme invalide!\n" + res);
+                }
             }
         }
     }
@@ -416,12 +422,15 @@ public class SolverController {
     private void freeSolve() {
         if (isFreePSValid()) {
             Polysyllogism ps = getFreePropositions();
-            SyllogismResult res = solver.solve(ps, freeMt.isSelected(), freeLh.isSelected(), freeNn.isSelected(), freeN.isSelected(), freeAa.isSelected(), freePp.isSelected(), freeP.isSelected(), freeUu.isSelected(), freeHE.isSelected());
 
-            if (res.isValid()) {
-                freeCCL.setText("Syllogisme valide!");
-            } else {
-                freeCCL.setText("Syllogisme invalide!\n" + res);
+            if (ps.sort()) {
+                SyllogismResult res = solver.solve(ps, freeMt.isSelected(), freeLh.isSelected(), freeNn.isSelected(), freeN.isSelected(), freeAa.isSelected(), freePp.isSelected(), freeP.isSelected(), freeUu.isSelected(), freeHE.isSelected());
+
+                if (res.isValid()) {
+                    freeCCL.setText("Syllogisme valide!");
+                } else {
+                    freeCCL.setText("Syllogisme invalide!\n" + res);
+                }
             }
         }
     }

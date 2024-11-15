@@ -200,6 +200,9 @@ public class GuidedPropController {
         if (guidedTerme2.getText().isEmpty()) {
             msg += "Le 2eme terme de la " + text.getText() + " n'est pas definit\n";
         }
+        if (guidedTerme1.getText().equals(guidedTerme2.getText())) {
+            msg += "Une proposition ne peux pas avoir 2 fois le même terme\n";
+        }
         if (!msg.isEmpty()) {
             msg += "\n";
         }
