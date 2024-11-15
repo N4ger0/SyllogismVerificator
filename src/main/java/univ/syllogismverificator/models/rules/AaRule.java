@@ -1,5 +1,6 @@
 package univ.syllogismverificator.models.rules;
 
+import univ.syllogismverificator.Traductor;
 import univ.syllogismverificator.models.Polysyllogism;
 import univ.syllogismverificator.models.Proposition;
 
@@ -20,11 +21,12 @@ public class AaRule implements Rule {
             boolean result = polysyllogism.getConclusion().quality;
 
             if (result) {
-                return new RuleResult(true, "Regle Aa : Toutes les prémisses sont affirmatives, la conclusion aussi.");} else {
-                return new RuleResult(false, "Regle Aa : Toutes les prémisses sont affirmatives, mais la conclusion ne l'est pas.");
+                return new RuleResult(true, Traductor.get("rule_aa_correct"));
+            } else {
+                return new RuleResult(false, Traductor.get("rule_aa_incorrect"));
             }
         } else {
-            return new RuleResult(true, "Regle Aa : Toutes les prémisses ne sont pas affirmatives !");
+            return new RuleResult(true, Traductor.get("rule_aa_correct"));
         }
     }
 }

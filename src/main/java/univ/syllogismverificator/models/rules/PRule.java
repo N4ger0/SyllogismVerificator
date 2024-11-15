@@ -1,5 +1,6 @@
 package univ.syllogismverificator.models.rules;
 
+import univ.syllogismverificator.Traductor;
 import univ.syllogismverificator.models.Polysyllogism;
 import univ.syllogismverificator.models.Proposition;
 
@@ -20,9 +21,9 @@ public class PRule implements Rule {
             boolean result = !polysyllogism.getConclusion().quantity;
 
             if (result) {
-                return new RuleResult(true, "Regle P : Une prémisse est particulière, et la conclusion l'est aussi.");
+                return new RuleResult(true, Traductor.get("rule_p_correct"));
             } else {
-                return new RuleResult(false, "Regle P : Une prémisse est particulière, mais la conclusion ne l'est pas.");
+                return new RuleResult(false, Traductor.get("rule_p_incorrect"));
             }
         } else {
             return new RuleResult(true, "Regle P : Aucune prémisse n'est particulière !");

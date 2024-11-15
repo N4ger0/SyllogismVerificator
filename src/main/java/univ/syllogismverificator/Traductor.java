@@ -36,7 +36,7 @@ public class Traductor {
         return lang;
     }
 
-    public String get(String key) {
+    public static String get(String key) {
         return dictionnaire.get(key) ;
     }
 

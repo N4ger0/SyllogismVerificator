@@ -1,5 +1,6 @@
 package univ.syllogismverificator.models.rules;
 
+import univ.syllogismverificator.Traductor;
 import univ.syllogismverificator.models.Polysyllogism;
 import univ.syllogismverificator.models.Proposition;
 
@@ -42,6 +43,7 @@ public class LhRule implements Rule {
         }
 
         // TODO: custom message
-        return new RuleResult(isConclusionPredicateValid && isConclusionSubjectValid, "Regle Lh");
+        if(isConclusionPredicateValid && isConclusionSubjectValid) return new RuleResult(true, Traductor.get("rule_lh_correct"));
+        return new RuleResult(false, Traductor.get("rule_lh_incorrect"));
     }
 }

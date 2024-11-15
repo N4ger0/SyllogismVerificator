@@ -1,5 +1,6 @@
 package univ.syllogismverificator.models.rules;
 
+import univ.syllogismverificator.Traductor;
 import univ.syllogismverificator.models.Polysyllogism;
 import univ.syllogismverificator.models.Proposition;
 
@@ -16,10 +17,9 @@ public class Ruleuu implements Rule{
 
 
         if (polysyllogism.getConclusion().quantity)
-            return new RuleResult(true, "ruu_valid_universal_conclusion");
+            return new RuleResult(true, Traductor.get("rule_uu_correct"));
         else if (!arePropositionsUniversal)
-            return new RuleResult(true, "ruu_valid_particular_premises");
-        else
-            return new RuleResult(false, "ruu_invalid");
+            return new RuleResult(true, Traductor.get("rule_uu_correct"));
+        return new RuleResult(false, Traductor.get("rule_uu_incorrect"));
     }
 }

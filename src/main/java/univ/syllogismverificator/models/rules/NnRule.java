@@ -1,5 +1,6 @@
 package univ.syllogismverificator.models.rules;
 
+import univ.syllogismverificator.Traductor;
 import univ.syllogismverificator.models.Polysyllogism;
 import univ.syllogismverificator.models.Proposition;
 
@@ -16,6 +17,7 @@ public class NnRule implements Rule {
         }
 
         // TODO: custom message
-        return new RuleResult(!arePremisesOnlyNegative, "Regle Nn : ");
+        if(!arePremisesOnlyNegative) return new RuleResult(false, Traductor.get("rule_nn_incorrect"));
+        return new RuleResult(true, Traductor.get("rule_nn_correct"));
     }
 }
