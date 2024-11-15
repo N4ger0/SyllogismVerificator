@@ -17,12 +17,11 @@ public class AaRule implements Rule {
 
         // TODO: custom message
         if (areAllPremisesAffirmative) {
-            boolean result = areAllPremisesAffirmative && polysyllogism.getConclusion().quality;
+            boolean result = polysyllogism.getConclusion().quality;
 
             if (result) {
-                return new RuleResult(result, "Regle Aa : Toutes les prémisses sont affirmatives, la conclusion aussi.");
-            } else {
-                return new RuleResult(result, "Regle Aa : Toutes les prémisses sont affirmatives, mais la conclusion ne l'est pas.");
+                return new RuleResult(true, "Regle Aa : Toutes les prémisses sont affirmatives, la conclusion aussi.");} else {
+                return new RuleResult(false, "Regle Aa : Toutes les prémisses sont affirmatives, mais la conclusion ne l'est pas.");
             }
         } else {
             return new RuleResult(true, "Regle Aa : Toutes les prémisses ne sont pas affirmatives !");

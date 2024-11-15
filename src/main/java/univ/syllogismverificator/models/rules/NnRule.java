@@ -12,7 +12,7 @@ public class NnRule implements Rule {
         boolean arePremisesOnlyNegative = true;
 
         for (Proposition prop : polysyllogism.getPropositions()) {
-            arePremisesOnlyNegative = arePremisesOnlyNegative && prop.quality == false;
+            arePremisesOnlyNegative = arePremisesOnlyNegative && !prop.quality;
         }
 
         // TODO: custom message
