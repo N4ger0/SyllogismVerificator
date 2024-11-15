@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Text?>
 
+<?import univ.syllogismverificator.controllers.composant.AutocompleteTextFieldController?>
 <HBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="univ.syllogismverificator.controllers.composant.GuidedPropController"
@@ -12,7 +13,7 @@
     <MenuButton mnemonicParsing="false" text="QQL" HBox.hgrow="ALWAYS" fx:id="guidedQQL">
         <items/>
     </MenuButton>
-    <TextField prefWidth="200.0" fx:id="guidedTerme1"/>
+    <AutocompleteTextFieldController prefWidth="200.0" fx:id="guidedTerme1"/>
     <MenuButton mnemonicParsing="false" text="Verbe" HBox.hgrow="ALWAYS" fx:id="verbe">
         <items>
             <MenuItem fx:id="sont" mnemonicParsing="false" text="sont"/>
@@ -21,5 +22,5 @@
             <MenuItem fx:id="a" mnemonicParsing="false" text="a"/>
         </items>
     </MenuButton>
-    <TextField prefWidth="200.0" fx:id="guidedTerme2"/>
+    <AutocompleteTextFieldController prefWidth="200.0" fx:id="guidedTerme2"/>
 </HBox>

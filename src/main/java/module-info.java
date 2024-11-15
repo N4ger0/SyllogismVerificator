@@ -5,6 +5,7 @@ module univ.syllogismverificator {
     requires org.controlsfx.controls;
 
     requires json.simple;
+    requires com.gluonhq.charm.glisten;
 
     opens univ.syllogismverificator to javafx.fxml;
     exports univ.syllogismverificator;

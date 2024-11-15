@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>/home/oregan/Documents/GL/SyllogismVerificator/src/main/java/univ/syllogismverificator</OriginalElement>
+  <nodes>
+    <node x="1441.6415094339625" y="-180.60377358490558">univ.syllogismverificator.models.rules.NnRule</node>
+    <node x="1193.9952830188677" y="-281.67295597484275">univ.syllogismverificator.models.rules.MediumTermRule</node>
+    <node x="1447.6415094339625" y="151.97484276729546">univ.syllogismverificator.models.rules.AaRule</node>
+    <node x="1249.7452830188677" y="151.97484276729546">univ.syllogismverificator.models.rules.LhRule</node>
+    <node x="1155.7578616352205" y="-458.7798742138364">univ.syllogismverificator.models.rules.Rule</node>
+    <node x="1249.7452830188677" y="-14.314465408805063">univ.syllogismverificator.models.rules.PpRule</node>
+    <node x="275.2543238993708" y="334.6198899371069">univ.syllogismverificator.models.Polysyllogism</node>
+    <node x="546.3569182389936" y="-359.94968553459114">univ.syllogismverificator.models.rules.RuleResult</node>
+    <node x="1452.6415094339625" y="-14.314465408805063">univ.syllogismverificator.models.rules.PRule</node>
+    <node x="467.190251572327" y="681.32822327044">univ.syllogismverificator.models.Proposition</node>
+    <node x="85.6717767295595" y="502.9359276729558">univ.syllogismverificator.models.Syllogism</node>
+    <node x="856.8333333333333" y="561.4716981132075">univ.syllogismverificator.Solver</node>
+    <node x="1455.6415094339625" y="-281.67295597484275">univ.syllogismverificator.models.rules.NRule</node>
+    <node x="654.6635220125784" y="728.2032232704402">univ.syllogismverificator.models.SyllogismsGenerator</node>
+    <node x="1275.9952830188677" y="-180.60377358490558">univ.syllogismverificator.models.rules.Ruleuu</node>
+    <node x="432.1902515723271" y="47.81603773584908">univ.syllogismverificator.models.SyllogismResult</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="univ.syllogismverificator.models.rules.NRule" target="univ.syllogismverificator.models.rules.Rule" relationship="REALIZATION">
+      <point x="24.0" y="-14.0" />
+      <point x="1527.6415094339625" y="-382.7672955974842" />
+      <point x="1176.7578616352205" y="-382.7672955974842" />
+      <point x="-21.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.Solver" target="univ.syllogismverificator.models.rules.Ruleuu" relationship="CREATE">
+      <point x="-24.75" y="-14.0" />
+      <point x="881.5833333333333" y="345.7861635220126" />
+      <point x="1327.4952830188677" y="345.7861635220126" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.Syllogism" target="univ.syllogismverificator.models.Polysyllogism" relationship="GENERALIZATION">
+      <point x="0.0" y="-14.0" />
+      <point x="147.6717767295595" y="362.6198899371069" />
+      <point x="-38.75" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.Solver" target="univ.syllogismverificator.models.Polysyllogism" relationship="CREATE">
+      <point x="-24.75" y="-14.0" />
+      <point x="881.5833333333333" y="479.874213836478" />
+      <point x="627.9465408805033" y="479.874213836478" />
+      <point x="627.9465408805033" y="320.12578616352204" />
+      <point x="391.5043238993708" y="320.12578616352204" />
+      <point x="38.75" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.Solver" target="univ.syllogismverificator.models.rules.NnRule" relationship="CREATE">
+      <point x="-24.75" y="-14.0" />
+      <point x="881.5833333333333" y="503.69182389937106" />
+      <point x="1628.0974842767293" y="503.69182389937106" />
+      <point x="1628.0974842767293" y="-166.60377358490558" />
+      <point x="1494.1415094339625" y="-166.60377358490558" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.rules.LhRule" target="univ.syllogismverificator.models.rules.RuleResult" relationship="CREATE">
+      <point x="-25.5" y="-14.0" />
+      <point x="1275.2452830188677" y="-104.40251572327043" />
+      <point x="645.3569182389936" y="-104.40251572327043" />
+      <point x="33.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.Solver" target="univ.syllogismverificator.models.rules.LhRule" relationship="CREATE">
+      <point x="-24.75" y="-14.0" />
+      <point x="881.5833333333333" y="345.7861635220126" />
+      <point x="1300.7452830188677" y="345.7861635220126" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.rules.PRule" target="univ.syllogismverificator.models.rules.RuleResult" relationship="CREATE">
+      <point x="-23.5" y="-14.0" />
+      <point x="1476.1415094339625" y="-104.40251572327043" />
+      <point x="645.3569182389936" y="-104.40251572327043" />
+      <point x="33.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.Solver" target="univ.syllogismverificator.models.rules.RuleResult" relationship="CREATE">
+      <point x="-24.75" y="-14.0" />
+      <point x="881.5833333333333" y="-331.94968553459114" />
+      <point x="33.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.SyllogismsGenerator" target="univ.syllogismverificator.Solver" relationship="CREATE">
+      <point x="0.0" y="-14.0" />
+      <point x="759.1635220125784" y="866.7610062893078" />
+      <point x="906.3333333333333" y="866.7610062893078" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.Solver" target="univ.syllogismverificator.models.rules.PpRule" relationship="CREATE">
+      <point x="-24.75" y="-14.0" />
+      <point x="881.5833333333333" y="345.7861635220126" />
+      <point x="1301.7452830188677" y="345.7861635220126" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.SyllogismResult" target="univ.syllogismverificator.models.rules.RuleResult" relationship="TO_MANY">
+      <point x="0.0" y="-14.0" />
+      <point x="518.190251572327" y="-205.33018867924523" />
+      <point x="579.3569182389936" y="-205.33018867924523" />
+      <point x="-33.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.rules.AaRule" target="univ.syllogismverificator.models.rules.RuleResult" relationship="CREATE">
+      <point x="-26.0" y="-14.0" />
+      <point x="1473.6415094339625" y="-104.40251572327043" />
+      <point x="645.3569182389936" y="-104.40251572327043" />
+      <point x="33.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.SyllogismsGenerator" target="univ.syllogismverificator.models.Syllogism" relationship="CREATE">
+      <point x="0.0" y="-14.0" />
+      <point x="759.1635220125784" y="935.9748427672955" />
+      <point x="147.6717767295595" y="935.9748427672955" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.rules.MediumTermRule" target="univ.syllogismverificator.models.rules.Rule" relationship="REALIZATION">
+      <point x="46.25" y="-14.0" />
+      <point x="1332.7452830188677" y="-382.7672955974842" />
+      <point x="1176.7578616352205" y="-382.7672955974842" />
+      <point x="-21.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.rules.NnRule" target="univ.syllogismverificator.models.rules.RuleResult" relationship="CREATE">
+      <point x="-26.25" y="-14.0" />
+      <point x="1467.8915094339625" y="-104.40251572327043" />
+      <point x="645.3569182389936" y="-104.40251572327043" />
+      <point x="33.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.rules.NRule" target="univ.syllogismverificator.models.rules.RuleResult" relationship="CREATE">
+      <point x="-24.0" y="-14.0" />
+      <point x="1479.6415094339625" y="-104.40251572327043" />
+      <point x="645.3569182389936" y="-104.40251572327043" />
+      <point x="33.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.rules.Ruleuu" target="univ.syllogismverificator.models.rules.RuleResult" relationship="CREATE">
+      <point x="-25.75" y="-14.0" />
+      <point x="1301.7452830188677" y="-104.40251572327043" />
+      <point x="645.3569182389936" y="-104.40251572327043" />
+      <point x="33.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.SyllogismsGenerator" target="univ.syllogismverificator.models.Proposition" relationship="CREATE">
+      <point x="0.0" y="-14.0" />
+      <point x="759.1635220125784" y="935.9748427672955" />
+      <point x="569.2971698113228" y="935.9748427672955" />
+      <point x="33.60691823899572" y="8.742138364779692" />
+    </edge>
+    <edge source="univ.syllogismverificator.Solver" target="univ.syllogismverificator.models.rules.NRule" relationship="CREATE">
+      <point x="-24.75" y="-14.0" />
+      <point x="881.5833333333333" y="503.69182389937106" />
+      <point x="1628.0974842767293" y="503.69182389937106" />
+      <point x="1628.0974842767293" y="-267.67295597484275" />
+      <point x="1503.6415094339625" y="-267.67295597484275" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.rules.PpRule" target="univ.syllogismverificator.models.rules.RuleResult" relationship="CREATE">
+      <point x="-26.0" y="-14.0" />
+      <point x="1275.7452830188677" y="-104.40251572327043" />
+      <point x="645.3569182389936" y="-104.40251572327043" />
+      <point x="33.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.Solver" target="univ.syllogismverificator.models.rules.MediumTermRule" relationship="CREATE">
+      <point x="-24.75" y="-14.0" />
+      <point x="881.5833333333333" y="345.7861635220126" />
+      <point x="1286.4952830188677" y="345.7861635220126" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.rules.PRule" target="univ.syllogismverificator.models.rules.Rule" relationship="REALIZATION">
+      <point x="23.5" y="-14.0" />
+      <point x="1523.1415094339625" y="-382.7672955974842" />
+      <point x="1176.7578616352205" y="-382.7672955974842" />
+      <point x="-21.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.Polysyllogism" target="univ.syllogismverificator.models.Proposition" relationship="TO_MANY">
+      <point x="38.75" y="-14.0" />
+      <point x="391.5043238993708" y="444.3522012578616" />
+      <point x="569.940251572327" y="444.3522012578616" />
+      <point x="34.25" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.rules.PpRule" target="univ.syllogismverificator.models.rules.Rule" relationship="REALIZATION">
+      <point x="26.0" y="-14.0" />
+      <point x="1327.7452830188677" y="-382.7672955974842" />
+      <point x="1176.7578616352205" y="-382.7672955974842" />
+      <point x="-21.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.Solver" target="univ.syllogismverificator.models.rules.Rule" relationship="TO_MANY">
+      <point x="24.75" y="-14.0" />
+      <point x="931.0833333333333" y="503.69182389937106" />
+      <point x="1673.9544025157234" y="503.69182389937106" />
+      <point x="1673.9544025157234" y="-444.7798742138364" />
+      <point x="1218.7578616352205" y="-444.7798742138364" />
+      <point x="21.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.rules.LhRule" target="univ.syllogismverificator.models.rules.Rule" relationship="REALIZATION">
+      <point x="25.5" y="-14.0" />
+      <point x="1326.2452830188677" y="-322.2641509433961" />
+      <point x="1327.4952830188677" y="-322.2641509433961" />
+      <point x="1327.4952830188677" y="-382.7672955974842" />
+      <point x="1176.7578616352205" y="-382.7672955974842" />
+      <point x="-21.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.Solver" target="univ.syllogismverificator.models.rules.PRule" relationship="CREATE">
+      <point x="-24.75" y="-14.0" />
+      <point x="881.5833333333333" y="345.7861635220126" />
+      <point x="1499.6415094339625" y="345.7861635220126" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.rules.NnRule" target="univ.syllogismverificator.models.rules.Rule" relationship="REALIZATION">
+      <point x="26.25" y="-14.0" />
+      <point x="1520.3915094339625" y="-382.7672955974842" />
+      <point x="1176.7578616352205" y="-382.7672955974842" />
+      <point x="-21.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.Polysyllogism" target="univ.syllogismverificator.models.Proposition" relationship="CREATE">
+      <point x="-38.75" y="-14.0" />
+      <point x="314.0043238993708" y="584.2138364779876" />
+      <point x="501.44025157232704" y="584.2138364779876" />
+      <point x="-34.25" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.rules.Ruleuu" target="univ.syllogismverificator.models.rules.Rule" relationship="REALIZATION">
+      <point x="-0.06279481131923603" y="-16.31367924528314" />
+      <point x="1327.4324882075484" y="-217.13836477987417" />
+      <point x="1327.4952830188677" y="-217.13836477987417" />
+      <point x="1327.4952830188677" y="-382.7672955974842" />
+      <point x="1176.7578616352205" y="-382.7672955974842" />
+      <point x="-21.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.Solver" target="univ.syllogismverificator.models.rules.AaRule" relationship="CREATE">
+      <point x="-24.75" y="-14.0" />
+      <point x="881.5833333333333" y="345.7861635220126" />
+      <point x="1499.6415094339625" y="345.7861635220126" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.rules.MediumTermRule" target="univ.syllogismverificator.models.rules.RuleResult" relationship="CREATE">
+      <point x="-46.25" y="-14.0" />
+      <point x="1240.2452830188677" y="-104.40251572327043" />
+      <point x="645.3569182389936" y="-104.40251572327043" />
+      <point x="33.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.Solver" target="univ.syllogismverificator.models.SyllogismResult" relationship="CREATE">
+      <point x="-24.75" y="-14.0" />
+      <point x="881.5833333333333" y="205.74213836477975" />
+      <point x="518.190251572327" y="205.74213836477975" />
+      <point x="0.0" y="14.0" />
+    </edge>
+    <edge source="univ.syllogismverificator.models.rules.AaRule" target="univ.syllogismverificator.models.rules.Rule" relationship="REALIZATION">
+      <point x="26.0" y="-14.0" />
+      <point x="1525.6415094339625" y="-382.7672955974842" />
+      <point x="1176.7578616352205" y="-382.7672955974842" />
+      <point x="-21.0" y="14.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Compact" zoom="0.31310769230769253" showDependencies="true" x="1029.5541470125802" y="241.17944182389897" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

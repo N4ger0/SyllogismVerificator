@@ -123,7 +123,7 @@ public class SolverController {
         guidedPropositions.getChildren().clear();
         freePropositions.getChildren().clear();
         FreePropController.TextCounter = 0;
-        GuidedPropController.TextCounter = 0;
+        GuidedPropController.TextCounter = 1;
     }
 
     @FXML
@@ -135,12 +135,18 @@ public class SolverController {
         initPropositions();
         initButtons();
         solver = new Solver();
-        setEventOnTextFields();
+        setEventOnTextFieldsFreeMode();
+        setEventOnTextFieldsGuidedMode();
         language.setOnAction(event -> {
             traductor.setLang(Traductor.getLang().equals("fr") ? "en" : "fr");
             initialize();
         });
     }
+
+    private void setEventOnTextFieldsGuidedMode() {
+
+    }
+
 
     private void initPropositions() {
         for (int i = 0; i < 3; i++) {  // Ajout des 3 propositions par default
@@ -182,7 +188,7 @@ public class SolverController {
         schemaAdd.setOnAction(event -> askSchema());
     }
 
-    private void setEventOnTextFields() {
+    private void setEventOnTextFieldsFreeMode() {
         textFieldSujet.setOnKeyTyped((event) -> {
             for(FreePropController control : freePropControllers) {
                 control.getFreeTerme1().getItems().get(0).setText(textFieldSujet.getText());
@@ -214,6 +220,8 @@ public class SolverController {
     public Text getTutorialText() {
         return tutorialText;
     }
+
+    private ArrayList<String> completion = new ArrayList<>();
 
 
     /**

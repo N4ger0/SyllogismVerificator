@@ -1,5 +1,6 @@
 package univ.syllogismverificator.controllers.composant;
 
+import com.gluonhq.charm.glisten.control.AutoCompleteTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuButton;
@@ -42,7 +43,7 @@ public class GuidedPropController {
 
     /** Le champ textuel representant le 1er terme de la proposition.*/
     @FXML
-    private TextField guidedTerme1;
+    private AutocompleteTextFieldController guidedTerme1;
 
     /** Le Menu deroulant permettant de choisir le verbe de la proposition.*/
     @FXML
@@ -50,7 +51,7 @@ public class GuidedPropController {
 
     /** Le champ textuel representant le 1er terme de la proposition.*/
     @FXML
-    private TextField guidedTerme2;
+    private AutocompleteTextFieldController guidedTerme2;
 
     @FXML
     private MenuItem sont ;
@@ -164,7 +165,13 @@ public class GuidedPropController {
 
     private void initTextFields(){
         guidedTerme1.setPromptText("terme 1");
+        guidedTerme1.setOnKeyTyped((event -> {
+            guidedTerme2.entries.remove(guidedTerme1.getText());
+        }));
         guidedTerme2.setPromptText("terme 2");
+        guidedTerme2.setOnKeyTyped((event -> {
+            guidedTerme1.entries.remove(guidedTerme2.getText());
+        }));
     }
 
     /**
