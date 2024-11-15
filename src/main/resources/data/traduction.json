@@ -72,9 +72,9 @@
     "fr": "L'hypothèse d'existence n'est pas respectée : toutes les prémisses sont universelles, mais la conclusion n'est pas particulière.",
     "en": "The existence hypothesis is not respected: the premises are universal but the conclusions is particular."},
   {"key": "ruu_valid_universal_conclusion",
-    "fr": "L'hypothèse d'existence est respectée : et la conclusion est universelle.",
-    "en": "The existence hypothesis is not respected: conclusions is universal."},
+    "fr": "L'hypothèse d'existence est respectée : la conclusion est universelle.",
+    "en": "The existence hypothesis is respected: the conclusion is universal."},
   {"key": "ruu_valid_particular_premises",
     "fr": "L'hypothèse d'existence est respectée : une des prémisses est particulière.",
-    "en": "The existence hypothesis is not respected: one of the premises is particular."}
+    "en": "The existence hypothesis is respected: one of the premises is particular."}
 ]

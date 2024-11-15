@@ -25,7 +25,9 @@ class RuleuuTest {
                 new Proposition("U", "U", true, false),
                 new Proposition("U", "U", true, false)
         ));
+
         assertTrue(rule.evaluate(polysyllogism).isValid());
+        assertEquals(rule.evaluate(polysyllogism).toString(),"ruu_valid_universal_conclusion");
     }
 
     @Test
@@ -36,6 +38,7 @@ class RuleuuTest {
                 new Proposition("U", "U", true, false)
         ));
         assertTrue(rule.evaluate(polysyllogism).isValid());
+        assertEquals(rule.evaluate(polysyllogism).toString(),"ruu_valid_universal_conclusion");
     }
 
     @Test
@@ -46,6 +49,7 @@ class RuleuuTest {
                 new Proposition("U", "U", false, false)
         ));
         assertTrue(rule.evaluate(polysyllogism).isValid());
+        assertEquals(rule.evaluate(polysyllogism).toString(),"ruu_valid_particular_premises");
     }
 
     @Test
@@ -57,5 +61,6 @@ class RuleuuTest {
         ));
 
         assertFalse(rule.evaluate(polysyllogism).isValid());
+        assertEquals(rule.evaluate(polysyllogism).toString(),"ruu_invalid");
     }
 }

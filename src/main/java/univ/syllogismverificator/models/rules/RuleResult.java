@@ -31,6 +31,6 @@ public class RuleResult {
      */
     @Override
     public String toString() {
-        return valid ? "" : message;
+        return message;
     }
 }

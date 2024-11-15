@@ -20,7 +20,7 @@ public class AaRule implements Rule {
             boolean result = areAllPremisesAffirmative && polysyllogism.getConclusion().quality;
 
             if (result) {
-                return new RuleResult(result, "Regle Aa : Toutes les prémises sont affirmatives, la conclusion aussi.");
+                return new RuleResult(result, "Regle Aa : Toutes les prémisses sont affirmatives, la conclusion aussi.");
             } else {
                 return new RuleResult(result, "Regle Aa : Toutes les prémisses sont affirmatives, mais la conclusion ne l'est pas.");
             }

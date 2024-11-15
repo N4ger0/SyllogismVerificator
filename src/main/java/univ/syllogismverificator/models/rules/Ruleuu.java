@@ -14,9 +14,12 @@ public class Ruleuu implements Rule{
         for (Proposition proposition : polysyllogism.getPropositions())
             arePropositionsUniversal = arePropositionsUniversal && proposition.quantity;
 
-        if (arePropositionsUniversal && !polysyllogism.getConclusion().quantity)
-            return new RuleResult(false, "Regle Uu");
+
+        if (polysyllogism.getConclusion().quantity)
+            return new RuleResult(true, "ruu_valid_universal_conclusion");
+        else if (!arePropositionsUniversal)
+            return new RuleResult(true, "ruu_valid_particular_premises");
         else
-            return new RuleResult(true, "Regle Uu");
+            return new RuleResult(false, "ruu_invalid");
     }
 }
