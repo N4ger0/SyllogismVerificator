@@ -86,12 +86,12 @@ public class Solver {
      */
     public SyllogismResult solve(Polysyllogism polysyllogism, boolean checkRmt, boolean checkRlh, boolean checkRnn, boolean checkRn, boolean checkRaa, boolean checkRpp, boolean checkRp, boolean checkRuu, boolean checkInterestingSyllogism) {
         SyllogismResult res = solve(polysyllogism, checkRmt, checkRlh, checkRnn, checkRn, checkRaa, checkRpp, checkRp, checkRuu);
-        if (res.isValid()) {
-            if (checkInterestingSyllogism && !polysyllogism.isConclusionUniversal()) {
+        if (checkInterestingSyllogism && res.isValid()) {
+            RuleResult interestingSRuleResult;
+            if (!polysyllogism.isConclusionUniversal()) {
                 SyllogismResult res_bis;
                 Polysyllogism universalSyllogism = new Polysyllogism(polysyllogism);
                 res_bis = solve(universalSyllogism, checkRmt, checkRlh, checkRnn, checkRn, checkRaa, checkRpp, checkRp, checkRuu);
-                RuleResult interestingSRuleResult;
                 if (res_bis.isValid()) {
                     String universalSyllogismString = "Ce syllogisme est ininteressant. \nVoici la conclusion universelle : ";
                     interestingSRuleResult = new RuleResult(false, universalSyllogismString.concat(universalSyllogism.toStringConclusion()));
@@ -99,8 +99,11 @@ public class Solver {
                 else {
                     interestingSRuleResult = new RuleResult(true, "Ce syllogisme est interessant.");
                 }
-                res.addRuleResult(interestingSRuleResult);
             }
+            else {
+                interestingSRuleResult = new RuleResult(true, "Ce syllogisme est interessant.");
+            }
+            res.addRuleResult(interestingSRuleResult);
         }
         return res;
     }
