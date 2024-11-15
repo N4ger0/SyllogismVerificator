@@ -27,6 +27,7 @@
                                 prefWidth="125" text="Solve" style="-fx-font-size: 20"/>
                         <Button fx:id="schemaAdd" mnemonicParsing="false" prefHeight="50"
                                 prefWidth="175" text="Add schema" style="-fx-font-size: 20"/>
+                        <Button fx:id="language" mnemonicParsing="false" prefHeight="50" prefWidth="125" style="-fx-font-size: 20"/>
                     </HBox>
                     <Text wrappingWidth="600" fx:id="tutorialText"/>
                 </VBox>
