@@ -193,14 +193,4 @@ public class FreePropController {
 
         return new Proposition(freeTerme2.getText(), freeTerme1.getText(), qtt, qual);
     }
-
-    public void addItemMenu() {
-        MenuItem MI1 = new MenuItem();
-        MI1.setOnAction(event -> freeTerme1.setText(MI1.getText()));
-        freeTerme1.getItems().add(MI1);
-
-        MenuItem MI2 = new MenuItem();
-        MI2.setOnAction(event -> freeTerme1.setText(MI2.getText()));
-        freeTerme2.getItems().add(MI2);
-    }
 }

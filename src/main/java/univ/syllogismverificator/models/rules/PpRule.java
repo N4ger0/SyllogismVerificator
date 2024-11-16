@@ -1,5 +1,6 @@
 package univ.syllogismverificator.models.rules;
 
+import univ.syllogismverificator.Traductor;
 import univ.syllogismverificator.models.Polysyllogism;
 import univ.syllogismverificator.models.Proposition;
 
@@ -15,7 +16,8 @@ public class PpRule implements Rule {
             areAllPremisesParticular = areAllPremisesParticular && !prop.quantity;
         }
 
-        // TODO: custom message
-        return new RuleResult(!areAllPremisesParticular, "Regle Pp : ");
+        if(areAllPremisesParticular)
+            return new RuleResult(true, Traductor.get("rule_pp_correct"));
+        return new RuleResult(false, Traductor.get("rule_pp_incorrect"));
     }
 }

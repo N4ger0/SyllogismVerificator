@@ -216,32 +216,80 @@ public class SolverController {
     }
 
     private void setEventOnTextFieldsFreeMode() {
-        textFieldSujet.setOnKeyTyped((event) -> {
-            for(FreePropController control : freePropControllers) {
-                control.getFreeTerme1().getItems().get(0).setText(textFieldSujet.getText());
-                control.getFreeTerme1().getItems().get(0).setVisible(!(textFieldSujet.getText().equals("")));
-                control.getFreeTerme2().getItems().get(0).setText(textFieldSujet.getText());
-                control.getFreeTerme2().getItems().get(0).setVisible(!(textFieldSujet.getText().equals("")));
-            }
-        });
-        textFieldPredicat.setOnKeyTyped((event) -> {
-            for(FreePropController control : freePropControllers) {
-                control.getFreeTerme1().getItems().get(1).setText(textFieldPredicat.getText());
-                control.getFreeTerme1().getItems().get(1).setVisible(!(textFieldPredicat.getText().equals("")));
-                control.getFreeTerme2().getItems().get(1).setText(textFieldPredicat.getText());
-                control.getFreeTerme2().getItems().get(1).setVisible(!(textFieldPredicat.getText().equals("")));
-            }
-        });
         for (FreePropController p: freePropControllers) {
-            p.getFreeTextFieldMedium().setOnKeyTyped((event) -> {
-                for (FreePropController control : freePropControllers) {
-                    control.getFreeTerme1().getItems().get(2).setText(p.getFreeTextFieldMedium().getText());
-                    control.getFreeTerme1().getItems().get(2).setVisible(!(p.getFreeTextFieldMedium().getText().equals("")));
-                    control.getFreeTerme2().getItems().get(2).setText(p.getFreeTextFieldMedium().getText());
-                    control.getFreeTerme2().getItems().get(2).setVisible(!(p.getFreeTextFieldMedium().getText().equals("")));
+            p.getFreeTerme1().setOnMouseClicked((event -> {
+                p.getFreeTerme1().getItems().clear();
+
+                if (!textFieldSujet.getText().isEmpty()) {
+                    p.getFreeTerme1().getItems().add(new MenuItem(textFieldSujet.getText()));
                 }
-            });
+
+                if (!textFieldPredicat.getText().isEmpty()) {
+                    p.getFreeTerme1().getItems().add(new MenuItem(textFieldPredicat.getText()));
+                }
+
+                for (int i = 1; i < freePropControllers.size() - 1; i++) {
+                    if (!freePropControllers.get(i).getFreeTextFieldMedium().getText().isEmpty()){
+                        p.getFreeTerme1().getItems().add(new MenuItem(freePropControllers.get(i).getFreeTextFieldMedium().getText()));
+                    }
+                }
+            }));
+
+            p.getFreeTerme2().setOnMouseClicked((event -> {
+                p.getFreeTerme2().getItems().clear();
+
+                if (!textFieldSujet.getText().isEmpty()) {
+                    p.getFreeTerme2().getItems().add(new MenuItem(textFieldSujet.getText()));
+                }
+
+                if (!textFieldPredicat.getText().isEmpty()) {
+                    p.getFreeTerme2().getItems().add(new MenuItem(textFieldPredicat.getText()));
+                }
+
+                for (int i = 1; i < freePropControllers.size() - 1; i++) {
+                    if (!freePropControllers.get(i).getFreeTextFieldMedium().getText().isEmpty()){
+                        p.getFreeTerme2().getItems().add(new MenuItem(freePropControllers.get(i).getFreeTextFieldMedium().getText()));
+                    }
+                }
+            }));
         }
+    }
+    private void setEventOnTextFieldsFreeMode(FreePropController p) {
+        p.getFreeTerme1().setOnMouseClicked((event -> {
+            p.getFreeTerme1().getItems().clear();
+
+            if (!textFieldSujet.getText().isEmpty()) {
+                p.getFreeTerme1().getItems().add(new MenuItem(textFieldSujet.getText()));
+            }
+
+            if (!textFieldPredicat.getText().isEmpty()) {
+                p.getFreeTerme1().getItems().add(new MenuItem(textFieldPredicat.getText()));
+            }
+
+            for (int i = 1; i < freePropControllers.size() - 1; i++) {
+                if (!freePropControllers.get(i).getFreeTextFieldMedium().getText().isEmpty()){
+                    p.getFreeTerme1().getItems().add(new MenuItem(freePropControllers.get(i).getFreeTextFieldMedium().getText()));
+                }
+            }
+        }));
+
+        p.getFreeTerme2().setOnMouseClicked((event -> {
+            p.getFreeTerme2().getItems().clear();
+
+            if (!textFieldSujet.getText().isEmpty()) {
+                p.getFreeTerme2().getItems().add(new MenuItem(textFieldSujet.getText()));
+            }
+
+            if (!textFieldPredicat.getText().isEmpty()) {
+                p.getFreeTerme2().getItems().add(new MenuItem(textFieldPredicat.getText()));
+            }
+
+            for (int i = 1; i < freePropControllers.size() - 1; i++) {
+                if (!freePropControllers.get(i).getFreeTextFieldMedium().getText().isEmpty()){
+                    p.getFreeTerme2().getItems().add(new MenuItem(freePropControllers.get(i).getFreeTextFieldMedium().getText()));
+                }
+            }
+        }));
     }
 
     public Text getTutorialText() {
@@ -312,10 +360,7 @@ public class SolverController {
         // Ajouter l'HBox à la VBox
         freePropositions.getChildren().add(FP);
 
-        //Ajouter une option dans les menus de selection
-        for (FreePropController fpc: freePropControllers) {
-            fpc.addItemMenu();
-        }
+        setEventOnTextFieldsFreeMode(FPC);
     }
 
     /**
