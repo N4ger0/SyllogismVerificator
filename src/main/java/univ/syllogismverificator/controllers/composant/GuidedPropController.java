@@ -165,13 +165,7 @@ public class GuidedPropController {
 
     private void initTextFields(){
         guidedTerme1.setPromptText("terme 1");
-        guidedTerme1.setOnKeyTyped((event -> {
-            guidedTerme2.entries.remove(guidedTerme1.getText());
-        }));
         guidedTerme2.setPromptText("terme 2");
-        guidedTerme2.setOnKeyTyped((event -> {
-            guidedTerme1.entries.remove(guidedTerme2.getText());
-        }));
     }
 
     /**
@@ -188,6 +182,14 @@ public class GuidedPropController {
 
     public String getTerm2() {
         return guidedTerme2.getText();
+    }
+
+    public AutocompleteTextFieldController getGuidedTerme1() {
+        return guidedTerme1 ;
+    }
+
+    public AutocompleteTextFieldController getGuidedTerme2() {
+        return guidedTerme2 ;
     }
 
     /**

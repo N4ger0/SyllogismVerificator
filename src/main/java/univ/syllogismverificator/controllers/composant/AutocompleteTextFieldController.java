@@ -16,11 +16,9 @@ import javafx.scene.text.TextFlow;
 
 public class AutocompleteTextFieldController extends TextField {
     //entries to autocomplete
-    public SortedSet<String> entries;
+    public Set<String> entries;
     //popup GUI
     private ContextMenu entriesPopup;
-
-    boolean myBool = true ;
 
     public AutocompleteTextFieldController() {
         super();
@@ -81,15 +79,5 @@ public class AutocompleteTextFieldController extends TextField {
         //"Refresh" context menu
         entriesPopup.getItems().clear();
         entriesPopup.getItems().addAll(menuItems);
-    }
-
-    public static TextFlow buildTextFlow(String text, String filter) {
-        int filterIndex = text.toLowerCase().indexOf(filter.toLowerCase());
-        Text textBefore = new Text(text.substring(0, filterIndex));
-        Text textAfter = new Text(text.substring(filterIndex + filter.length()));
-        Text textFilter = new Text(text.substring(filterIndex,  filterIndex + filter.length())); //instead of "filter" to keep all "case sensitive"
-        textFilter.setFill(Color.ORANGE);
-        textFilter.setFont(Font.font("Helvetica", FontWeight.BOLD, 12));
-        return new TextFlow(textBefore, textFilter, textAfter);
     }
 }

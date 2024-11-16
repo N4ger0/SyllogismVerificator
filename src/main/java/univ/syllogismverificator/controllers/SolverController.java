@@ -19,6 +19,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
 
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 import univ.syllogismverificator.models.Solver;
 import univ.syllogismverificator.Traductor;
@@ -51,6 +52,8 @@ public class SolverController {
     @FXML
     private Text text_middle ;
     private ArrayList<GuidedPropController> guidedPropControllers = new ArrayList<>();
+
+    private HashMap<String, Integer> counterForGuidedProp = new HashMap<>();
 
     /** Le champ textuel permettant d'aider l'utilisateur.*/
     @FXML
@@ -143,8 +146,32 @@ public class SolverController {
         });
     }
 
-    private void setEventOnTextFieldsGuidedMode() {
+    private void handleChangeOnTextField(SolverController solver,String oldValue, String newValue) {
+        if(counterForGuidedProp.containsKey(newValue)) {
+            counterForGuidedProp.replace(newValue, counterForGuidedProp.get(newValue) - 1);
+        }
+        else {
+            counterForGuidedProp.put(newValue, 1);
+        }
+        counterForGuidedProp.remove(oldValue);
+        for(GuidedPropController guidedPropController : guidedPropControllers) {
+            guidedPropController.getGuidedTerme1().entries = counterForGuidedProp.entrySet().stream().filter(entry -> entry.getValue() != 0).map(Map.Entry::getKey).collect(Collectors.toSet());
+            guidedPropController.getGuidedTerme1().entries.remove(guidedPropController.getGuidedTerme2().getText());
+            guidedPropController.getGuidedTerme2().entries = counterForGuidedProp.entrySet().stream().filter(entry -> entry.getValue() != 0).map(Map.Entry::getKey).collect(Collectors.toSet());
+            guidedPropController.getGuidedTerme2().entries.remove(guidedPropController.getGuidedTerme1().getText());
+        }
+        System.out.println(counterForGuidedProp);
+    }
 
+    private void setEventOnTextFieldsGuidedMode() {
+        for(GuidedPropController guidedPropController : guidedPropControllers) {
+            guidedPropController.getGuidedTerme1().textProperty().addListener((observable, oldValue, newValue) -> {
+                handleChangeOnTextField(this, oldValue, newValue);
+            });
+            guidedPropController.getGuidedTerme2().textProperty().addListener((observable, oldValue, newValue) -> {
+                handleChangeOnTextField(this, oldValue, newValue);
+            });
+        }
     }
 
 
