@@ -17,7 +17,7 @@ public class NnRule implements Rule {
         }
 
         // TODO: custom message
-        if(!arePremisesOnlyNegative) return new RuleResult(false, Traductor.get("rule_nn_incorrect"));
+        if(arePremisesOnlyNegative) return new RuleResult(false, Traductor.get("rule_nn_incorrect"));
         return new RuleResult(true, Traductor.get("rule_nn_correct"));
     }
 }
