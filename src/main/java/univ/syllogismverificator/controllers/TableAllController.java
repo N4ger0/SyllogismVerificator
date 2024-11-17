@@ -84,10 +84,6 @@ public class TableAllController {
             ));
         }
 
-        /*filteredData = new FilteredList<>(data, p -> true);
-        tableView.setItems(filteredData);
-        //tableView.setItems(data);
-        isValid.selectedProperty().addListener((observable, oldValue, newValue) -> filterData());*/
         filteredData = new FilteredList<>(data, p -> true);
         SortedList<SyllogismData> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(tableView.comparatorProperty());
