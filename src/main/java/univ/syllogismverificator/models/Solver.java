@@ -93,15 +93,15 @@ public class Solver {
                 Polysyllogism universalSyllogism = new Polysyllogism(polysyllogism);
                 res_bis = solve(universalSyllogism, checkRmt, checkRlh, checkRnn, checkRn, checkRaa, checkRpp, checkRp, checkRuu);
                 if (res_bis.isValid()) {
-                    String universalSyllogismString = "Ce syllogisme est ininteressant. \nVoici la conclusion universelle : ";
+                    String universalSyllogismString = "Ce syllogisme est ininteressant. \nVoici la conclusion universelle : " + "\n";
                     interestingSRuleResult = new RuleResult(false, universalSyllogismString.concat(universalSyllogism.toStringConclusion()));
                 }
                 else {
-                    interestingSRuleResult = new RuleResult(true, "Ce syllogisme est interessant.");
+                    interestingSRuleResult = new RuleResult(true, "Ce syllogisme est interessant parce qu'il n'existe pas de conclusion universelle.");
                 }
             }
             else {
-                interestingSRuleResult = new RuleResult(true, "Ce syllogisme est interessant.");
+                interestingSRuleResult = new RuleResult(true, "Ce syllogisme est interessant parce que sa conclusion est déjà universelle.");
             }
             res.addRuleResult(interestingSRuleResult);
         }
