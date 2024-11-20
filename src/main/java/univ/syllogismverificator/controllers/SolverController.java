@@ -29,8 +29,12 @@ import univ.syllogismverificator.models.Proposition;
 import univ.syllogismverificator.models.SyllogismResult;
 
 public class SolverController {
+    @FXML
     public Button language;
+
     Traductor traductor = new Traductor() ;
+
+    @FXML
     public Button schemaAdd;
     @FXML
     private TabPane tabWindow;
@@ -183,15 +187,7 @@ public class SolverController {
     }
 
     private void initTexts() {
-        String SyllogismeDef = "Un syllogisme est un raisonnement logique formé de trois propositions : deux prémisses et une conclusion. Chaque prémisse relie deux termes, et la conclusion en déduit une relation entre ces deux termes. Par exemple, dans le syllogisme classique :\n" +
-                "\n" +
-                " 1  - Tous les hommes sont mortels (prémisse majeure),\n" +
-                " 2  - Socrate est un homme (prémisse mineure),\n" +
-                "ccl - Donc, Socrate est mortel (conclusion).\n" +
-                "\n" +
-                "Le syllogisme repose sur des règles strictes de logique formelle pour que la conclusion soit valide.";
-
-        tutorialText.setText(traductor.get("syllogism_def"));
+        tutorialText.setText(Traductor.get("syllogism_def"));
 
         tabWindow.setOnMouseClicked(event -> tutorialText.setText(traductor.get("syllogism_def")));
         titled_pane.setText(traductor.get("title"));

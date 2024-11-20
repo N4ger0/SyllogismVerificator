@@ -135,32 +135,12 @@ public class GuidedPropController {
     private void initTutorialText() {
         Text tutorialText = parentController.getTutorialText();
 
-        guidedQQL.setOnMouseClicked(event -> tutorialText.setText("Explication QQL: \n" +
-                "\n" +
-                "Dans la logique des syllogismes, la quantité et la qualité d'une proposition déterminent son étendue et sa nature.\n" +
-                " -  Quantité : Elle indique si la proposition est universelle ou particulière. Une proposition universelle s'applique à tous les membres d'une catégorie, tandis qu'une proposition particulière ne concerne qu'une partie de la catégorie.\n" +
-                " -  Qualité : Elle précise si la proposition est affirmative ou négative. Une proposition affirmative établit une relation positive entre les termes, tandis qu'une proposition négative nie cette relation."));
+        guidedQQL.setOnMouseClicked(event -> tutorialText.setText(Traductor.get("qql_def")));
+        guidedTerme1.setOnMouseClicked(event -> tutorialText.setText(Traductor.get("term_def")));
 
-        guidedTerme1.setOnMouseClicked(event -> tutorialText.setText("Explication terme: \n" +
-                "Dans un syllogisme, les termes sont les éléments utilisés dans les propositions. Il y a trois types de termes :\n" +
-                "\n" +
-                " -  Terme majeur : C'est le prédicat de la conclusion, la partie d'une proposition qui affirme ou nie quelque chose à propos du sujet.\n" +
-                " -  Terme mineur : C'est le sujet de la conclusion, il représente l'élément ou l'entité à propos de laquelle le prédicat fait une affirmation.\n" +
-                " -  Terme moyen : C'est le terme qui relie les deux prémisses d'un syllogisme, mais qui ne figure pas dans la conclusion. Il sert de lien entre le terme majeur et le terme mineur.\n" +
-                "\n" +
-                "Ces trois termes permettent de structurer le raisonnement du syllogisme."));
+        verbe.setOnMouseClicked(event -> tutorialText.setText(Traductor.get("verb_def")));
 
-        verbe.setOnMouseClicked(event -> tutorialText.setText("Explication verbe: \n" +
-                "Le verbe est le mot ou le groupe de mots qui exprime l'action, l'état ou le processus dans une proposition. Il est essentiel pour établir une relation entre le sujet et le prédicat."));
-
-        guidedTerme2.setOnMouseClicked(event -> tutorialText.setText("Explication terme: \n" +
-                "Dans un syllogisme, les termes sont les éléments utilisés dans les propositions. Il y a trois types de termes :\n" +
-                "\n" +
-                " -  Terme majeur : C'est le prédicat de la conclusion, la partie d'une proposition qui affirme ou nie quelque chose à propos du sujet.\n" +
-                " -  Terme mineur : C'est le sujet de la conclusion, il représente l'élément ou l'entité à propos de laquelle le prédicat fait une affirmation.\n" +
-                " -  Terme moyen : C'est le terme qui relie les deux prémisses d'un syllogisme, mais qui ne figure pas dans la conclusion. Il sert de lien entre le terme majeur et le terme mineur.\n" +
-                "\n" +
-                "Ces trois termes permettent de structurer le raisonnement du syllogisme."));
+        guidedTerme2.setOnMouseClicked(event -> tutorialText.setText(Traductor.get("term_def")));
     }
 
     private void initTextFields(){

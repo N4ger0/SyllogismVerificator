@@ -54,5 +54,6 @@ public class Traductor {
     public void setLang(String lang1){
         lang = lang1;
         save();
+        new Traductor();
     }
 }
