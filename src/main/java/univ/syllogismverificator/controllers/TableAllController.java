@@ -37,6 +37,10 @@ public class TableAllController {
     private TableColumn<SyllogismData, String> ruu;
     @FXML
     private CheckBox isValid;
+    @FXML
+    private CheckBox isInteresting;
+    @FXML
+    private CheckBox isRuu;
 
     private ObservableList<SyllogismData> data;
     private FilteredList<SyllogismData> filteredData;
@@ -91,10 +95,18 @@ public class TableAllController {
         tableView.setItems(sortedData);
 
         isValid.selectedProperty().addListener((observable, oldValue, newValue) -> filterData());
+        isInteresting.selectedProperty().addListener((observable, oldValue, newValue) -> filterData());
+        isRuu.selectedProperty().addListener((observable, oldValue, newValue) -> filterData());
     }
 
     private void filterData() {
         filteredData.setPredicate(syllogismData -> {
+            if (isRuu.isSelected()) {
+                return syllogismData.getRuu().equals("true");
+            }
+            if (isInteresting.isSelected()) {
+                return syllogismData.getInteresting().equals("true");
+            }
             if (isValid.isSelected()) {
                 return syllogismData.getValidity().equals("true");
             }
