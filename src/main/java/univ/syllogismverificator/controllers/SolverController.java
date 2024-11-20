@@ -96,6 +96,8 @@ public class SolverController {
     private VBox freePropositions;
     private ArrayList<FreePropController> freePropControllers = new ArrayList<>();
 
+    private boolean changed = true;
+
     @FXML
     private TextField textFieldPredicat ;
     @FXML
@@ -149,6 +151,7 @@ public class SolverController {
         initButtons();
         solver = new Solver();
         setEventOnTextFieldsGuidedMode();
+        setEventOnTextFieldsFreeMode();
     }
 
     private void handleChangeOnTextField(SolverController solver,String oldValue, String newValue) {
@@ -176,6 +179,15 @@ public class SolverController {
             guidedPropController.getGuidedTerme2().textProperty().addListener((observable, oldValue, newValue) -> {
                 handleChangeOnTextField(this, oldValue, newValue);
             });
+        }
+    }
+
+    private void setEventOnTextFieldsFreeMode() {
+        textFieldSujet.setOnAction(event -> {changed = true;});
+        textFieldPredicat.setOnAction(event -> {changed = true;});
+
+        for(FreePropController freePropController : freePropControllers) {
+            freePropController.getFreeTextFieldMedium().setOnAction(event -> {changed = true;});
         }
     }
 
@@ -246,81 +258,91 @@ public class SolverController {
     }
 
 
-    private void setEventOnTextFieldsFreeMode(FreePropController p) {
+    private void setEventOnMenuButtonFreeMode(FreePropController p) {
         p.getFreeTerme1().setOnMouseClicked((event -> {
             System.out.println("ajout d'un evenement a la " + p.getText());
-            p.getFreeTerme1().getItems().clear();
+            if (changed){
+                p.getFreeTerme1().getItems().clear();
 
-            if (!textFieldSujet.getText().isEmpty()) {
-                System.out.println("ajout du sujet");
-                MenuItem mi = new MenuItem(textFieldSujet.getText());
-                mi.setOnAction((event1 -> {
-                    p.getFreeTerme1().setText(mi.getText());
-                }));
-                p.getFreeTerme1().getItems().add(mi);
-            }
-
-            if (!textFieldPredicat.getText().isEmpty()) {
-                System.out.println("ajout du predicat");
-                MenuItem mi = new MenuItem(textFieldPredicat.getText());
-                mi.setOnAction((event1 -> {
-                    p.getFreeTerme1().setText(mi.getText());
-                }));
-                p.getFreeTerme1().getItems().add(mi);
-            }
-
-            for (int i = 1; i < freePropControllers.size() - 1; i++) {
-                if (!freePropControllers.get(i).getFreeTextFieldMedium().getText().isEmpty()){
-                    System.out.println("ajout du terme moyen" + i);
-                    MenuItem mi = new MenuItem(freePropControllers.get(i).getFreeTextFieldMedium().getText());
+                if (!textFieldSujet.getText().isEmpty()) {
+                    System.out.println("ajout du sujet");
+                    MenuItem mi = new MenuItem(textFieldSujet.getText());
                     mi.setOnAction((event1 -> {
                         p.getFreeTerme1().setText(mi.getText());
                     }));
                     p.getFreeTerme1().getItems().add(mi);
                 }
-            }
-            new Thread(() -> {
-                try {
-                    System.out.println("debut pause");
-                    Thread.sleep(50); // Petit délai pour permettre la mise à jour
-                    System.out.println("fin pause");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                javafx.application.Platform.runLater(p.getFreeTerme1()::show);
-            }).start();
 
-            System.out.println();
+                if (!textFieldPredicat.getText().isEmpty()) {
+                    System.out.println("ajout du predicat");
+                    MenuItem mi = new MenuItem(textFieldPredicat.getText());
+                    mi.setOnAction((event1 -> {
+                        p.getFreeTerme1().setText(mi.getText());
+                    }));
+                    p.getFreeTerme1().getItems().add(mi);
+                }
+
+                for (int i = 1; i < freePropControllers.size() - 1; i++) {
+                    if (!freePropControllers.get(i).getFreeTextFieldMedium().getText().isEmpty()){
+                        System.out.println("ajout du terme moyen" + i);
+                        MenuItem mi = new MenuItem(freePropControllers.get(i).getFreeTextFieldMedium().getText());
+                        mi.setOnAction((event1 -> {
+                            p.getFreeTerme1().setText(mi.getText());
+                        }));
+                        p.getFreeTerme1().getItems().add(mi);
+                    }
+                }
+                new Thread(() -> {
+                    try {
+                        Thread.sleep(50); // Petit délai pour permettre la mise à jour
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    javafx.application.Platform.runLater(p.getFreeTerme1()::show);
+                }).start();
+
+                System.out.println();
+            }
         }));
 
         p.getFreeTerme2().setOnMouseClicked((event -> {
-            p.getFreeTerme2().getItems().clear();
+            if (changed) {
+                p.getFreeTerme2().getItems().clear();
 
-            if (!textFieldSujet.getText().isEmpty()) {
-                MenuItem mi = new MenuItem(textFieldSujet.getText());
-                mi.setOnAction((event1 -> {
-                    p.getFreeTerme2().setText(mi.getText());
-                }));
-                p.getFreeTerme2().getItems().add(mi);
-            }
-
-            if (!textFieldPredicat.getText().isEmpty()) {
-                MenuItem mi = new MenuItem(textFieldPredicat.getText());
-                mi.setOnAction((event1 -> {
-                    p.getFreeTerme2().setText(mi.getText());
-                }));
-                p.getFreeTerme2().getItems().add(mi);
-            }
-
-            for (int i = 1; i < freePropControllers.size() - 1; i++) {
-                if (!freePropControllers.get(i).getFreeTextFieldMedium().getText().isEmpty()){
-                    MenuItem mi = new MenuItem(freePropControllers.get(i).getFreeTextFieldMedium().getText());
+                if (!textFieldSujet.getText().isEmpty()) {
+                    MenuItem mi = new MenuItem(textFieldSujet.getText());
                     mi.setOnAction((event1 -> {
                         p.getFreeTerme2().setText(mi.getText());
                     }));
                     p.getFreeTerme2().getItems().add(mi);
                 }
+
+                if (!textFieldPredicat.getText().isEmpty()) {
+                    MenuItem mi = new MenuItem(textFieldPredicat.getText());
+                    mi.setOnAction((event1 -> {
+                        p.getFreeTerme2().setText(mi.getText());
+                    }));
+                    p.getFreeTerme2().getItems().add(mi);
+                }
+
+                for (int i = 1; i < freePropControllers.size() - 1; i++) {
+                    if (!freePropControllers.get(i).getFreeTextFieldMedium().getText().isEmpty()) {
+                        MenuItem mi = new MenuItem(freePropControllers.get(i).getFreeTextFieldMedium().getText());
+                        mi.setOnAction((event1 -> {
+                            p.getFreeTerme2().setText(mi.getText());
+                        }));
+                        p.getFreeTerme2().getItems().add(mi);
+                    }
+                }
             }
+            new Thread(() -> {
+                try {
+                    Thread.sleep(50); // Petit délai pour permettre la mise à jour
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                javafx.application.Platform.runLater(p.getFreeTerme2()::show);
+            }).start();
         }));
     }
 
@@ -392,7 +414,7 @@ public class SolverController {
         // Ajouter l'HBox à la VBox
         freePropositions.getChildren().add(FP);
 
-        setEventOnTextFieldsFreeMode(FPC);
+        setEventOnMenuButtonFreeMode(FPC);
     }
 
     /**
