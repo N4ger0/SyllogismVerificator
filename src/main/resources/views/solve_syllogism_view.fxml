@@ -89,6 +89,9 @@
                                 prefWidth="150" text="add Proposition" style="-fx-font-size: 20"/>
                         <Button fx:id="freeSolve" alignment="CENTER" mnemonicParsing="false" prefHeight="50"
                                 prefWidth="125" text="Solve" style="-fx-font-size: 20"/>
+                        <Button fx:id="schemaAdd1" mnemonicParsing="false" prefHeight="50"
+                                prefWidth="175" text="Add schema" style="-fx-font-size: 20"/>
+                        <Button fx:id="language1" mnemonicParsing="false" prefHeight="50" prefWidth="125" style="-fx-font-size: 20"/>
                     </HBox>
                 </VBox>
                 <VBox style="-fx-background-color: #b22635; -fx-padding: 5; -fx-background-radius: 5"/>
