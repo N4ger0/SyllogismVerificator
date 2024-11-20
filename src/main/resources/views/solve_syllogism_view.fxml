@@ -35,7 +35,8 @@
                 </VBox>
                 <VBox style="-fx-background-color: #b22635; -fx-padding: 5; -fx-background-radius: 5"/>
                 <VBox spacing="10" alignment="CENTER" prefWidth="550" style="-fx-padding: 20">
-                    <VBox alignment="CENTER" style="-fx-background-color: #ccc4b4; -fx-background-radius: 10" prefHeight="40" ><Text text="Regles" style="-fx-font-size: 25"/></VBox>
+                    <VBox alignment="CENTER" style="-fx-background-color: #ccc4b4; -fx-background-radius: 10" prefHeight="40" >
+                        <Text fx:id="text_regle2" text="Regles" style="-fx-font-size: 25"/></VBox>
                     <HBox spacing="10" alignment="CENTER">
                         <CheckBox text="Mt" fx:id="guidedMt"
                                   prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>
@@ -96,7 +97,8 @@
                 </VBox>
                 <VBox style="-fx-background-color: #b22635; -fx-padding: 5; -fx-background-radius: 5"/>
                 <VBox spacing="10" alignment="CENTER" prefWidth="550" style="-fx-padding: 20">
-                    <VBox alignment="CENTER" style="-fx-background-color: #ccc4b4; -fx-background-radius: 10" prefHeight="40" ><Text text="Regles" style="-fx-font-size: 25"/></VBox>
+                    <VBox alignment="CENTER" style="-fx-background-color: #ccc4b4; -fx-background-radius: 10" prefHeight="40" >
+                        <Text fx:id="text_regle" text="Regles" style="-fx-font-size: 25"/></VBox>
                     <HBox spacing="10" alignment="CENTER">
                         <CheckBox text="Mt" fx:id="freeMt"
                                   prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>

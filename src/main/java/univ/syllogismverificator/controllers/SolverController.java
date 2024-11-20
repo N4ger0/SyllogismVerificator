@@ -40,6 +40,11 @@ public class SolverController {
     public Button language1;
     Traductor traductor = new Traductor() ;
 
+
+    @FXML
+    private Text text_regle ;
+    @FXML
+    private Text text_regle2 ;
     @FXML
     public Button schemaAdd;
     @FXML
@@ -64,6 +69,8 @@ public class SolverController {
     private ArrayList<GuidedPropController> guidedPropControllers = new ArrayList<>();
 
     private HashMap<String, Integer> counterForGuidedProp = new HashMap<>();
+
+    private HashMap<String, Integer> counterForFreeProp = new HashMap<>();
 
     /** Le champ textuel permettant d'aider l'utilisateur.*/
     @FXML
@@ -183,12 +190,18 @@ public class SolverController {
     }
 
     private void setEventOnTextFieldsFreeMode() {
-        textFieldSujet.setOnAction(event -> {changed = true;});
+        textFieldSujet.textProperty().addListener((observable, oldValue, newValue) -> {
+
+        });
         textFieldPredicat.setOnAction(event -> {changed = true;});
 
         for(FreePropController freePropController : freePropControllers) {
             freePropController.getFreeTextFieldMedium().setOnAction(event -> {changed = true;});
         }
+    }
+
+    private void handleChange(){
+
     }
 
 
@@ -204,6 +217,8 @@ public class SolverController {
 
         back.setText(Traductor.get("back"));
         back1.setText(Traductor.get("back"));
+        text_regle.setText(Traductor.get("rules"));
+        text_regle2.setText(Traductor.get("rules"));
 
         tabWindow.setOnMouseClicked(event -> tutorialText.setText(traductor.get("syllogism_def")));
         titled_pane.setText(traductor.get("title"));
