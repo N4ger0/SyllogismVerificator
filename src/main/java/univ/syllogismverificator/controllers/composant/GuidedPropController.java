@@ -144,8 +144,8 @@ public class GuidedPropController {
     }
 
     private void initTextFields(){
-        guidedTerme1.setPromptText("terme 1");
-        guidedTerme2.setPromptText("terme 2");
+        guidedTerme1.setPromptText(Traductor.get("terme")+ "1");
+        guidedTerme2.setPromptText(Traductor.get("terme")+ "2");
     }
 
     /**

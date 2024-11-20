@@ -191,6 +191,9 @@ public class SolverController {
     private void initTexts() {
         tutorialText.setText(Traductor.get("syllogism_def"));
 
+        back.setText(Traductor.get("back"));
+        back1.setText(Traductor.get("back"));
+
         tabWindow.setOnMouseClicked(event -> tutorialText.setText(traductor.get("syllogism_def")));
         titled_pane.setText(traductor.get("title"));
         tab_guided.setText(traductor.get("guided_mode"));
@@ -202,6 +205,7 @@ public class SolverController {
         text_predicat.setText(traductor.get("predicate"));
         freeSolve.setText(traductor.get("solve"));
         //freeHE.setText(traductor.get("exist_hypothese"));
+        addFreeProp.setText(Traductor.get("add_prop"));
 
         language.setText(Traductor.getLang().equals("fr") ? "EN" : "FR");
         language1.setText(Traductor.getLang().equals("fr") ? "EN" : "FR");

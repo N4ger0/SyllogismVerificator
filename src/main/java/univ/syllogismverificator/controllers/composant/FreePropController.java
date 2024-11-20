@@ -37,6 +37,9 @@ public class FreePropController {
     @FXML
     private Text text;
 
+    @FXML
+    private Text freeMediumTermText ;
+
     /** Le Menu deroulant permettant de choisir la quantite et qualite de la proposition.*/
     @FXML
     private MenuButton freeQQL;
@@ -83,6 +86,8 @@ public class FreePropController {
         updateText();
         initMenuItems();
 
+        freeMediumTermText.setText(Traductor.get("moyen_terme"));
+
         lastFreeProp = this;
         TextCounter++;
     }
@@ -115,7 +120,7 @@ public class FreePropController {
 
     public void updateText() {
         if (lastFreeProp != null){
-            lastFreeProp.text.setText("Premisse " + TextCounter);
+            lastFreeProp.text.setText(Traductor.get("premisse") + TextCounter);
             if (TextCounter != 1){
                 lastFreeProp.freeMediumTerm.setVisible(true);
             }
