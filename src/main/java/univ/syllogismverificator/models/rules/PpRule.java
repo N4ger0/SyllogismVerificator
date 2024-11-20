@@ -17,7 +17,7 @@ public class PpRule implements Rule {
         }
 
         if(areAllPremisesParticular)
-            return new RuleResult(true, Traductor.get("rule_pp_correct"));
-        return new RuleResult(false, Traductor.get("rule_pp_incorrect"));
+            return new RuleResult(false, Traductor.get("rule_pp_incorrect"));
+        return new RuleResult(true, Traductor.get("rule_pp_correct"));
     }
 }

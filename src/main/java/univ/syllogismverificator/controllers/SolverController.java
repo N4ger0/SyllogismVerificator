@@ -3,6 +3,8 @@ package univ.syllogismverificator.controllers;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.*;
 
+import javafx.stage.Stage;
 import javafx.util.Pair;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -31,7 +34,10 @@ import univ.syllogismverificator.models.SyllogismResult;
 public class SolverController {
     @FXML
     public Button language;
-
+    public Button back;
+    public Button back1;
+    public Button schemaAdd1;
+    public Button language1;
     Traductor traductor = new Traductor() ;
 
     @FXML
@@ -144,10 +150,6 @@ public class SolverController {
         solver = new Solver();
         setEventOnTextFieldsFreeMode();
         setEventOnTextFieldsGuidedMode();
-        language.setOnAction(event -> {
-            traductor.setLang(Traductor.getLang().equals("fr") ? "en" : "fr");
-            initialize();
-        });
     }
 
     private void handleChangeOnTextField(SolverController solver,String oldValue, String newValue) {
@@ -194,14 +196,18 @@ public class SolverController {
         tab_guided.setText(traductor.get("guided_mode"));
         tab_free.setText(traductor.get("free_mode"));
         guidedSolve.setText(traductor.get("solve"));
-        schemaAdd.setText(traductor.get("add_schema"));
         guidedHE.setText(traductor.get("exist_hypothese"));
         text_sujet.setText(traductor.get("subject"));
         //text_middle.setText(traductor.get("moyen_terme"));
         text_predicat.setText(traductor.get("predicate"));
         freeSolve.setText(traductor.get("solve"));
         //freeHE.setText(traductor.get("exist_hypothese"));
+
         language.setText(Traductor.getLang().equals("fr") ? "EN" : "FR");
+        language1.setText(Traductor.getLang().equals("fr") ? "EN" : "FR");
+
+        schemaAdd.setText(traductor.get("add_schema"));
+        schemaAdd1.setText(traductor.get("add_schema"));
     }
 
     private void initButtons() {
@@ -209,6 +215,31 @@ public class SolverController {
         guidedSolve.setOnAction(event -> guidedSolve());
         freeSolve.setOnAction(event -> freeSolve());
         schemaAdd.setOnAction(event -> askSchema());
+        language.setOnAction(event -> {
+            traductor.setLang(Traductor.getLang().equals("fr") ? "en" : "fr");
+            initialize();
+        });
+        back.setOnAction(event -> goToMenu(back));
+
+        back1.setOnAction(back.getOnAction());
+        schemaAdd1.setOnAction(schemaAdd.getOnAction());
+        language1.setOnAction(language.getOnAction());
+    }
+
+    public static void goToMenu(Button back) {
+        FXMLLoader loader = new FXMLLoader(SolverController.class.getResource("/views/main_menu-view.fxml"));
+        try {
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            Stage stage = (Stage)back.getScene().getWindow();
+            MainMenuController controller = loader.getController() ;
+            controller.initialize(stage);
+            stage.setScene(scene);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     private void setEventOnTextFieldsFreeMode() {

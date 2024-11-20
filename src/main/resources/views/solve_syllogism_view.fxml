@@ -19,6 +19,8 @@
     <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" fx:id="tabWindow">
         <Tab fx:id="tab_guided" text="Guided mode">
             <HBox alignment="CENTER" spacing="50">
+                <Button fx:id="back" alignment="CENTER" mnemonicParsing="false" text="Back" prefHeight="40" prefWidth="80"
+                        textAlignment="CENTER"/>
                 <VBox spacing="40">
                     <VBox/>
                     <VBox fx:id="guidedPropositions" spacing="25"/>
@@ -67,6 +69,8 @@
         </Tab>
         <Tab fx:id="tab_free" text="Free mode">
             <HBox alignment="CENTER" spacing="50">
+                <Button fx:id="back1" alignment="CENTER" mnemonicParsing="false" prefHeight="40" prefWidth="80" text="Back"
+                        textAlignment="CENTER"/>
                 <VBox/>
                 <VBox spacing="50" alignment="CENTER">
                     <HBox spacing="40.0" alignment="CENTER">
@@ -85,6 +89,9 @@
                                 prefWidth="150" text="add Proposition" style="-fx-font-size: 20"/>
                         <Button fx:id="freeSolve" alignment="CENTER" mnemonicParsing="false" prefHeight="50"
                                 prefWidth="125" text="Solve" style="-fx-font-size: 20"/>
+                        <Button fx:id="schemaAdd1" mnemonicParsing="false" prefHeight="50"
+                                prefWidth="175" text="Add schema" style="-fx-font-size: 20"/>
+                        <Button fx:id="language1" mnemonicParsing="false" prefHeight="50" prefWidth="125" style="-fx-font-size: 20"/>
                     </HBox>
                 </VBox>
                 <VBox style="-fx-background-color: #b22635; -fx-padding: 5; -fx-background-radius: 5"/>

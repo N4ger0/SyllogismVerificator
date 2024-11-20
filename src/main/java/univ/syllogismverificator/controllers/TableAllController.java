@@ -2,7 +2,11 @@ package univ.syllogismverificator.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -16,6 +20,7 @@ import java.util.Objects;
 
 public class TableAllController {
 
+    public Button back;
     @FXML
     private TableColumn<SyllogismData, String> figure;
     @FXML
@@ -32,8 +37,15 @@ public class TableAllController {
     private TableColumn<SyllogismData, String> interesting;
     @FXML
     private TableColumn<SyllogismData, String> ruu;
+    @FXML
+    private CheckBox isValid;
+    @FXML
+    private CheckBox isInteresting;
+    @FXML
+    private CheckBox isRuu;
 
     private ObservableList<SyllogismData> data;
+    private FilteredList<SyllogismData> filteredData;
 
     @FXML
     public void initialize(){
@@ -53,7 +65,7 @@ public class TableAllController {
             String valid = "false";
             String interesting = "false";
 
-            // Verification if the 7 first rules are valid.
+            // Verification if the syllogism is valid without Ruu.
             if (result.getResults().getFirst().isValid()
                     && result.getResults().get(1).isValid()
                     && result.getResults().get(2).isValid()
@@ -77,7 +89,32 @@ public class TableAllController {
                     Objects.toString(result.isValid())
             ));
         }
-        tableView.setItems(data);
+
+        filteredData = new FilteredList<>(data, p -> true);
+        SortedList<SyllogismData> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(tableView.comparatorProperty());
+
+        tableView.setItems(sortedData);
+
+        isValid.selectedProperty().addListener((observable, oldValue, newValue) -> filterData());
+        back.setOnAction(event -> goToMenu());
+        isInteresting.selectedProperty().addListener((observable, oldValue, newValue) -> filterData());
+        isRuu.selectedProperty().addListener((observable, oldValue, newValue) -> filterData());
+    }
+
+    private void filterData() {
+        filteredData.setPredicate(syllogismData -> {
+            if (isRuu.isSelected()) {
+                return syllogismData.getRuu().equals("true");
+            }
+            if (isInteresting.isSelected()) {
+                return syllogismData.getInteresting().equals("true");
+            }
+            if (isValid.isSelected()) {
+                return syllogismData.getValidity().equals("true");
+            }
+            return true;
+        });
     }
 
     private int getFigureAndProps(Syllogism syllogism){
@@ -90,6 +127,10 @@ public class TableAllController {
             if(minorPremise.subject.equals("s")) return 0;
             else return 2;
         }
+    }
+
+    public void goToMenu(){
+        SolverController.goToMenu(back);
     }
 
 }
