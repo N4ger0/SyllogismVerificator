@@ -36,6 +36,9 @@ public class FreePropController {
     /** Le texte indiquant le numero de la premisse.*/
     @FXML
     private Text text;
+    public String getText(){
+        return text.getText();
+    }
 
     /** Le Menu deroulant permettant de choisir la quantite et qualite de la proposition.*/
     @FXML
