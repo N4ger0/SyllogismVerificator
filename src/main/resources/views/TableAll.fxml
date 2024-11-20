@@ -7,12 +7,14 @@
 <?import javafx.scene.control.CheckBox?>
 
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.HBox?>
 <TitledPane animated="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="401.5" prefWidth="601.5" text="All possible syllogism" xmlns:fx="http://javafx.com/fxml/1"
             xmlns="http://javafx.com/javafx/21"
             fx:controller="univ.syllogismverificator.controllers.TableAllController">
     <VBox>
+        <Button fx:id="back" alignment="CENTER" mnemonicParsing="false" textAlignment="CENTER" text="Back"/>
         <HBox>
             <CheckBox text="Valid Syllogisms" fx:id="isValid" prefHeight="40.0" prefWidth="150.0" style="-fx-font-size: 15"/>
             <CheckBox text="Interesting Syllogisms" fx:id="isInteresting" prefHeight="40.0" prefWidth="185.0" style="-fx-font-size: 15"/>

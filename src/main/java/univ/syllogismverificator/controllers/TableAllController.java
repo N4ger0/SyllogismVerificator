@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -19,6 +20,7 @@ import java.util.Objects;
 
 public class TableAllController {
 
+    public Button back;
     @FXML
     private TableColumn<SyllogismData, String> figure;
     @FXML
@@ -95,6 +97,7 @@ public class TableAllController {
         tableView.setItems(sortedData);
 
         isValid.selectedProperty().addListener((observable, oldValue, newValue) -> filterData());
+        back.setOnAction(event -> goToMenu());
         isInteresting.selectedProperty().addListener((observable, oldValue, newValue) -> filterData());
         isRuu.selectedProperty().addListener((observable, oldValue, newValue) -> filterData());
     }
@@ -124,6 +127,10 @@ public class TableAllController {
             if(minorPremise.subject.equals("s")) return 0;
             else return 2;
         }
+    }
+
+    public void goToMenu(){
+        SolverController.goToMenu(back);
     }
 
 }

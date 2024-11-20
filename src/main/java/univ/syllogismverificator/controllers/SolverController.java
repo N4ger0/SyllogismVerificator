@@ -3,6 +3,8 @@ package univ.syllogismverificator.controllers;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -13,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.*;
 
+import javafx.stage.Stage;
 import javafx.util.Pair;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -30,6 +33,8 @@ import univ.syllogismverificator.models.SyllogismResult;
 
 public class SolverController {
     public Button language;
+    public Button back;
+    public Button back1;
     Traductor traductor = new Traductor() ;
     public Button schemaAdd;
     @FXML
@@ -213,6 +218,23 @@ public class SolverController {
         guidedSolve.setOnAction(event -> guidedSolve());
         freeSolve.setOnAction(event -> freeSolve());
         schemaAdd.setOnAction(event -> askSchema());
+        back.setOnAction(event -> goToMenu(back));
+        back1.setOnAction(back.getOnAction());
+    }
+    public static void goToMenu(Button back) {
+        FXMLLoader loader = new FXMLLoader(SolverController.class.getResource("/views/main_menu-view.fxml"));
+        try {
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            Stage stage = (Stage)back.getScene().getWindow();
+            MainMenuController controller = loader.getController() ;
+            controller.initialize(stage);
+            stage.setScene(scene);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     private void setEventOnTextFieldsFreeMode() {
