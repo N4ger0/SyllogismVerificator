@@ -1,5 +1,6 @@
 package univ.syllogismverificator.controllers;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -191,17 +192,75 @@ public class SolverController {
 
     private void setEventOnTextFieldsFreeMode() {
         textFieldSujet.textProperty().addListener((observable, oldValue, newValue) -> {
-
+            handleChangeOnTextFieldsFreeMode(oldValue, newValue);
         });
-        textFieldPredicat.setOnAction(event -> {changed = true;});
-
+        textFieldSujet.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if(!newValue) {
+                handleChangeFocusFreeMode();
+            }
+        });
+        textFieldPredicat.textProperty().addListener((observable, oldValue, newValue) -> {
+            handleChangeOnTextFieldsFreeMode(oldValue, newValue);
+        });
+        textFieldPredicat.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if(!newValue) {
+                handleChangeFocusFreeMode();
+            }
+        });
         for(FreePropController freePropController : freePropControllers) {
-            freePropController.getFreeTextFieldMedium().setOnAction(event -> {changed = true;});
+            freePropController.getFreeTextFieldMedium().textProperty().addListener((observable, oldValue, newValue) -> {
+                handleChangeOnTextFieldsFreeMode(oldValue, newValue);
+            });
+            freePropController.getFreeTextFieldMedium().focusedProperty().addListener((observable, oldValue, newValue) -> {
+                if(!newValue) {
+                    handleChangeFocusFreeMode();
+                }
+            });
         }
     }
 
-    private void handleChange(){
+    private void removeFromAll(String key){
+        for(FreePropController freePropController : freePropControllers) {
+            freePropController.getFreeTerme1().getItems().removeIf( im -> (Objects.equals(im.getText(), key)));
+            freePropController.getFreeTerme2().getItems().removeIf( im -> (Objects.equals(im.getText(), key)));
+        }
+    }
 
+    private void handleChangeFocusFreeMode() {
+        for(FreePropController controller : freePropControllers) {
+            controller.getFreeTerme1().getItems().clear();
+            controller.getFreeTerme2().getItems().clear();
+            for (String key : counterForFreeProp.keySet()) {
+                MenuItem mi1 = new MenuItem(key);
+                mi1.setOnAction((event) -> {
+                    controller.getFreeTerme1().setText(key);
+                    counterForFreeProp.replace(key, counterForFreeProp.get(key) - 1);
+                    controller.getFreeTerme2().getItems().removeIf(im -> im.getText().equals(key));
+                    if(counterForFreeProp.get(key) == 0) {
+                        removeFromAll(key);
+                    }
+                });
+                MenuItem mi2 = new MenuItem(key);
+                mi2.setOnAction((event) -> {
+                    controller.getFreeTerme2().setText(key);
+                    counterForFreeProp.replace(key, counterForFreeProp.get(key) - 1);
+                    controller.getFreeTerme1().getItems().removeIf(im -> im.getText().equals(key));
+                    if(counterForFreeProp.get(key) == 0) {
+                        removeFromAll(key);
+                    }
+                });
+                controller.getFreeTerme1().getItems().add(mi1);
+                controller.getFreeTerme2().getItems().add(mi2);
+                controller.getFreeTerme1().layout();
+                controller.getFreeTerme2().layout();
+            }
+        }
+    }
+
+    private void handleChangeOnTextFieldsFreeMode(String oldValue, String newValue){
+        counterForFreeProp.put(newValue, 2);
+        counterForFreeProp.remove(oldValue);
+        System.out.println(counterForFreeProp);
     }
 
 
@@ -272,93 +331,26 @@ public class SolverController {
 
     }
 
-
     private void setEventOnMenuButtonFreeMode(FreePropController p) {
-        p.getFreeTerme1().setOnMouseClicked((event -> {
-            System.out.println("ajout d'un evenement a la " + p.getText());
-            if (changed){
-                p.getFreeTerme1().getItems().clear();
-
-                if (!textFieldSujet.getText().isEmpty()) {
-                    System.out.println("ajout du sujet");
-                    MenuItem mi = new MenuItem(textFieldSujet.getText());
-                    mi.setOnAction((event1 -> {
-                        p.getFreeTerme1().setText(mi.getText());
-                    }));
-                    p.getFreeTerme1().getItems().add(mi);
-                }
-
-                if (!textFieldPredicat.getText().isEmpty()) {
-                    System.out.println("ajout du predicat");
-                    MenuItem mi = new MenuItem(textFieldPredicat.getText());
-                    mi.setOnAction((event1 -> {
-                        p.getFreeTerme1().setText(mi.getText());
-                    }));
-                    p.getFreeTerme1().getItems().add(mi);
-                }
-
-                for (int i = 1; i < freePropControllers.size() - 1; i++) {
-                    if (!freePropControllers.get(i).getFreeTextFieldMedium().getText().isEmpty()){
-                        System.out.println("ajout du terme moyen" + i);
-                        MenuItem mi = new MenuItem(freePropControllers.get(i).getFreeTextFieldMedium().getText());
-                        mi.setOnAction((event1 -> {
-                            p.getFreeTerme1().setText(mi.getText());
-                        }));
-                        p.getFreeTerme1().getItems().add(mi);
-                    }
-                }
-                new Thread(() -> {
-                    try {
-                        Thread.sleep(50); // Petit délai pour permettre la mise à jour
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    javafx.application.Platform.runLater(p.getFreeTerme1()::show);
-                }).start();
-
-                System.out.println();
+        /*p.getFreeTerme1().setOnMouseClicked((event -> {
+            MenuButton button = (MenuButton) event.getSource();
+            button.getItems().clear();
+            for (String key : counterForFreeProp.keySet()) {
+                MenuItem mi = new MenuItem(key);
+                button.getItems().add(mi);
+                button.layout();
             }
         }));
 
         p.getFreeTerme2().setOnMouseClicked((event -> {
-            if (changed) {
-                p.getFreeTerme2().getItems().clear();
-
-                if (!textFieldSujet.getText().isEmpty()) {
-                    MenuItem mi = new MenuItem(textFieldSujet.getText());
-                    mi.setOnAction((event1 -> {
-                        p.getFreeTerme2().setText(mi.getText());
-                    }));
-                    p.getFreeTerme2().getItems().add(mi);
-                }
-
-                if (!textFieldPredicat.getText().isEmpty()) {
-                    MenuItem mi = new MenuItem(textFieldPredicat.getText());
-                    mi.setOnAction((event1 -> {
-                        p.getFreeTerme2().setText(mi.getText());
-                    }));
-                    p.getFreeTerme2().getItems().add(mi);
-                }
-
-                for (int i = 1; i < freePropControllers.size() - 1; i++) {
-                    if (!freePropControllers.get(i).getFreeTextFieldMedium().getText().isEmpty()) {
-                        MenuItem mi = new MenuItem(freePropControllers.get(i).getFreeTextFieldMedium().getText());
-                        mi.setOnAction((event1 -> {
-                            p.getFreeTerme2().setText(mi.getText());
-                        }));
-                        p.getFreeTerme2().getItems().add(mi);
-                    }
-                }
+            MenuButton button = (MenuButton) event.getSource();
+            button.getItems().clear();
+            for (String key : counterForFreeProp.keySet()) {
+                MenuItem mi = new MenuItem(key);
+                button.getItems().add(mi);
+                button.layout();
             }
-            new Thread(() -> {
-                try {
-                    Thread.sleep(50); // Petit délai pour permettre la mise à jour
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                javafx.application.Platform.runLater(p.getFreeTerme2()::show);
-            }).start();
-        }));
+        }));*/
     }
 
     public Text getTutorialText() {
