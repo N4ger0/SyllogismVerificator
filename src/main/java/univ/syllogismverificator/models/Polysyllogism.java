@@ -4,9 +4,7 @@ import univ.syllogismverificator.models.rules.Rule;
 import univ.syllogismverificator.models.rules.RuleResult;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Stream;
 
 /**
@@ -104,6 +102,11 @@ public class Polysyllogism {
         propositions.set(j, temp);
     }
 
+    /**
+     * Sorts the polysyllogism's propositions list to make the polysyllogism solvable.
+     * If the syllogism is invalid, the method will try to sort it as much as possible.
+     * @return a boolean that states whether the sorting process has been successfully achieved or not
+     */
     public boolean sort() {
         String currentTerm = conclusion.predicate;
 
