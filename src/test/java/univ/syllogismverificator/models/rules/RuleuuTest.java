@@ -2,6 +2,7 @@ package univ.syllogismverificator.models.rules;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import univ.syllogismverificator.Traductor;
 import univ.syllogismverificator.models.Polysyllogism;
 import univ.syllogismverificator.models.Proposition;
 
@@ -27,7 +28,7 @@ class RuleuuTest {
         ));
 
         assertTrue(rule.evaluate(polysyllogism).isValid());
-        assertEquals(rule.evaluate(polysyllogism).toString(),"ruu_valid_universal_conclusion");
+        assertEquals(rule.evaluate(polysyllogism).toString(), Traductor.get("ruu_valid_universal_conclusion"));
     }
 
     @Test
@@ -38,18 +39,19 @@ class RuleuuTest {
                 new Proposition("U", "U", true, false)
         ));
         assertTrue(rule.evaluate(polysyllogism).isValid());
-        assertEquals(rule.evaluate(polysyllogism).toString(),"ruu_valid_universal_conclusion");
+        assertEquals(rule.evaluate(polysyllogism).toString(),Traductor.get("ruu_valid_universal_conclusion"));
     }
 
     @Test
     public void evaluateTrueAllParticular(){
         Polysyllogism polysyllogism = new Polysyllogism(List.of(
                 new Proposition("U", "U", false, false),
-                new Proposition("U", "U", false, false),
+                new Proposition("U", "U",
+                        false, false),
                 new Proposition("U", "U", false, false)
         ));
         assertTrue(rule.evaluate(polysyllogism).isValid());
-        assertEquals(rule.evaluate(polysyllogism).toString(),"ruu_valid_particular_premises");
+        assertEquals(rule.evaluate(polysyllogism).toString(),Traductor.get("ruu_valid_particular_premises"));
     }
 
     @Test
@@ -61,6 +63,6 @@ class RuleuuTest {
         ));
 
         assertFalse(rule.evaluate(polysyllogism).isValid());
-        assertEquals(rule.evaluate(polysyllogism).toString(),"ruu_invalid");
+        assertEquals(rule.evaluate(polysyllogism).toString(),Traductor.get("ruu_invalid"));
     }
 }

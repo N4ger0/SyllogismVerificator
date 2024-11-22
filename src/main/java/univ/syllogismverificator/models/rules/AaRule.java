@@ -21,12 +21,12 @@ public class AaRule implements Rule {
             boolean result = polysyllogism.getConclusion().quality;
 
             if (result) {
-                return new RuleResult(true, Traductor.get("rule_aa_correct"));
+                return new RuleResult(true, Traductor.get("raa_valid"));
             } else {
-                return new RuleResult(false, Traductor.get("rule_aa_incorrect"));
+                return new RuleResult(false, Traductor.get("raa_invalid"));
             }
         } else {
-            return new RuleResult(true, Traductor.get("rule_aa_correct"));
+            return new RuleResult(true, Traductor.get("raa_valid"));
         }
     }
 }

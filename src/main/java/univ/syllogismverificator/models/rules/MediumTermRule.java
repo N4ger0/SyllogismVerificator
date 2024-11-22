@@ -1,5 +1,6 @@
 package univ.syllogismverificator.models.rules;
 
+import univ.syllogismverificator.Traductor;
 import univ.syllogismverificator.models.Polysyllogism;
 import univ.syllogismverificator.models.Proposition;
 import java.util.HashSet;
@@ -51,9 +52,9 @@ public class MediumTermRule implements Rule{
 
         if (!badMidTerms.isEmpty()) {
             //TODO: affichage réponse avec les termes moyens faux
-            return new RuleResult(false, "Regle Mt : ");
+            return new RuleResult(false, Traductor.get("rmt_invalid"));
         }
         //TODO: affichage réponse
-        return new RuleResult(true, "Regle Mt : ");
+        return new RuleResult(true, Traductor.get("rmt_valid"));
     }
 }

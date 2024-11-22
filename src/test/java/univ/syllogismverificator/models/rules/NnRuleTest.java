@@ -2,6 +2,7 @@ package univ.syllogismverificator.models.rules;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import univ.syllogismverificator.Traductor;
 import univ.syllogismverificator.models.Polysyllogism;
 import univ.syllogismverificator.models.Proposition;
 import univ.syllogismverificator.models.rules.NnRule;
@@ -47,9 +48,7 @@ class NnRuleTest {
         RuleResult result = polysyllogism.accept(nnRule);
 
         assertFalse(result.isValid());
-
-        // TODO: Error messages
-        // assertNotEquals("", result.toString());
+        assertEquals(Traductor.get("rnn_invalid"), result.toString());
     }
 
     @Test
@@ -84,8 +83,6 @@ class NnRuleTest {
 
         RuleResult result = polysyllogism.accept(nnRule);
         assertFalse(result.isValid());
-
-        // TODO: Error messages
-        // assertNotEquals("", result.toString());
+        assertEquals(Traductor.get("rnn_invalid"), result.toString());
     }
 }

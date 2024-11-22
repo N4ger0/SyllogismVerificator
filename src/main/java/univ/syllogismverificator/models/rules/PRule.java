@@ -16,17 +16,16 @@ public class PRule implements Rule {
             isOnePremiseParticular = isOnePremiseParticular || !prop.quantity;
         }
 
-        // TODO: custom message
         if (isOnePremiseParticular) {
-            boolean result = !polysyllogism.getConclusion().quantity;
+            boolean isConclusionParticular = !polysyllogism.getConclusion().quantity;
 
-            if (result) {
-                return new RuleResult(true, Traductor.get("rule_p_correct"));
+            if (isConclusionParticular) {
+                return new RuleResult(true, Traductor.get("rp_valid_particular_conclusion"));
             } else {
-                return new RuleResult(false, Traductor.get("rule_p_incorrect"));
+                return new RuleResult(false, Traductor.get("rp_invalid"));
             }
         } else {
-            return new RuleResult(true, "Regle P : Aucune prémisse n'est particulière !");
+            return new RuleResult(true, Traductor.get("rp_valid_no_particular_premise"));
         }
     }
 }

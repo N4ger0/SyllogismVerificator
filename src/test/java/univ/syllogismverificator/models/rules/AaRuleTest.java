@@ -2,6 +2,7 @@ package univ.syllogismverificator.models.rules;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import univ.syllogismverificator.Traductor;
 import univ.syllogismverificator.models.Polysyllogism;
 import univ.syllogismverificator.models.Proposition;
 import univ.syllogismverificator.models.rules.AaRule;
@@ -64,7 +65,7 @@ class AaRuleTest {
         RuleResult result = polysyllogism.accept(aaRule);
 
         assertFalse(result.isValid());
-        assertNotEquals("", result.toString());
+        assertEquals(Traductor.get("raa_invalid"), result.toString());
     }
 
     @Test
@@ -100,8 +101,6 @@ class AaRuleTest {
         RuleResult result = polysyllogism.accept(aaRule);
 
         assertFalse(result.isValid());
-
-        // TODO: Error messages
-        // assertNotEquals("", result.toString());
+        assertEquals(Traductor.get("raa_invalid"), result.toString());
     }
-}
+    }

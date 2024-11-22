@@ -2,6 +2,7 @@ package univ.syllogismverificator.models.rules;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import univ.syllogismverificator.Traductor;
 import univ.syllogismverificator.models.Polysyllogism;
 import univ.syllogismverificator.models.Proposition;
 import univ.syllogismverificator.models.Syllogism;
@@ -92,11 +93,8 @@ class LhRuleTest {
         ));
 
         RuleResult result = polysyllogism.accept(lhRule);
-
         assertFalse(result.isValid());
-
-        // TODO: Error messages
-        // assertEquals("", result.toString());
+        assertEquals(Traductor.get("rlh_invalid"), result.toString());
     }
 
     @Test
@@ -110,9 +108,7 @@ class LhRuleTest {
         RuleResult result = polysyllogism.accept(lhRule);
 
         assertFalse(result.isValid());
-
-        // TODO: Error messages
-        // assertEquals("", result.toString());
+        assertEquals(Traductor.get("rlh_invalid"), result.toString());
     }
 
     @Test
@@ -126,9 +122,7 @@ class LhRuleTest {
         RuleResult result = polysyllogism.accept(lhRule);
 
         assertFalse(result.isValid());
-
-        // TODO: Error messages
-        // assertEquals("", result.toString());
+        assertEquals(Traductor.get("rlh_invalid"), result.toString());
     }
 
     @Test
@@ -142,9 +136,7 @@ class LhRuleTest {
         RuleResult result = polysyllogism.accept(lhRule);
 
         assertFalse(result.isValid());
-
-        // TODO: Error messages
-        // assertEquals("", result.toString());
+        assertEquals(Traductor.get("rlh_invalid"), result.toString());
     }
 
     @Test
@@ -158,9 +150,7 @@ class LhRuleTest {
         RuleResult result = polysyllogism.accept(lhRule);
 
         assertFalse(result.isValid());
-
-        // TODO: Error messages
-        // assertEquals("", result.toString());
+        assertEquals(Traductor.get("rlh_invalid"), result.toString());
     }
 
     @Test
@@ -174,6 +164,7 @@ class LhRuleTest {
         RuleResult result = polysyllogism.accept(lhRule);
 
         assertFalse(result.isValid());
+        assertEquals(Traductor.get("rlh_invalid"), result.toString());
     }
 
     @Test
@@ -187,6 +178,7 @@ class LhRuleTest {
         RuleResult result = polysyllogism.accept(lhRule);
 
         assertFalse(result.isValid());
+        assertEquals(Traductor.get("rlh_invalid"), result.toString());
     }
 
     @Test

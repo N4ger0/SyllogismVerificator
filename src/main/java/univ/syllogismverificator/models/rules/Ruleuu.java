@@ -17,9 +17,9 @@ public class Ruleuu implements Rule{
 
 
         if (polysyllogism.getConclusion().quantity)
-            return new RuleResult(true, Traductor.get("rule_uu_correct"));
+            return new RuleResult(true, Traductor.get("ruu_valid_universal_conclusion"));
         else if (!arePropositionsUniversal)
-            return new RuleResult(true, Traductor.get("rule_uu_correct"));
-        return new RuleResult(false, Traductor.get("rule_uu_incorrect"));
+            return new RuleResult(true, Traductor.get("ruu_valid_particular_premises"));
+        return new RuleResult(false, Traductor.get("ruu_invalid"));
     }
 }

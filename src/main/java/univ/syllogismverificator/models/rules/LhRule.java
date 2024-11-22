@@ -42,8 +42,11 @@ public class LhRule implements Rule {
             }
         }
 
-        // TODO: custom message
-        if(isConclusionPredicateValid && isConclusionSubjectValid) return new RuleResult(true, Traductor.get("rule_lh_correct"));
-        return new RuleResult(false, Traductor.get("rule_lh_incorrect"));
+        if (isConclusionPredicateValid && isConclusionSubjectValid)
+            return new RuleResult(true, Traductor.get("rlh_valid"));
+        else if (isConclusionPredicateValid)
+            return new RuleResult(false, Traductor.get("rlh_invalid_predicate"));
+        else
+            return new RuleResult(false, Traductor.get("rlh_invalid_subject"));
     }
 }

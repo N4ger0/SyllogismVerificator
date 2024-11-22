@@ -2,6 +2,7 @@ package univ.syllogismverificator.models.rules;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import univ.syllogismverificator.Traductor;
 import univ.syllogismverificator.models.Polysyllogism;
 import univ.syllogismverificator.models.Proposition;
 import univ.syllogismverificator.models.rules.MediumTermRule;
@@ -45,7 +46,7 @@ class MediumTermRuleTest {
         RuleResult result = mediumTermRule.evaluate(polysyllogism);
 
         assertFalse(result.isValid());
-        //assertEquals("", result.toString());
+        assertEquals(Traductor.get("rmt_invalid"), result.toString());
     }
 
     // TEST FIGURE 2
@@ -74,7 +75,7 @@ class MediumTermRuleTest {
         RuleResult result = mediumTermRule.evaluate(polysyllogism);
 
         assertFalse(result.isValid());
-        //assertEquals("", result.toString());
+        assertEquals(Traductor.get("rmt_invalid"), result.toString());
     }
     // TEST FIGURE 2
     @Test
@@ -102,7 +103,7 @@ class MediumTermRuleTest {
         RuleResult result = mediumTermRule.evaluate(polysyllogism);
 
         assertFalse(result.isValid());
-        //assertEquals("", result.toString());
+        assertEquals(Traductor.get("rmt_invalid"), result.toString());
     }
 
     // TEST FIGURE 2
@@ -131,6 +132,6 @@ class MediumTermRuleTest {
         RuleResult result = mediumTermRule.evaluate(polysyllogism);
 
         assertFalse(result.isValid());
-        //assertEquals("", result.toString());
+        assertEquals(Traductor.get("rmt_invalid"), result.toString());
     }
 }
