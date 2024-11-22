@@ -14,8 +14,8 @@
     <MenuButton mnemonicParsing="false" text="Terme 1" prefWidth="75" fx:id="freeTerme1"/>
     <MenuButton mnemonicParsing="false" text="Terme 2" prefWidth="75" fx:id="freeTerme2"/>
 
-    <VBox fx:id="freeMediumTerm">
+    <VBox fx:id="freeMediumTerm" alignment="CENTER">
         <Text fx:id="freeMediumTermText" text="Middle Term"/>
-        <TextField fx:id="freeTextFieldMedium" prefWidth="180.0"/>
+        <TextField fx:id="freeTextFieldMedium"/>
     </VBox>
 </HBox>

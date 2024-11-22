@@ -9,10 +9,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
-
-<?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.control.ScrollPane?>
+
+
 <TitledPane xmlns:fx="http://javafx.com/fxml/1" collapsible="false" maxHeight="-Infinity" maxWidth="-Infinity"
             minHeight="-Infinity"
             minWidth="-Infinity" prefHeight="800.0" prefWidth="1250.0" stylesheets="@../style/style.css"
@@ -70,8 +70,8 @@
                                       prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>
                         </HBox>
                         <VBox style="-fx-background-color: #ccc4b4; -fx-background-radius: 10; -fx-padding: 10" spacing="10" alignment="CENTER">
-                            <Text text="CONCLUSION" style="-fx-font-size: 25"/>
-                            <Text fx:id="guidedCCL"/>
+                            <Text text="CONCLUSION" style="-fx-font-size: 20"/>
+                            <Text fx:id="guidedCCL" wrappingWidth="550"/>
                         </VBox>
                     </VBox>
                     <Region VBox.vgrow="ALWAYS"/>
@@ -80,8 +80,8 @@
             </HBox>
         </Tab>
         <Tab fx:id="tab_free" text="Free mode">
-            <ScrollPane>
-                <HBox alignment="CENTER" spacing="50">
+            <ScrollPane hbarPolicy="NEVER">
+                <HBox alignment="CENTER" spacing="10">
                     <VBox/>
                     <VBox spacing="50" alignment="CENTER">
                         <HBox spacing="40.0" alignment="CENTER">
@@ -97,15 +97,17 @@
                         <VBox fx:id="freePropositions" spacing="10"/>
                         <HBox alignment="CENTER" spacing="40">
                             <Button fx:id="addFreeProp" alignment="CENTER" mnemonicParsing="false" prefHeight="50"
-                                    prefWidth="150" text="add Proposition" style="-fx-font-size: 20"/>
+                                    prefWidth="130" text="add Proposition"/>
                             <Button fx:id="freeSolve" alignment="CENTER" mnemonicParsing="false" prefHeight="50"
-                                    prefWidth="125" text="Solve" style="-fx-font-size: 20"/>
+                                    prefWidth="105" text="Solve"/>
                             <Button fx:id="schemaAdd1" mnemonicParsing="false" prefHeight="50"
-                                    prefWidth="175" text="Add schema" style="-fx-font-size: 20"/>
-                            <Button fx:id="language1" mnemonicParsing="false" prefHeight="50" prefWidth="125" style="-fx-font-size: 20"/>
+                                    prefWidth="155" text="Add schema"/>
+                            <Button fx:id="language1" mnemonicParsing="false" prefHeight="50" prefWidth="65"/>
                         </HBox>
                     </VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
                     <VBox style="-fx-background-color: #b22635; -fx-padding: 5; -fx-background-radius: 5"/>
+                    <Region HBox.hgrow="ALWAYS"/>
                     <VBox spacing="10">
                         <VBox/>
                         <VBox alignment="TOP_RIGHT">
@@ -141,8 +143,8 @@
                                           prefHeight="40" prefWidth="60" style="-fx-font-size: 15" selected="true"/>
                             </HBox>
                             <VBox style="-fx-background-color: #ccc4b4; -fx-background-radius: 10; -fx-padding: 10" spacing="10" alignment="CENTER">
-                                <Text text="CONCLUSION" style="-fx-font-size: 25"/>
-                                <Text fx:id="freeCCL"/>
+                                <Text text="CONCLUSION" style="-fx-font-size: 20"/>
+                                <Text fx:id="freeCCL" wrappingWidth="550"/>
                             </VBox>
                         </VBox>
                         <Region VBox.vgrow="ALWAYS"/>
