@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -698,6 +699,7 @@ public class SolverController {
             Polysyllogism ps = getGuidedPropositions();
 
             if (ps.sort()){
+                setProposition(ps, true);
                 SyllogismResult res = solver.solve(ps, guidedMt.isSelected(), guidedLh.isSelected(), guidedNn.isSelected(), guidedN.isSelected(), guidedAa.isSelected(), guidedPp.isSelected(), guidedP.isSelected(), guidedUu.isSelected(), guidedHE.isSelected());
 
                 if (res.isValid()) {
@@ -715,6 +717,34 @@ public class SolverController {
         }
     }
 
+    private void setProposition(Polysyllogism ps, boolean guided) {
+            List<Node> ordered = new ArrayList<>();
+            List<Object> orderedPropControllers = new ArrayList<>();
+            ArrayList<?> objects = guided ? guidedPropControllers : freePropControllers;
+            VBox vbox = guided ? guidedPropositions : freePropositions;
+
+            ps.stream().forEach(p -> {
+                for (int i = 0; i < objects.size(); i++) {
+                    if(objects.getFirst() instanceof GuidedPropController){
+                        if (!((GuidedPropController) objects.get(i)).getProposition().equals(p)) continue;
+                    } else {
+                        if (!((FreePropController) objects.get(i)).getProposition().equals(p)) continue;
+                    }
+                    System.out.println(p);
+                    ordered.add(vbox.getChildren().get(i));
+                    orderedPropControllers.add(objects.get(i));
+                    break;
+                }
+            });
+            ordered.add(vbox.getChildren().getLast());
+            vbox.getChildren().clear();
+            objects.clear();
+            if(guided) orderedPropControllers.stream().map(GuidedPropController.class::cast).forEach(guidedPropControllers::add);
+            else orderedPropControllers.stream().map(FreePropController.class::cast).forEach(freePropControllers::add);
+            ordered.forEach(vbox.getChildren()::add);
+
+    }
+
     /**
      * Lance la resolution du syllogisme dans le mode libre.
      */
@@ -723,6 +753,7 @@ public class SolverController {
             Polysyllogism ps = getFreePropositions();
 
             if (ps.sort()) {
+                setProposition(ps, false);
                 SyllogismResult res = solver.solve(ps, freeMt.isSelected(), freeLh.isSelected(), freeNn.isSelected(), freeN.isSelected(), freeAa.isSelected(), freePp.isSelected(), freeP.isSelected(), freeUu.isSelected(), freeHE.isSelected());
 
                 if (res.isValid()) {
