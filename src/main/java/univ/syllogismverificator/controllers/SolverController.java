@@ -32,114 +32,259 @@ import univ.syllogismverificator.models.Polysyllogism;
 import univ.syllogismverificator.models.Proposition;
 import univ.syllogismverificator.models.SyllogismResult;
 
+/**
+ * Controller for the resolution of a syllogism. It's the parent controller for both FreePropController
+ * and GuidedPropController
+ * @see GuidedPropController
+ * @see FreePropController
+ */
 public class SolverController {
+    /**
+     * Button to switch between language in GuidedMode
+     */
     @FXML
     public Button language;
+    /**
+     * Button to go back to the main menu in GuidedMode
+     * @see MainMenuController
+     */
     public Button back;
+    /**
+     * Button to go back to the main menu in FreeMode
+     * @see MainMenuController
+     */
     public Button back1;
+    /**
+     * Button to add a quantifier in FreeMode
+     */
     public Button schemaAdd1;
+    /**
+     * Button to switch between language in FreeMode
+     */
     public Button language1;
     Traductor traductor = new Traductor() ;
 
-
+    /**
+     * Title of the Box where the validity of the syllogism is displayed in GuidedMode
+     */
     @FXML
     private Text text_regle ;
+    /**
+     * Title of the Box where the validity of the syllogism is displayed in FreeMode
+     */
     @FXML
     private Text text_regle2 ;
+    /**
+     * Button to add a quantifier in GuidedMode
+     */
     @FXML
     public Button schemaAdd;
+    /**
+     * The TabPane where the user can navigate between the GuidedMode and the FreeMode
+     */
     @FXML
     private TabPane tabWindow;
 
+    /**
+     * The tab for the GuidedMode
+     */
     @FXML
     private Tab tab_guided ;
 
+    /**
+     * The tab for the FreeMode
+     */
     @FXML
     private Tab tab_free ;
 
+    /**
+     * The titledPane who is the root of our application
+     */
     @FXML
     private TitledPane titled_pane ;
 
+    /**
+     * The VBox at the bottom of the GuidedMode window. Contains the buttons and the Tutorial Text
+     */
     @FXML
     private VBox guidedPropositions;
+    /**
+     * The Text the display subject in the selected language
+     */
     @FXML
     private Text text_sujet ;
-
-    @FXML
-    private Text text_middle ;
+    /**
+     * List of all the guidedPropControllers
+     * @see GuidedPropController
+     */
     private ArrayList<GuidedPropController> guidedPropControllers = new ArrayList<>();
 
+    /**
+     * HashMap containing all the occurences of the inputed terms in GuidedMode
+     */
     private HashMap<String, Integer> counterForGuidedProp = new HashMap<>();
-
+    /**
+     * HashMap containing all the occurences of the inputed terms in FreeMode
+     */
     private HashMap<String, Integer> counterForFreeProp = new HashMap<>();
 
-    /** Le champ textuel permettant d'aider l'utilisateur.*/
+    /** The Text element where the tutorialText is displayed*/
     @FXML
     private Text tutorialText;
 
+    /**
+     * Solve button for the guidedMode
+     */
     @FXML
     private Button guidedSolve;
+    /**
+     * CheckBox for switching on and off the existence hypothesis for given rule in GuidedMode
+     */
     @FXML
     private CheckBox guidedMt;
+    /**
+     * CheckBox for switching on and off the existence hypothesis for given rule in GuidedMode
+     */
     @FXML
     private CheckBox guidedLh;
+    /**
+     * CheckBox for switching on and off the existence hypothesis for given rule in GuidedMode
+     */
     @FXML
     private CheckBox guidedNn;
+    /**
+     * CheckBox for switching on and off the existence hypothesis for given rule in GuidedMode
+     */
     @FXML
     private CheckBox guidedN;
+    /**
+     * CheckBox for switching on and off the existence hypothesis for given rule in GuidedMode
+     */
     @FXML
     private CheckBox guidedAa;
+    /**
+     * CheckBox for switching on and off the existence hypothesis for given rule in GuidedMode
+     */
     @FXML
     private CheckBox guidedPp;
+    /**
+     * CheckBox for switching on and off the existence hypothesis for given rule in GuidedMode
+     */
     @FXML
     private CheckBox guidedP;
+    /**
+     * CheckBox for switching on and off the existence hypothesis for given rule in GuidedMode
+     */
     @FXML
     private CheckBox guidedUu;
+    /**
+     * CheckBox for switching on and off the existence hypothesis for given rule in GuidedMode
+     */
     @FXML
     private CheckBox guidedHE;
+    /**
+     * CheckBox for switching on and off the existence hypothesis for given rule in guidedMode
+     */
     @FXML
     private Text guidedCCL;
 
+    /**
+     * VBox at the bottom of the FreeMode, contains the buttons
+     */
     @FXML
     private VBox freePropositions;
+    /**
+     * Hashmap to store the occurences of the terms in free mode
+     */
     private ArrayList<FreePropController> freePropControllers = new ArrayList<>();
 
-    private boolean changed = true;
-
+    /**
+     * Initial TextField for the needed terms in FreeMode
+     */
     @FXML
     private TextField textFieldPredicat ;
+    /**
+     * Initial TextField for the needed terms in FreeMode
+     */
     @FXML
     private TextField textFieldSujet ;
 
+    /**
+     * Button to add a proposition in FreeMode
+     * @see FreePropController
+     */
     @FXML
     private Button addFreeProp;
+    /**
+     * Button to solve a syllogism in freeMode
+     */
     @FXML
     private Button freeSolve;
+    /**
+     * CheckBox for switching on and off the existence hypothesis for given rule in freeMode
+     */
     @FXML
     private CheckBox freeMt;
+    /**
+     * CheckBox for switching on and off the existence hypothesis for given rule in freeMode
+     */
     @FXML
     private CheckBox freeLh;
+    /**
+     * CheckBox for switching on and off the existence hypothesis for given rule in freeMode
+     */
     @FXML
     private CheckBox freeNn;
+    /**
+     * CheckBox for switching on and off the existence hypothesis for given rule in freeMode
+     */
     @FXML
     private CheckBox freeN;
+    /**
+     * CheckBox for switching on and off the existence hypothesis for given rule in freeMode
+     */
     @FXML
     private CheckBox freeAa;
+    /**
+     * CheckBox for switching on and off the existence hypothesis for given rule in freeMode
+     */
     @FXML
     private CheckBox freePp;
+    /**
+     * CheckBox for switching on and off the existence hypothesis for given rule in freeMode
+     */
     @FXML
     private CheckBox freeP;
+    /**
+     * CheckBox for switching on and off the existence hypothesis for given rule in freeMode
+     */
     @FXML
     private CheckBox freeUu;
+    /**
+     * CheckBox for switching on and off the existence hypothesis for given rule in freeMode
+     */
     @FXML
     private CheckBox freeHE;
+    /**
+     * CheckBox for switching on and off the existence hypothesis for given rule in freeMode
+     */
     @FXML
     private Text freeCCL;
+    /**
+     * Text that display "predicate" in the selected language
+     */
     @FXML
     private Text text_predicat ;
 
+    /**
+     * Instance of the Solver
+     * @see Solver
+     */
     private Solver solver;
 
+    /**
+     * clear all the inputed fields in both of the input mode
+     */
     private void clear(){
         guidedPropControllers.clear();
         freePropControllers.clear();
@@ -149,6 +294,9 @@ public class SolverController {
         GuidedPropController.TextCounter = 1;
     }
 
+    /**
+     * Initializer method for SolverController
+     */
     @FXML
     public void initialize() {
         clear();
@@ -162,6 +310,11 @@ public class SolverController {
         setEventOnTextFieldsFreeMode();
     }
 
+    /**
+     * Event fonction for change on TextField in GuidedMode,
+     * @param oldValue oldValue of the TextField, will be deleted of the HashMap
+     * @param newValue newValue of the TextField, will be added to the HashMap
+     */
     private void handleChangeOnTextField(SolverController solver,String oldValue, String newValue) {
         if(counterForGuidedProp.containsKey(newValue)) {
             counterForGuidedProp.replace(newValue, counterForGuidedProp.get(newValue) - 1);

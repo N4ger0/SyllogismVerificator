@@ -21,58 +21,86 @@ import java.io.IOException;
 import java.util.*;
 
 /**
- * Cette classe représente le controller d'une des proposition du mode guidé.
- * Elle contient les informations necessaire a la resolution du syllogisme.
+ * This class is the controller of a proposition in guided mode.
+ * It also contains the information necessary to solve the syllogism
  */
 public class GuidedPropController {
+    /**
+     * List containing the loaded JSON of the quantities and qualities
+     */
     private ArrayList<Pair<String, ArrayList<String>>> QQLList = new ArrayList<>() ;
+    /**
+     * Attribute to remember what is the form of the selected quantifier
+     */
     private String classe ;
-
+    /**
+     * Instance of the Traductor class to translate the text of the proposition
+     * @see Traductor
+     */
     private Traductor traductor = new Traductor() ;
-
+    /**
+     * Getter for the class attribute
+     * @return String the letter corresponding to the form of the quantifier A, E, O or I
+     */
     public String getClasse() {
         return classe ;
     }
-    /** Le texte indiquant le numero de la premisse.*/
+    /** Text containing the number of the premise*/
     @FXML
     private Text text;
 
-    /** Le Menu deroulant permettant de choisir la quantite et qualite de la proposition.*/
+    /** MenuButton to select the class of the proposition*/
     @FXML
     private MenuButton guidedQQL;
 
-    /** Le champ textuel representant le 1er terme de la proposition.*/
+    /** AutocompleteTextField representing the first term of the proposition.
+     * @see AutocompleteTextFieldController*/
     @FXML
     private AutocompleteTextFieldController guidedTerme1;
 
-    /** Le Menu deroulant permettant de choisir le verbe de la proposition.*/
+    /** MenuButton containing some verb to use in a proposition*/
     @FXML
     private MenuButton verbe;
 
-    /** Le champ textuel representant le 1er terme de la proposition.*/
+    /** AutocompleteTextField representing the second term of the proposition.
+     * @see AutocompleteTextFieldController*/
     @FXML
     private AutocompleteTextFieldController guidedTerme2;
 
+    /**
+     * MenuItem contained in the verbe MenuButton
+     */
     @FXML
     private MenuItem sont ;
+    /**
+     * MenuItem contained in the verbe MenuButton
+     */
     @FXML
     private MenuItem est ;
+    /**
+     * MenuItem contained in the verbe MenuButton
+     */
     @FXML
     private MenuItem ont ;
+    /**
+     * MenuItem contained in the verbe MenuButton
+     */
     @FXML
     private MenuItem a ;
 
 
-    /** Entier servant de compteur de proposition.*/
+    /** Instance of the SolverController who contains the GuidedPropController*/
     private SolverController parentController;
 
-    /** Entier servant de compteur de proposition.*/
+    /** Integer used for counting the number of premise.*/
     public static int TextCounter;
-
     static {
         TextCounter = 1;
     }
 
+    /**
+     * Initalizer method who init the text in the selected language and set all the events
+     */
     @FXML
     public void initialize() {
         loadMenuItemsFromJson();
@@ -81,6 +109,9 @@ public class GuidedPropController {
         initTextFields();
     }
 
+    /**
+     * Set the text in the correct language. Called by initialize()
+     */
     private void initText(){
         text.setText(traductor.get("premisse") + TextCounter);
         verbe.setText(traductor.get("verbe"));
@@ -91,6 +122,10 @@ public class GuidedPropController {
         TextCounter++;
     }
 
+    /**
+     * Load the quantifier and qualities list from the JSON file
+     * @throws RuntimeException if error while parsing the JSON
+     */
     private void loadMenuItemsFromJson() {
         try {
             QQLList.clear();
@@ -112,6 +147,10 @@ public class GuidedPropController {
         }
     }
 
+    /**
+     * Populate the Menu of the quantifier and qualities MenuButon with the data loaded from
+     * the JSON
+     */
     private void initMenuItems() {
         guidedQQL.getItems().clear();
         for(Pair<String, ArrayList<String>> p : QQLList){
@@ -132,6 +171,10 @@ public class GuidedPropController {
         }
     }
 
+    /**
+     * Set the event for the display of the tutorial text during the input of a
+     * proposition.
+     */
     private void initTutorialText() {
         Text tutorialText = parentController.getTutorialText();
 
@@ -143,40 +186,62 @@ public class GuidedPropController {
         guidedTerme2.setOnMouseClicked(event -> tutorialText.setText(Traductor.get("term_def")));
     }
 
+    /**
+     * Set the prompt text of the TextFields in the language selected by the user
+     */
     private void initTextFields(){
         guidedTerme1.setPromptText(Traductor.get("terme")+ "1");
         guidedTerme2.setPromptText(Traductor.get("terme")+ "2");
     }
 
     /**
-     * Stocke le controller du parent.
+     * Method to save the parent controller of the propositionController
+     * @param parent the parent SolverController
+     * @see SolverController
      */
     public void setParentController(SolverController parent) {
         this.parentController = parent;
         initTutorialText();
     }
 
+    /**
+     * Getter for the text of the first term
+     * @return String
+     */
     public String getTerm1() {
         return guidedTerme1.getText();
     }
 
+    /**
+     * Getter for the text of the second term
+     * @return String
+     */
     public String getTerm2() {
         return guidedTerme2.getText();
     }
 
+    /**
+     * Getter for the TextField in which the first term is entered
+     * @return AutocompleteTextFieldController
+     * @see AutocompleteTextFieldController
+     */
     public AutocompleteTextFieldController getGuidedTerme1() {
         return guidedTerme1 ;
     }
-
+    /**
+     * Getter for the TextField in which the second term is entered
+     * @return AutocompleteTextFieldController
+     * @see AutocompleteTextFieldController
+     */
     public AutocompleteTextFieldController getGuidedTerme2() {
         return guidedTerme2 ;
     }
 
     /**
-     * Verifie la validite de la proposition.
+     * Check the validity of the inputed proposition
      * <br>
-     * Il faut verifier que la QQL est selectionne et que les termes sont utilises 2 fois chacun"
-     * @return un Boolean exprimant la valisite de la proposition.
+     * Check if a quantifier had been selected and if the two terms were inputed.
+     * @return String containing an error message if the proposition isn't correct
      */
     public String isValid(){
         String msg = "";
@@ -199,10 +264,9 @@ public class GuidedPropController {
     }
 
     /**
-     * Recupere les differentes parties de la proposition.
-     * <br>
-     * Les cles sont respectivement "QQL", "terme1", "terme2"
-     * @return une Map contenant la QQL, le 1er terme et le 2eme terme.
+     * Build a proposition with the data of the GuidedProposition
+     * @return Proposition
+     * @see Proposition
      */
     public Proposition getProposition() {
         String QQL = classe;

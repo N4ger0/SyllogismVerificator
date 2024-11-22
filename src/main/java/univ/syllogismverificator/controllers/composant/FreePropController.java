@@ -21,65 +21,114 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * Cette classe représente le controller d'une des proposition du mode libre.
- * Elle contient les informations necessaire a la resolution du syllogisme.
+ * This class is the controller of a proposition in free mode.
+ * It also contains the information necessary to solve the syllogism
  */
 public class FreePropController {
+    /**
+     * List containing the loaded JSON of the quantities and qualities
+     */
     private ArrayList<Pair<String, ArrayList<String>>> QQLList = new ArrayList<>() ;
+    /**
+     * Attribute to remember what is the form of the selected quantifier
+     */
     private String classe ;
-
+    /**
+     * Instance of the Traductor class to translate the text of the proposition
+     * @see Traductor
+     */
     private Traductor traductor = new Traductor() ;
 
+    /**
+     * Getter for the class attribute
+     * @return String the letter corresponding to the form of the quantifier A, E, O or I
+     */
     public String getClasse() {
         return classe ;
     }
-    /** Le texte indiquant le numero de la premisse.*/
+    /** Text containing the number of the premise*/
     @FXML
     private Text text;
+
+    /**
+     * Getter for the text containing the number of the premise
+     * @return String
+     */
     public String getText(){
         return text.getText();
     }
 
+    /**
+     * Text to display "medium term" in the language chosen by the user
+     */
     @FXML
     private Text freeMediumTermText ;
 
-    /** Le Menu deroulant permettant de choisir la quantite et qualite de la proposition.*/
+    /** MenuButton to select the class of the proposition*/
     @FXML
     private MenuButton freeQQL;
 
-    /** Le Menu deroulant permettant de choisir le 1er terme de la proposition.*/
+    /** MenuButton to select the first term of the premise*/
     @FXML
     private MenuButton freeTerme1;
+
+    /**
+     * Getter for the first MenuButton
+     * @return MenuButton
+     */
     public MenuButton getFreeTerme1() {
         return freeTerme1 ;
     }
 
-    /** Le Menu deroulant permettant de choisir le 2eme terme de la proposition.*/
+    /** MenuButton to select the second term of the premise*/
     @FXML
     private MenuButton freeTerme2;
+
+    /**
+     * Getter for the second MenuButton
+     * @return MenuButton
+     */
     public MenuButton getFreeTerme2() {
         return freeTerme2 ;
     }
 
+    /**
+     * TextField where the user input the medium term of the proposition
+     */
     @FXML
     private TextField freeTextFieldMedium;
+    /**
+     * VBox containing the TextFIel where the user input the medium term
+     */
     @FXML
     private VBox freeMediumTerm;
+
+    /**
+     * Getter for the TextField containing the medium term
+     * @return
+     */
     public TextField getFreeTextFieldMedium() {
         return freeTextFieldMedium;
     }
 
+    /**
+     * Attribute that indicates wether the controller is the last proposition ie the conclusion
+     */
     private static FreePropController lastFreeProp;
     static {
         lastFreeProp = null;
     }
 
-    /** Entier servant de compteur de proposition.*/
+    /** Integer used as a counter of proposition*/
     public static int TextCounter;
     static {
         TextCounter = 0;
     }
 
+    /**
+     * Initalizer for the FreePropController, set the text dynamically according to the select
+     * language, set all the events and increments the counter of proposition
+     */
     @FXML
     public void initialize() {
         freeTerme1.setText(traductor.get("terme") + "1");
@@ -95,6 +144,11 @@ public class FreePropController {
         TextCounter++;
     }
 
+    /**
+     * Method to load the JSON contained into the QQL selection MenuButton, automatically
+     * called from intialize()
+     * @throws RuntimeException if error parsing the JSON file
+     */
     private void loadMenuItemsFromJson() {
         try {
             QQLList.clear();
@@ -116,11 +170,17 @@ public class FreePropController {
         }
     }
 
+    /**
+     * If this is the conclusion, hide the Proposition x, and display conclusion instead
+     */
     private void initText(){
         freeMediumTerm.setVisible(false);
         text.setText("Conclusion");
     }
 
+    /**
+     * Method to set the text containing the number of the premise
+     */
     public void updateText() {
         if (lastFreeProp != null){
             lastFreeProp.text.setText(Traductor.get("premisse") + TextCounter);
@@ -130,6 +190,9 @@ public class FreePropController {
         }
     }
 
+    /**
+     * Build the items of the QQL MenuButton with the data loaded from the JSON
+     */
     private void initMenuItems() {
         freeQQL.getItems().clear();
         for(Pair<String, ArrayList<String>> p : QQLList){
@@ -153,19 +216,27 @@ public class FreePropController {
         }
     }
 
+    /**
+     * Getter for the first term of the proposition
+     * @return String the inputed term
+     */
     public String getTerm1() {
         return freeTerme1.getText();
     }
 
+    /**
+     * Getter for the second term of the proposition
+     * @return String the inputed term
+     */
     public String getTerm2() {
         return freeTerme2.getText();
     }
 
     /**
-     * Verifie la validite de la proposition.
+     * Check the validity of the inputed proposition
      * <br>
-     * Il faut verifier que la QQL est selectionne et que les termes sont utilises 2 fois chacun"
-     * @return un Boolean exprimant la valisite de la proposition.
+     * Check if a quantifier had been selected and if the two terms were inputed.
+     * @return String containing an error message if the proposition isn't correct
      */
     public String isValid(){
         String msg = "";
@@ -188,10 +259,9 @@ public class FreePropController {
     }
 
     /**
-     * Recupere les differentes parties de la proposition.
-     * <br>
-     * Les cles sont respectivement "QQL", "terme1", "terme2"
-     * @return une Map contenant la QQL, le 1er terme et le 2eme terme dans cet ordre.
+     * Build a proposition with the data of the FreeProposition
+     * @return Proposition
+     * @see Proposition
      */
     public Proposition getProposition() {
         String QQL = classe;

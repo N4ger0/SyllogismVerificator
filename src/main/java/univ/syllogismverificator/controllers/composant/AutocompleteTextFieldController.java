@@ -14,35 +14,41 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextFlow;
 
+/**
+ * Class for implementing a text field with a menu including proposition for the text field
+ */
 public class AutocompleteTextFieldController extends TextField {
-    //entries to autocomplete
+    /**
+     * Set of entry who will then be put in the popup for completion
+     */
     public Set<String> entries;
-    //popup GUI
+    /**
+     * FXML element who contains the completion MenuItem
+     */
     private ContextMenu entriesPopup;
 
+    /**
+     * Constructor for AutocompleteTextField initalise all the entry to empty
+     */
     public AutocompleteTextFieldController() {
         super();
         this.entries = new TreeSet<>();
         this.entriesPopup = new ContextMenu();
-
         setListner();
     }
 
+    /**
+     * Function called in the constructor, no need to call it manually. Set event for building and
+     * showing the popup on focusing in and out.
+     */
     private void setListner() {
-        //Add "suggestions" by changing text
         textProperty().addListener((observable, oldValue, newValue) -> {
-            String enteredText = getText();
-            //always hide suggestion if nothing has been entered (only "spacebars" are dissalowed in TextFieldWithLengthLimit)
-            //build popup - list of "CustomMenuItem"
             populatePopup(new ArrayList<String>(entries));
-            if (!entriesPopup.isShowing()) { //optional
+            if (!entriesPopup.isShowing()) {
                 entriesPopup.show(AutocompleteTextFieldController.this, Side.BOTTOM, 0, 0); //position of popup
             }
-            //no suggestions -> hide
-
         });
 
-        //Hide always by focus-in (optional) and out
         focusedProperty().addListener((observableValue, oldValue, newValue) -> {
             if(newValue){
                 populatePopup(new ArrayList<>(entries));
@@ -53,6 +59,10 @@ public class AutocompleteTextFieldController extends TextField {
         });
     }
 
+    /**
+     * Function for creating the popup, called automatically by the events.
+     * @param searchResult list of the entries to put in menu
+     */
     private void populatePopup(List<String> searchResult) {
         //List of "suggestions"
         List<CustomMenuItem> menuItems = new LinkedList<>();
