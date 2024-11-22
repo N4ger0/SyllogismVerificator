@@ -8,6 +8,11 @@ Tab, TabPane {
     -fx-faint-focus-color: #b2263445;
 }
 
+ScrollPane {
+    -fx-background-color: #9b8976;
+    -fx-background: #9b8976;
+}
+
 Button {
     -fx-border-color : #b22635 ;
     -fx-background-color : #ccc4b4 ;
