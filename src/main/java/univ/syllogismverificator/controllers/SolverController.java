@@ -548,8 +548,14 @@ public class SolverController {
                 SyllogismResult res = solver.solve(ps, guidedMt.isSelected(), guidedLh.isSelected(), guidedNn.isSelected(), guidedN.isSelected(), guidedAa.isSelected(), guidedPp.isSelected(), guidedP.isSelected(), guidedUu.isSelected(), guidedHE.isSelected());
 
                 if (res.isValid()) {
-                    guidedCCL.setText("Syllogisme valide!\n" + res);
-                } else {
+                    if (guidedHE.isSelected()) {
+                        guidedCCL.setText("Syllogisme valide!\n" + res.getResults().getLast().toString());
+
+                    } else {
+                        guidedCCL.setText("Syllogisme valide!");
+                    }
+                }
+                else {
                     guidedCCL.setText("Syllogisme invalide!\n" + res);
                 }
             }
@@ -567,8 +573,13 @@ public class SolverController {
                 SyllogismResult res = solver.solve(ps, freeMt.isSelected(), freeLh.isSelected(), freeNn.isSelected(), freeN.isSelected(), freeAa.isSelected(), freePp.isSelected(), freeP.isSelected(), freeUu.isSelected(), freeHE.isSelected());
 
                 if (res.isValid()) {
-                    freeCCL.setText("Syllogisme valide!\n" + res);
-                } else {
+                    if (freeHE.isSelected()) {
+                        freeCCL.setText("Syllogisme valide!\n" + res.getResults().getLast().toString());
+                    } else {
+                        freeCCL.setText("Syllogisme valide!");
+                    }
+                }
+                else {
                     freeCCL.setText("Syllogisme invalide!\n" + res);
                 }
             }

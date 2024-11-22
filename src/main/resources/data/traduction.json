@@ -159,5 +159,15 @@
     "en": "Rmt is not respected: one of the mid terms' quantity is never universal."},
   {"key": "rmt_valid",
     "fr": "Rnn est respectée : tous les moyens termes sont universels au moins une fois.",
-    "en": "Rnn is respected: all the mid terms are universals at least once."}
+    "en": "Rnn is respected: all the mid terms are universals at least once."},
+
+  {"key":  "interesting_invalid",
+   "fr" : "Ce syllogisme est ininteressant. \nVoici la conclusion universelle : ",
+   "en" : "This syllogism is uninteresting. \nHere is the universal conclusion: "},
+  {"key": "interesting_valid_no_universal_conclusion",
+   "fr" : "Ce syllogisme est interessant parce qu'il n'existe pas de conclusion universelle.",
+   "en" : "This syllogism is interesting because there is no universal conclusion."},
+  {"key": "interesting_valid_already_universal",
+   "fr" :  "Ce syllogisme est interessant parce que sa conclusion est déjà universelle.",
+   "en" :  "This syllogism is interesting because its conclusion is already universal."}
 ]

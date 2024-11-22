@@ -1,5 +1,6 @@
 package univ.syllogismverificator.models;
 
+import univ.syllogismverificator.Traductor;
 import univ.syllogismverificator.models.*;
 import univ.syllogismverificator.models.rules.*;
 
@@ -93,11 +94,11 @@ public class Solver {
                 Polysyllogism universalSyllogism = new Polysyllogism(polysyllogism);
                 res_bis = solve(universalSyllogism, checkRmt, checkRlh, checkRnn, checkRn, checkRaa, checkRpp, checkRp, checkRuu);
                 if (res_bis.isValid()) {
-                    String universalSyllogismString = "Ce syllogisme est ininteressant. \nVoici la conclusion universelle : " + "\n";
+                    String universalSyllogismString = Traductor.get("interesting_invalid") + "\n";
                     interestingSRuleResult = new RuleResult(false, universalSyllogismString.concat(universalSyllogism.toStringConclusion()));
                 }
                 else {
-                    interestingSRuleResult = new RuleResult(true, "Ce syllogisme est interessant parce qu'il n'existe pas de conclusion universelle.");
+                    interestingSRuleResult = new RuleResult(true, Traductor.get("interesting_valid_no_universal_conclusion"));
                 }
             }
             else {
