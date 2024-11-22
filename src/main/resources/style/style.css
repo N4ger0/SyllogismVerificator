@@ -13,12 +13,17 @@ ScrollPane {
     -fx-background: #9b8976;
 }
 
+AutocompleteTextFieldController {
+    -fx-pref-width: 100;
+}
+
 Button {
     -fx-border-color : #b22635 ;
     -fx-background-color : #ccc4b4 ;
     -fx-border-width: 2px ;
     -fx-border-radius: 15 ;
     -fx-background-radius: 15 ;
+    -fx-font-size: 15;
     -fx-text-fill : rgb(178, 38, 53) ;
 }
 
@@ -31,7 +36,7 @@ menu-button, menu, menu-bar, Menu, MenuBar, MenuButton, MenuItem {
     -fx-border-color : #b22635 ;
     -fx-background-color : #b22635 ;
     -fx-pref-height: 50;
-    -fx-pref-width: 200;
+    -fx-pref-width: 120;
     -fx-alignment: CENTER;
     -fx-font-size: 12;
     -fx-border-width: 2px ;
@@ -49,6 +54,7 @@ MenuButton .arrow-button .arrow {
 }
 
 TextField{
+    -fx-pref-width: 120;
     -fx-background-color : #ccc4b4 ;
     -fx-prompt-text-fill: #3b3b3b;
     -fx-alignment: CENTER;
@@ -56,6 +62,7 @@ TextField{
 }
 
 CheckBox {
+    -fx-pref-width: 70;
     -fx-padding: 7px ;
     -fx-background-color: #ccc4b4 ;
     -fx-background-radius: 15 ;
