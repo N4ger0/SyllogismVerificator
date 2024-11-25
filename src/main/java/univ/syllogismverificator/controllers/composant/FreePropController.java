@@ -18,6 +18,7 @@ import univ.syllogismverificator.models.Proposition;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -25,6 +26,8 @@ import java.util.Objects;
  * It also contains the information necessary to solve the syllogism
  */
 public class FreePropController {
+    public String currentSelected1 ;
+    public String currentSelected2 ;
     /**
      * List containing the loaded JSON of the quantities and qualities
      */
@@ -270,5 +273,23 @@ public class FreePropController {
         boolean qual = Objects.equals(QQL, "A") || Objects.equals(QQL, "I");
 
         return new Proposition(freeTerme2.getText(), freeTerme1.getText(), qtt, qual);
+    }
+
+    public void setEvent(HashMap<String, Integer> counterForFreeProp) {
+        freeTerme1.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!Objects.equals(currentSelected1, newValue) && !(currentSelected1 == null)) {
+                counterForFreeProp.put(currentSelected1, counterForFreeProp.get(currentSelected1) + 1);
+                //counterForFreeProp.put(newValue, counterForFreeProp.get(newValue) - 1);
+            }
+            currentSelected1 = newValue;
+        });
+
+        freeTerme2.textProperty().addListener((observable, oldValue, newValue) -> {
+            if(!Objects.equals(currentSelected2, newValue) && !(currentSelected2 == null)) {
+                counterForFreeProp.put(currentSelected2, counterForFreeProp.get(currentSelected2) + 1);
+                //counterForFreeProp.put(newValue, counterForFreeProp.get(newValue) - 1);
+            }
+            currentSelected2 = newValue;
+        });
     }
 }

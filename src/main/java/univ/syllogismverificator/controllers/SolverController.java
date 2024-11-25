@@ -309,6 +309,9 @@ public class SolverController {
         solver = new Solver();
         setEventOnTextFieldsGuidedMode();
         setEventOnTextFieldsFreeMode();
+        for(FreePropController controller : freePropControllers) {
+            controller.setEvent(counterForFreeProp) ;
+        }
     }
 
     /**
@@ -321,7 +324,9 @@ public class SolverController {
             counterForGuidedProp.replace(newValue, counterForGuidedProp.get(newValue) - 1);
         }
         else {
-            counterForGuidedProp.put(newValue, 1);
+            if(!Objects.equals(newValue, "")) {
+                counterForGuidedProp.put(newValue, 1);
+            }
         }
         counterForGuidedProp.remove(oldValue);
         for(GuidedPropController guidedPropController : guidedPropControllers) {
@@ -384,34 +389,52 @@ public class SolverController {
         for(FreePropController controller : freePropControllers) {
             controller.getFreeTerme1().getItems().clear();
             controller.getFreeTerme2().getItems().clear();
-            for (String key : counterForFreeProp.keySet()) {
+            for (String key : counterForFreeProp.entrySet().stream().filter(entry -> entry.getValue() != 0).map(Map.Entry::getKey).collect(Collectors.toSet())) {
                 MenuItem mi1 = new MenuItem(key);
                 mi1.setOnAction((event) -> {
                     controller.getFreeTerme1().setText(key);
                     counterForFreeProp.replace(key, counterForFreeProp.get(key) - 1);
                     controller.getFreeTerme2().getItems().removeIf(im -> im.getText().equals(key));
-                    if(counterForFreeProp.get(key) == 0) {
-                        removeFromAll(key);
-                    }
+//                    if(counterForFreeProp.get(key) == 0) {
+//                        removeFromAll(key);
+//                    }
+                    handleChangeFocusFreeMode();
                 });
                 MenuItem mi2 = new MenuItem(key);
                 mi2.setOnAction((event) -> {
+
                     controller.getFreeTerme2().setText(key);
                     counterForFreeProp.replace(key, counterForFreeProp.get(key) - 1);
                     controller.getFreeTerme1().getItems().removeIf(im -> im.getText().equals(key));
-                    if(counterForFreeProp.get(key) == 0) {
-                        removeFromAll(key);
-                    }
+//                    if(counterForFreeProp.get(key) == 0) {
+//                        removeFromAll(key);
+//                    }
+                    handleChangeFocusFreeMode();
                 });
                 controller.getFreeTerme1().getItems().add(mi1);
                 controller.getFreeTerme2().getItems().add(mi2);
                 controller.getFreeTerme1().layout();
                 controller.getFreeTerme2().layout();
             }
+            System.out.println(counterForFreeProp);
         }
     }
 
     private void handleChangeOnTextFieldsFreeMode(String oldValue, String newValue){
+        for(FreePropController controller : freePropControllers) {
+            controller.currentSelected1 = null ;
+//            if(controller.getFreeTerme1().getText() != traductor.get("terme") + "1") {
+//                counterForFreeProp.put(controller.getFreeTerme1().getText(), counterForFreeProp.get(controller.getFreeTerme1().getText()) + 1);
+//            }
+            controller.getFreeTerme1().setText(traductor.get("terme") + "1");
+            controller.getFreeTerme1().getItems().clear();
+            controller.currentSelected2 = null ;
+//            if(controller.getFreeTerme2().getText() != traductor.get("terme") + "2") {
+//                counterForFreeProp.put(controller.getFreeTerme2().getText(), counterForFreeProp.get(controller.getFreeTerme2().getText()) + 1);
+//            }
+            controller.getFreeTerme2().setText(traductor.get("terme") + "2");
+            controller.getFreeTerme2().getItems().clear();
+        }
         counterForFreeProp.put(newValue, 2);
         counterForFreeProp.remove(oldValue);
         System.out.println(counterForFreeProp);
