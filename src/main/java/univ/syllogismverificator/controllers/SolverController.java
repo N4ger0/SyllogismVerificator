@@ -494,9 +494,9 @@ public class SolverController {
         tab_free.setText(traductor.get("free_mode"));
         guidedSolve.setText(traductor.get("solve"));
         guidedHE.setText(traductor.get("exist_hypothese"));
-        text_sujet.setText(traductor.get("subject"));
+        text_sujet.setText(traductor.get("terme") + "1");
         //text_middle.setText(traductor.get("moyen_terme"));
-        text_predicat.setText(traductor.get("predicate"));
+        text_predicat.setText(traductor.get("terme") + "2");
         freeSolve.setText(traductor.get("solve"));
         //freeHE.setText(traductor.get("exist_hypothese"));
         addFreeProp.setText(Traductor.get("add_prop"));
