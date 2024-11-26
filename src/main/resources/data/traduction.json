@@ -137,6 +137,9 @@
     "fr": "Rn est respectée : toutes les prémisses sont négatives.",
     "en": "Rn is respected: all the premises are negative."},
   {"key": "rn_valid_particular_conclusion",
+    "fr": "Rn est respectée : la conclusion est négative ou toutes les prémisses sont négatives.",
+    "en": "Rn is respected: The conclusion is negative or all the premises are negative."},
+  {"key": "rn_valid",
     "fr": "Rn est respectée : la conclusion est négative.",
     "en": "Rn is respected: The conclusion is negative."},
 
@@ -164,10 +167,10 @@
     "fr": "Rmt n'est pas respectée : la quantité d'un des moyen termes n'est jamais universelle.",
     "en": "Rmt is not respected: one of the mid terms' quantity is never universal."},
   {"key": "rmt_valid",
-    "fr": "Rnn est respectée : tous les moyens termes sont universels au moins une fois.",
-    "en": "Rnn is respected: all the mid terms are universals at least once."},
+    "fr": "Rmt est respectée : tous les moyens termes sont universels au moins une fois.",
+    "en": "Rmt   is respected: all the mid terms are universals at least once."},
 
-  {"key":  "interesting_invalid",
+  {"key": "interesting_invalid",
    "fr" : "Ce syllogisme est ininteressant. \nVoici la conclusion universelle : ",
    "en" : "This syllogism is uninteresting. \nHere is the universal conclusion: "},
   {"key": "interesting_valid_no_universal_conclusion",

@@ -21,7 +21,7 @@ public class NRule implements Rule{
                 }
             }
         }
-        return new RuleResult(true, "rn_valid");
+        return new RuleResult(true, Traductor.get("rn_valid"));
     }
 }
 
