@@ -394,25 +394,29 @@ public class SolverController {
                 mi1.setOnAction((event) -> {
                     controller.getFreeTerme1().setText(key);
                     counterForFreeProp.replace(key, counterForFreeProp.get(key) - 1);
+                    handleChangeFocusFreeMode();
                     controller.getFreeTerme2().getItems().removeIf(im -> im.getText().equals(key));
 //                    if(counterForFreeProp.get(key) == 0) {
 //                        removeFromAll(key);
 //                    }
-                    handleChangeFocusFreeMode();
                 });
                 MenuItem mi2 = new MenuItem(key);
                 mi2.setOnAction((event) -> {
 
                     controller.getFreeTerme2().setText(key);
                     counterForFreeProp.replace(key, counterForFreeProp.get(key) - 1);
+                    handleChangeFocusFreeMode();
                     controller.getFreeTerme1().getItems().removeIf(im -> im.getText().equals(key));
 //                    if(counterForFreeProp.get(key) == 0) {
 //                        removeFromAll(key);
 //                    }
-                    handleChangeFocusFreeMode();
                 });
-                controller.getFreeTerme1().getItems().add(mi1);
-                controller.getFreeTerme2().getItems().add(mi2);
+                if(!Objects.equals(controller.getFreeTerme1().getText(), key)) {
+                    controller.getFreeTerme1().getItems().add(mi1);
+                }
+                if(!Objects.equals(controller.getFreeTerme2().getText(), key)) {
+                    controller.getFreeTerme2().getItems().add(mi2);
+                }
                 controller.getFreeTerme1().layout();
                 controller.getFreeTerme2().layout();
             }
