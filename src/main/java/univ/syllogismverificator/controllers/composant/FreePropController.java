@@ -275,6 +275,11 @@ public class FreePropController {
         return new Proposition(freeTerme2.getText(), freeTerme1.getText(), qtt, qual);
     }
 
+    /**
+     * Event to put back a use in the hashmap if the label of a MenuButton
+     * is changed and they were already one
+     * @param counterForFreeProp the hashmap to update
+     */
     public void setEvent(HashMap<String, Integer> counterForFreeProp) {
         freeTerme1.textProperty().addListener((observable, oldValue, newValue) -> {
             if(!Objects.equals(currentSelected1, newValue) && !(currentSelected1 == null)) {

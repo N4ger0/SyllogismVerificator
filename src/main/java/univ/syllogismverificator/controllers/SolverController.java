@@ -63,6 +63,9 @@ public class SolverController {
      * Button to switch between language in FreeMode
      */
     public Button language1;
+    /**
+     * Instance of the traductor to handle language changes
+     */
     Traductor traductor = new Traductor() ;
 
     /**
@@ -338,6 +341,9 @@ public class SolverController {
         System.out.println(counterForGuidedProp);
     }
 
+    /**
+     * Method to set events on the textFields in guided mode
+     */
     private void setEventOnTextFieldsGuidedMode() {
         for(GuidedPropController guidedPropController : guidedPropControllers) {
             guidedPropController.getGuidedTerme1().textProperty().addListener((observable, oldValue, newValue) -> {
@@ -349,6 +355,9 @@ public class SolverController {
         }
     }
 
+    /**
+     * Method to set events on the textFields in free mode
+     */
     private void setEventOnTextFieldsFreeMode() {
         textFieldSujet.textProperty().addListener((observable, oldValue, newValue) -> {
             handleChangeOnTextFieldsFreeMode(oldValue, newValue);
@@ -378,6 +387,11 @@ public class SolverController {
         }
     }
 
+    /**
+     * Method to call to remove an item from all the menuButton items
+     * @deprecated not called by any of the methods, instead filters the key entry directly
+     * @param key the text of the item to remove
+     */
     private void removeFromAll(String key){
         for(FreePropController freePropController : freePropControllers) {
             freePropController.getFreeTerme1().getItems().removeIf( im -> (Objects.equals(im.getText(), key)));
@@ -385,6 +399,10 @@ public class SolverController {
         }
     }
 
+    /**
+     * Build the list of menuItems to put in the menu buttons when the focus is
+     * put out of a textFields
+     */
     private void handleChangeFocusFreeMode() {
         for(FreePropController controller : freePropControllers) {
             controller.getFreeTerme1().getItems().clear();
@@ -424,6 +442,11 @@ public class SolverController {
         }
     }
 
+    /**
+     * Method called on change of a TextField on a free mode, update the hashmap of an instance
+     * @param oldValue the value entered before on the TextFields
+     * @param newValue the value entered now on the TextFields
+     */
     private void handleChangeOnTextFieldsFreeMode(String oldValue, String newValue){
         for(FreePropController controller : freePropControllers) {
             controller.currentSelected1 = null ;
@@ -444,7 +467,9 @@ public class SolverController {
         System.out.println(counterForFreeProp);
     }
 
-
+    /**
+     * Init the number of propositions to 2 and a conclusion
+     */
     private void initPropositions() {
         for (int i = 0; i < 3; i++) {  // Ajout des 3 propositions par default
             addGuidedProposition();
@@ -452,6 +477,9 @@ public class SolverController {
         }
     }
 
+    /**
+     * Method to init the text of the interface in the correct language
+     */
     private void initTexts() {
         tutorialText.setText(Traductor.get("syllogism_def"));
 
@@ -480,6 +508,9 @@ public class SolverController {
         schemaAdd1.setText(traductor.get("add_schema"));
     }
 
+    /**
+     * Set the events of the buttons of the interface such as solve, addProp, askSchema
+     */
     private void initButtons() {
         addFreeProp.setOnAction(event -> addFreeProposition());
         guidedSolve.setOnAction(event -> guidedSolve());
@@ -496,6 +527,10 @@ public class SolverController {
         language1.setOnAction(language.getOnAction());
     }
 
+    /**
+     * Method to got back to the main menu
+     * @param back Button
+     */
     public static void goToMenu(Button back) {
         FXMLLoader loader = new FXMLLoader(SolverController.class.getResource("/views/main_menu-view.fxml"));
         try {
@@ -512,6 +547,11 @@ public class SolverController {
 
     }
 
+    /**
+     * Method used to set events on the MenuButton of the free mode, still called but empty body
+     * @deprecated remplaced by handleChangeOnTextFieldsFreeMode and handleChangeFocusFreeMode
+     * @param p the controller of the prop
+     */
     private void setEventOnMenuButtonFreeMode(FreePropController p) {
         /*p.getFreeTerme1().setOnMouseClicked((event -> {
             MenuButton button = (MenuButton) event.getSource();
@@ -534,15 +574,16 @@ public class SolverController {
         }));*/
     }
 
+    /**
+     * getter for the tutorial text
+     * @return Text the tutorial text
+     */
     public Text getTutorialText() {
         return tutorialText;
     }
 
-    private ArrayList<String> completion = new ArrayList<>();
-
-
     /**
-     * Ajoute une proposition au mode guide.
+     * Add a propositon in GuidedMode
      */
     private void addGuidedProposition() {
         // Charger l'HBox depuis le fichier FXML
@@ -568,9 +609,8 @@ public class SolverController {
     }
 
     /**
-     * Recupere la liste des proposition.
-     *
-     * @return Une ArraList de Map representant les propositions du mode guide.
+     * Get the propositions list and make it a polysyllogism
+     * @return a polysyllogism
      */
     private Polysyllogism getGuidedPropositions(){
         ArrayList<Proposition> propositionsList = new ArrayList<>();
@@ -581,7 +621,7 @@ public class SolverController {
     }
 
     /**
-     * Ajoute une proposition au mode libre.
+     * Add proposition in free mode
      */
     private void addFreeProposition() {
         // Charger l'HBox depuis le fichier FXML
@@ -606,9 +646,8 @@ public class SolverController {
     }
 
     /**
-     * Recupere la liste des proposition.
-     *
-     * @return Une ArraList de Map representant les propositions du mode libre.
+     * Get a polysyllogism from the interface of the free mode
+     * @return a polysyllogism
      */
     private Polysyllogism getFreePropositions(){
         ArrayList<Proposition> propositionsList = new ArrayList<>();
@@ -619,9 +658,8 @@ public class SolverController {
     }
 
     /**
-     * Creer une map qui compte les occurences de chaque terme du mode guide.
-     *
-     * @return Une HashMap contenant chaque terme en clé ainsi que leurs occurence en valeur.
+     * Create a map continin the number of occurences of each term in guided mode
+     * @return a HashMap with the term as the key and the number of occurences
      */
     private Map<String, Integer> getGuidedTermsOccurence(){
         Map<String, Integer> map = new HashMap<>();
@@ -647,9 +685,8 @@ public class SolverController {
     }
 
     /**
-     * Creer une map qui compte les occurences de chaque terme du mode libre.
-     *
-     * @return Une HashMap contenant chaque terme en clé ainsi que leurs occurence en valeur.
+     * Create a map continin the number of occurences of each term in free mode
+     * @return a HashMap with the term as the key and the number of occurences
      */
     private Map<String, Integer> getFreeTermsOccurence(){
         Map<String, Integer> map = new HashMap<>();
@@ -675,10 +712,9 @@ public class SolverController {
     }
 
     /**
-     * Construit un message d'erreur si les entrées du mode guide sont non coherentes.
-     *<br>
-     * Si toutes les entrees sont cherentes, le message est une chaine vide
-     * @return Le message d'erreur.
+     * Buid a message error if the inputed syllogism in guided mode isn't in the correct form
+     * If the input is correct, return an empty string
+     * @return String the error message
      */
     private boolean isGuidedPSValid() {
         String msg = "";
@@ -697,10 +733,9 @@ public class SolverController {
     }
 
     /**
-     * Construit un message d'erreur si les entrées du mode libre sont non coherentes.
-     *<br>
-     * Si toutes les entrees sont cherentes, le message est une chaine vide
-     * @return Le message d'erreur.
+     * Buid a message error if the inputed syllogism in free mode isn't in the correct form
+     * If the input is correct, return an empty string
+     * @return String the error message
      */
     private boolean isFreePSValid() {
         String msg = "";
@@ -719,7 +754,7 @@ public class SolverController {
     }
 
     /**
-     * Lance la resolution du syllogisme dans le mode guide.
+     * Start the resolution of the syllogism in guided mode
      */
     private void guidedSolve() {
         if (isGuidedPSValid()){
@@ -744,6 +779,11 @@ public class SolverController {
         }
     }
 
+    /**
+     * order a polysyllogism and display the correct order in the interface
+     * @param ps the polysyllogism
+     * @param guided boolean
+     */
     private void setProposition(Polysyllogism ps, boolean guided) {
             List<Node> ordered = new ArrayList<>();
             List<Object> orderedPropControllers = new ArrayList<>();
@@ -773,7 +813,7 @@ public class SolverController {
     }
 
     /**
-     * Lance la resolution du syllogisme dans le mode libre.
+     * Start the resolution of the syllogism in free mode
      */
     private void freeSolve() {
         if (isFreePSValid()) {
@@ -797,6 +837,9 @@ public class SolverController {
         }
     }
 
+    /**
+     * Method to open a popup asking the user to input a new quantifier and qualitie
+     */
     public void askSchema() {
         // open a dialogue to ask
         Dialog<Pair<String, String>> dialog = new Dialog<>();
@@ -809,6 +852,11 @@ public class SolverController {
         dialog.showAndWait().ifPresent(p -> saveOnJson(p.getKey(), p.getValue()));
     }
 
+    /**
+     * Save the inputed quantifier and quality in the json
+     * @param name String
+     * @param say String
+     */
     private void saveOnJson(String name, String say){
         try {
             JSONObject o = (JSONObject) new JSONParser().parse(new FileReader("src/main/resources/data/quanqual.json"));
