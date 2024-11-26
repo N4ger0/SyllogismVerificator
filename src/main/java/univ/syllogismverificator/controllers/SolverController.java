@@ -142,6 +142,11 @@ public class SolverController {
     @FXML
     private Button guidedSolve;
     /**
+     * Reset button for the guidedMode
+     */
+    @FXML
+    private Button guidedReset;
+    /**
      * CheckBox for switching on and off the existence hypothesis for given rule in GuidedMode
      */
     @FXML
@@ -220,10 +225,23 @@ public class SolverController {
     @FXML
     private Button addFreeProp;
     /**
+
+    /**
+     * Button to delete a proposition in FreeMode
+     * @see FreePropController
+     */
+    @FXML
+    private Button delFreeProp;
+    /**
      * Button to solve a syllogism in freeMode
      */
     @FXML
     private Button freeSolve;
+    /**
+     * Reset button for the freeMode
+     */
+    @FXML
+    private Button freeReset;
     /**
      * CheckBox for switching on and off the existence hypothesis for given rule in freeMode
      */
@@ -344,6 +362,7 @@ public class SolverController {
     /**
      * Method to set events on the textFields in guided mode
      */
+
     private void setEventOnTextFieldsGuidedMode() {
         for(GuidedPropController guidedPropController : guidedPropControllers) {
             guidedPropController.getGuidedTerme1().textProperty().addListener((observable, oldValue, newValue) -> {
@@ -375,7 +394,7 @@ public class SolverController {
                 handleChangeFocusFreeMode();
             }
         });
-        for(FreePropController freePropController : freePropControllers) {
+        /*for(FreePropController freePropController : freePropControllers) {
             freePropController.getFreeTextFieldMedium().textProperty().addListener((observable, oldValue, newValue) -> {
                 handleChangeOnTextFieldsFreeMode(oldValue, newValue);
             });
@@ -384,7 +403,18 @@ public class SolverController {
                     handleChangeFocusFreeMode();
                 }
             });
-        }
+        }*/
+    }
+
+    private void setEventOnTextFieldsFreeMode(FreePropController FPC) {
+        FPC.getFreeTextFieldMedium().textProperty().addListener((observable, oldValue, newValue) -> {
+            handleChangeOnTextFieldsFreeMode(oldValue, newValue);
+        });
+        FPC.getFreeTextFieldMedium().focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if(!newValue) {
+                handleChangeFocusFreeMode();
+            }
+        });
     }
 
     /**
@@ -414,9 +444,6 @@ public class SolverController {
                     counterForFreeProp.replace(key, counterForFreeProp.get(key) - 1);
                     handleChangeFocusFreeMode();
                     controller.getFreeTerme2().getItems().removeIf(im -> im.getText().equals(key));
-//                    if(counterForFreeProp.get(key) == 0) {
-//                        removeFromAll(key);
-//                    }
                 });
                 MenuItem mi2 = new MenuItem(key);
                 mi2.setOnAction((event) -> {
@@ -425,9 +452,6 @@ public class SolverController {
                     counterForFreeProp.replace(key, counterForFreeProp.get(key) - 1);
                     handleChangeFocusFreeMode();
                     controller.getFreeTerme1().getItems().removeIf(im -> im.getText().equals(key));
-//                    if(counterForFreeProp.get(key) == 0) {
-//                        removeFromAll(key);
-//                    }
                 });
                 if(!Objects.equals(controller.getFreeTerme1().getText(), key)) {
                     controller.getFreeTerme1().getItems().add(mi1);
@@ -450,15 +474,10 @@ public class SolverController {
     private void handleChangeOnTextFieldsFreeMode(String oldValue, String newValue){
         for(FreePropController controller : freePropControllers) {
             controller.currentSelected1 = null ;
-//            if(controller.getFreeTerme1().getText() != traductor.get("terme") + "1") {
-//                counterForFreeProp.put(controller.getFreeTerme1().getText(), counterForFreeProp.get(controller.getFreeTerme1().getText()) + 1);
-//            }
             controller.getFreeTerme1().setText(traductor.get("terme") + "1");
             controller.getFreeTerme1().getItems().clear();
+
             controller.currentSelected2 = null ;
-//            if(controller.getFreeTerme2().getText() != traductor.get("terme") + "2") {
-//                counterForFreeProp.put(controller.getFreeTerme2().getText(), counterForFreeProp.get(controller.getFreeTerme2().getText()) + 1);
-//            }
             controller.getFreeTerme2().setText(traductor.get("terme") + "2");
             controller.getFreeTerme2().getItems().clear();
         }
@@ -493,6 +512,8 @@ public class SolverController {
         tab_guided.setText(traductor.get("guided_mode"));
         tab_free.setText(traductor.get("free_mode"));
         guidedSolve.setText(traductor.get("solve"));
+        guidedReset.setText(traductor.get("reset"));
+        freeReset.setText(traductor.get("reset"));
         guidedHE.setText(traductor.get("exist_hypothese"));
         text_sujet.setText(traductor.get("terme") + "1");
         //text_middle.setText(traductor.get("moyen_terme"));
@@ -500,6 +521,7 @@ public class SolverController {
         freeSolve.setText(traductor.get("solve"));
         //freeHE.setText(traductor.get("exist_hypothese"));
         addFreeProp.setText(Traductor.get("add_prop"));
+        delFreeProp.setText(Traductor.get("del_prop"));
 
         language.setText(Traductor.getLang().equals("fr") ? "EN" : "FR");
         language1.setText(Traductor.getLang().equals("fr") ? "EN" : "FR");
@@ -513,7 +535,10 @@ public class SolverController {
      */
     private void initButtons() {
         addFreeProp.setOnAction(event -> addFreeProposition());
+        delFreeProp.setOnAction(event -> delFreeProposition());
         guidedSolve.setOnAction(event -> guidedSolve());
+        guidedReset.setOnAction(event -> guidedReset());
+        freeReset.setOnAction(event -> freeReset());
         freeSolve.setOnAction(event -> freeSolve());
         schemaAdd.setOnAction(event -> askSchema());
         language.setOnAction(event -> {
@@ -547,37 +572,6 @@ public class SolverController {
 
     }
 
-    /**
-     * Method used to set events on the MenuButton of the free mode, still called but empty body
-     * @deprecated remplaced by handleChangeOnTextFieldsFreeMode and handleChangeFocusFreeMode
-     * @param p the controller of the prop
-     */
-    private void setEventOnMenuButtonFreeMode(FreePropController p) {
-        /*p.getFreeTerme1().setOnMouseClicked((event -> {
-            MenuButton button = (MenuButton) event.getSource();
-            button.getItems().clear();
-            for (String key : counterForFreeProp.keySet()) {
-                MenuItem mi = new MenuItem(key);
-                button.getItems().add(mi);
-                button.layout();
-            }
-        }));
-
-        p.getFreeTerme2().setOnMouseClicked((event -> {
-            MenuButton button = (MenuButton) event.getSource();
-            button.getItems().clear();
-            for (String key : counterForFreeProp.keySet()) {
-                MenuItem mi = new MenuItem(key);
-                button.getItems().add(mi);
-                button.layout();
-            }
-        }));*/
-    }
-
-    /**
-     * getter for the tutorial text
-     * @return Text the tutorial text
-     */
     public Text getTutorialText() {
         return tutorialText;
     }
@@ -642,7 +636,17 @@ public class SolverController {
         // Ajouter l'HBox à la VBox
         freePropositions.getChildren().add(FP);
 
-        setEventOnMenuButtonFreeMode(FPC);
+        setEventOnTextFieldsFreeMode(FPC);
+    }
+
+    /**
+     * Ajoute une proposition au mode libre.
+     */
+    private void delFreeProposition() {
+        if (FreePropController.TextCounter > 3) {
+            FreePropController.TextCounter--;
+            freeReset();
+        }
     }
 
     /**
@@ -837,8 +841,38 @@ public class SolverController {
         }
     }
 
+    public void guidedReset() {
+        guidedPropControllers.get(0).reset();
+        guidedPropControllers.clear();
+        guidedPropositions.getChildren().clear();
+        counterForGuidedProp.clear();
+        setEventOnTextFieldsGuidedMode();
+
+        addGuidedProposition();
+        addGuidedProposition();
+        addGuidedProposition();
+
+        guidedCCL.setText("");
+    }
+
+    public void freeReset() {
+        textFieldSujet.setText("");
+        textFieldPredicat.setText("");
+        int nFPC = FreePropController.TextCounter;
+        freePropControllers.get(0).reset();
+        freePropControllers.clear();
+        freePropositions.getChildren().clear();
+        counterForFreeProp.clear();
+
+        for (int i = 0; i < nFPC; i++) {
+            addFreeProposition();
+        }
+
+        freeCCL.setText("");
+    }
+
     /**
-     * Method to open a popup asking the user to input a new quantifier and qualitie
+     * Récupère la liste des QQL dans le fichier json.
      */
     public void askSchema() {
         // open a dialogue to ask

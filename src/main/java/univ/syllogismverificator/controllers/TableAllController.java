@@ -102,6 +102,9 @@ public class TableAllController {
         isRuu.selectedProperty().addListener((observable, oldValue, newValue) -> filterData());
     }
 
+    /**
+     * Filtre les données.
+     */
     private void filterData() {
         filteredData.setPredicate(syllogismData -> {
             if (isRuu.isSelected()) {
@@ -117,6 +120,9 @@ public class TableAllController {
         });
     }
 
+    /**
+     * Determine la figure selon la position du sujet et predicat dans la conclusion dans leurs propositions respectives
+     */
     private int getFigureAndProps(Syllogism syllogism){
         Proposition majorPremise = syllogism.getPropositions().get(0);
         Proposition minorPremise = syllogism.getPropositions().get(1);

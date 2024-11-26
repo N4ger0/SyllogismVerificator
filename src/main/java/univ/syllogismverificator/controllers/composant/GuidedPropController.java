@@ -99,7 +99,7 @@ public class GuidedPropController {
     }
 
     /**
-     * Initalizer method who init the text in the selected language and set all the events
+     * Initalizer method that inits the text in the selected language and set all the events
      */
     @FXML
     public void initialize() {
@@ -113,7 +113,12 @@ public class GuidedPropController {
      * Set the text in the correct language. Called by initialize()
      */
     private void initText(){
-        text.setText(traductor.get("premisse") + TextCounter);
+        if (TextCounter == 3) {
+            text.setText("Conclusion");
+        }
+        else {
+            text.setText(traductor.get("premisse") + TextCounter);
+        }
         verbe.setText(traductor.get("verbe"));
         sont.setText(traductor.get("sont"));
         est.setText(traductor.get("est"));
@@ -275,5 +280,9 @@ public class GuidedPropController {
         boolean qual = Objects.equals(QQL, "A") || Objects.equals(QQL, "I");
 
         return new Proposition(guidedTerme2.getText(), guidedTerme1.getText(), qtt, qual);
+    }
+
+    public void reset() {
+        TextCounter = 1;
     }
 }

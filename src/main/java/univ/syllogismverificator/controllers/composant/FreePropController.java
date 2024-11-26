@@ -297,4 +297,9 @@ public class FreePropController {
             currentSelected2 = newValue;
         });
     }
+
+    public void reset() {
+        lastFreeProp = null;
+        TextCounter = 0;
+    }
 }
