@@ -32,7 +32,7 @@
                                 prefWidth="175" text="Add schema" style="-fx-font-size: 20"/>
                         <Button fx:id="guidedReset" mnemonicParsing="false" prefHeight="50"
                                 prefWidth="125" text="reset" style="-fx-font-size: 20"/>
-                        <Button fx:id="language" mnemonicParsing="false" prefHeight="50" prefWidth="80" style="-fx-font-size: 20"/>
+                        <Button fx:id="languageGuidedMode" mnemonicParsing="false" prefHeight="50" prefWidth="80" style="-fx-font-size: 20"/>
                     </HBox>
                     <Text wrappingWidth="600" fx:id="tutorialText"/>
                 </VBox>
@@ -111,7 +111,7 @@
                                         prefWidth="155" text="Add schema"/>
                                 <Button fx:id="freeReset" mnemonicParsing="false" prefHeight="50"
                                         prefWidth="100" text="reset" style="-fx-font-size: 20"/>
-                                <Button fx:id="language1" mnemonicParsing="false" prefHeight="50" prefWidth="65"/>
+                                <Button fx:id="languageFreeMode" mnemonicParsing="false" prefHeight="50" prefWidth="65"/>
                             </HBox>
                         </VBox>
                     </VBox>

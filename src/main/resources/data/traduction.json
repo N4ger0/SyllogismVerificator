@@ -171,12 +171,21 @@
     "en": "Rmt   is respected: all the mid terms are universals at least once."},
 
   {"key": "interesting_invalid",
-   "fr" : "Ce syllogisme est ininteressant. \nVoici la conclusion universelle : ",
-   "en" : "This syllogism is uninteresting. \nHere is the universal conclusion: "},
+    "fr": "Ce syllogisme est ininteressant. \nVoici la conclusion universelle : ",
+    "en": "This syllogism is uninteresting. \nHere is the universal conclusion: "},
   {"key": "interesting_valid_no_universal_conclusion",
-   "fr" : "Ce syllogisme est interessant parce qu'il n'existe pas de conclusion universelle.",
-   "en" : "This syllogism is interesting because there is no universal conclusion."},
+    "fr": "Ce syllogisme est interessant parce qu'il n'existe pas de conclusion universelle.",
+    "en": "This syllogism is interesting because there is no universal conclusion."},
   {"key": "interesting_valid_already_universal",
-   "fr" :  "Ce syllogisme est interessant parce que sa conclusion est déjà universelle.",
-   "en" :  "This syllogism is interesting because its conclusion is already universal."}
+    "fr":  "Ce syllogisme est interessant parce que sa conclusion est déjà universelle.",
+    "en":  "This syllogism is interesting because its conclusion is already universal."},
+
+  {"key": "Valid_Syllogism",
+    "fr":  "Syllogisme Valide !",
+    "en":  "Valid Syllogism !"},
+
+  {"key": "Invalid_Syllogism",
+    "fr":  "Syllogisme Invalide !",
+    "en":  "Invalid Syllogism !"
+  }
 ]

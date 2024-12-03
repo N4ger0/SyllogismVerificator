@@ -1,6 +1,5 @@
 package univ.syllogismverificator.controllers;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,7 +43,7 @@ public class SolverController {
      * Button to switch between language in GuidedMode
      */
     @FXML
-    public Button language;
+    public Button languageGuidedMode;
     /**
      * Button to go back to the main menu in GuidedMode
      * @see MainMenuController
@@ -62,7 +61,7 @@ public class SolverController {
     /**
      * Button to switch between language in FreeMode
      */
-    public Button language1;
+    public Button languageFreeMode;
     /**
      * Instance of the traductor to handle language changes
      */
@@ -526,8 +525,8 @@ public class SolverController {
         addFreeProp.setText(Traductor.get("add_prop"));
         delFreeProp.setText(Traductor.get("del_prop"));
 
-        language.setText(Traductor.getLang().equals("fr") ? "EN" : "FR");
-        language1.setText(Traductor.getLang().equals("fr") ? "EN" : "FR");
+        languageGuidedMode.setText(Traductor.getLang().equals("fr") ? "EN" : "FR");
+        languageFreeMode.setText(Traductor.getLang().equals("fr") ? "EN" : "FR");
 
         schemaAdd.setText(traductor.get("add_schema"));
         schemaAdd1.setText(traductor.get("add_schema"));
@@ -544,15 +543,20 @@ public class SolverController {
         freeReset.setOnAction(event -> freeReset());
         freeSolve.setOnAction(event -> freeSolve());
         schemaAdd.setOnAction(event -> askSchema());
-        language.setOnAction(event -> {
+        languageGuidedMode.setOnAction(event -> {
             traductor.setLang(Traductor.getLang().equals("fr") ? "en" : "fr");
             initialize();
+            guidedReset();
         });
         back.setOnAction(event -> goToMenu(back));
 
         back1.setOnAction(back.getOnAction());
         schemaAdd1.setOnAction(schemaAdd.getOnAction());
-        language1.setOnAction(language.getOnAction());
+        languageFreeMode.setOnAction(event -> {
+            traductor.setLang(Traductor.getLang().equals("fr") ? "en" : "fr");
+            initialize();
+            freeReset();
+        });
     }
 
     /**
@@ -773,14 +777,14 @@ public class SolverController {
 
                 if (res.isValid()) {
                     if (guidedHE.isSelected()) {
-                        guidedCCL.setText("Syllogisme valide!\n" + res.getResults().getLast().toString());
+                        guidedCCL.setText(Traductor.get("Valid_Syllogism") + "\n" + res.getResults().getLast().toString());
 
                     } else {
-                        guidedCCL.setText("Syllogisme valide!");
+                        guidedCCL.setText(Traductor.get("Valid_Syllogism"));
                     }
                 }
                 else {
-                    guidedCCL.setText("Syllogisme invalide!\n" + res);
+                    guidedCCL.setText(Traductor.get("Invalid_Syllogism") + "\n" + res);
                 }
             }
         }
@@ -832,13 +836,13 @@ public class SolverController {
 
                 if (res.isValid()) {
                     if (freeHE.isSelected()) {
-                        freeCCL.setText("Syllogisme valide!\n" + res.getResults().getLast().toString());
+                        freeCCL.setText(Traductor.get("Valid_Syllogism") + "\n" + res.getResults().getLast().toString());
                     } else {
-                        freeCCL.setText("Syllogisme valide!");
+                        freeCCL.setText(Traductor.get("Valid_Syllogism"));
                     }
                 }
                 else {
-                    freeCCL.setText("Syllogisme invalide!\n" + res);
+                    freeCCL.setText(Traductor.get("Invalid_Syllogism") + "\n" + res);
                 }
             }
         }
