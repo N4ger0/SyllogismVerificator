@@ -13,6 +13,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import univ.syllogismverificator.Traductor;
+import univ.syllogismverificator.controllers.SolverController;
 import univ.syllogismverificator.models.Proposition;
 
 import java.io.FileReader;
@@ -280,10 +281,12 @@ public class FreePropController {
      * is changed and they were already one
      * @param counterForFreeProp the hashmap to update
      */
-    public void setEvent(HashMap<String, Integer> counterForFreeProp) {
+    public void setEvent(HashMap<String, Integer> counterForFreeProp, SolverController solver) {
         freeTerme1.textProperty().addListener((observable, oldValue, newValue) -> {
             if(!Objects.equals(currentSelected1, newValue) && !(currentSelected1 == null)) {
+                System.out.println("dans le event freeProp");
                 counterForFreeProp.put(currentSelected1, counterForFreeProp.get(currentSelected1) + 1);
+                solver.handleChangeFocusFreeMode();
                 //counterForFreeProp.put(newValue, counterForFreeProp.get(newValue) - 1);
             }
             currentSelected1 = newValue;
@@ -295,6 +298,7 @@ public class FreePropController {
                 //counterForFreeProp.put(newValue, counterForFreeProp.get(newValue) - 1);
             }
             currentSelected2 = newValue;
+
         });
     }
 

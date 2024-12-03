@@ -331,7 +331,7 @@ public class SolverController {
         setEventOnTextFieldsGuidedMode();
         setEventOnTextFieldsFreeMode();
         for(FreePropController controller : freePropControllers) {
-            controller.setEvent(counterForFreeProp) ;
+            controller.setEvent(counterForFreeProp, this) ;
         }
     }
 
@@ -433,7 +433,7 @@ public class SolverController {
      * Build the list of menuItems to put in the menu buttons when the focus is
      * put out of a textFields
      */
-    private void handleChangeFocusFreeMode() {
+    public void handleChangeFocusFreeMode() {
         for(FreePropController controller : freePropControllers) {
             controller.getFreeTerme1().getItems().clear();
             controller.getFreeTerme2().getItems().clear();
@@ -481,8 +481,11 @@ public class SolverController {
             controller.getFreeTerme2().setText(traductor.get("terme") + "2");
             controller.getFreeTerme2().getItems().clear();
         }
-        counterForFreeProp.put(newValue, 2);
+        if(!Objects.equals(newValue, "")) {
+            counterForFreeProp.put(newValue, 2);
+        }
         counterForFreeProp.remove(oldValue);
+        counterForFreeProp.replaceAll((k, v) -> 2);
         System.out.println(counterForFreeProp);
     }
 
