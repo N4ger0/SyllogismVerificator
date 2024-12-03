@@ -42,8 +42,10 @@ public class LhRule implements Rule {
             }
         }
 
-        if (isConclusionPredicateValid && isConclusionSubjectValid)
-            return new RuleResult(true, Traductor.get("rlh_valid"));
+        if (!isConclusionSubjectUniversal && !isConclusionQuantityUniversal)
+            return new RuleResult(true, Traductor.get("rlh_valid_particular_conclusion"));
+        else if (isConclusionPredicateValid && isConclusionSubjectValid)
+            return new RuleResult(true, Traductor.get("rlh_valid_universal_conclusion"));
         else if (isConclusionPredicateValid)
             return new RuleResult(false, Traductor.get("rlh_invalid_predicate"));
         else
