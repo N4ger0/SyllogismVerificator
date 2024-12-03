@@ -348,7 +348,14 @@ public class SolverController {
                 counterForGuidedProp.put(newValue, 1);
             }
         }
-        counterForGuidedProp.remove(oldValue);
+
+        if (counterForGuidedProp.containsKey(oldValue)) {
+            if (counterForGuidedProp.get(oldValue) == 0)
+                counterForGuidedProp.replace(oldValue, counterForGuidedProp.get(oldValue) + 1);
+            else
+                counterForGuidedProp.remove(oldValue);
+        }
+
         for(GuidedPropController guidedPropController : guidedPropControllers) {
             guidedPropController.getGuidedTerme1().entries = counterForGuidedProp.entrySet().stream().filter(entry -> entry.getValue() != 0).map(Map.Entry::getKey).collect(Collectors.toSet());
             guidedPropController.getGuidedTerme1().entries.remove(guidedPropController.getGuidedTerme2().getText());
