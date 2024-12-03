@@ -102,7 +102,7 @@ public class Solver {
                 }
             }
             else {
-                interestingSRuleResult = new RuleResult(true, "Ce syllogisme est interessant parce que sa conclusion est déjà universelle.");
+                interestingSRuleResult = new RuleResult(true, Traductor.get("interesting_valid_already_universal"));
             }
             res.addRuleResult(interestingSRuleResult);
         }
