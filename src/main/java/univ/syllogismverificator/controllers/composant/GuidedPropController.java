@@ -250,20 +250,39 @@ public class GuidedPropController {
      */
     public String isValid(){
         String msg = "";
-        if (guidedQQL.getText().equals("QQL")){
-            msg += "Il faut selectionner une QQL pour la " + text.getText() + "\n";
+        if (Traductor.getLang().equals("fr")) {
+            if (guidedQQL.getText().equals("QQL")) {
+                msg += "Il faut selectionner une QQL pour la " + text.getText() + "\n";
+            }
+            if (guidedTerme1.getText().isEmpty()) {
+                msg += "Le 1er terme de la " + text.getText() + " n'est pas definit\n";
+            }
+            if (guidedTerme2.getText().isEmpty()) {
+                msg += "Le 2eme terme de la " + text.getText() + " n'est pas definit\n";
+            }
+            if (guidedTerme1.getText().equals(guidedTerme2.getText())) {
+                msg += "Une proposition ne peux pas avoir 2 fois le même terme\n";
+            }
+            if (!msg.isEmpty()) {
+                msg += "\n";
+            }
         }
-        if (guidedTerme1.getText().isEmpty()) {
-            msg += "Le 1er terme de la " + text.getText() + " n'est pas definit\n";
-        }
-        if (guidedTerme2.getText().isEmpty()) {
-            msg += "Le 2eme terme de la " + text.getText() + " n'est pas definit\n";
-        }
-        if (guidedTerme1.getText().equals(guidedTerme2.getText())) {
-            msg += "Une proposition ne peux pas avoir 2 fois le même terme\n";
-        }
-        if (!msg.isEmpty()) {
-            msg += "\n";
+        else {
+            if (guidedQQL.getText().equals("QQL")) {
+                msg += "You need to select a QQL for the " + text.getText() + "\n";
+            }
+            if (guidedTerme1.getText().equals("Term 1")) {
+                msg += "The first term of the " + text.getText() + " isn't defined\n";
+            }
+            if (guidedTerme2.getText().equals("Term 2")) {
+                msg += "The second term of the " + text.getText() + " isn't defined\n";
+            }
+            if (guidedTerme1.getText().equals(guidedTerme2.getText())) {
+                msg += "A proposition can't have the same term twice\n";
+            }
+            if (!msg.isEmpty()) {
+                msg += "\n";
+            }
         }
         return msg;
     }
